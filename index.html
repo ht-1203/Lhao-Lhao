@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Heritage Seafood - ร้านอาหารไทยจีนซีฟู้ด</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'red-accent': '#C41E3A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto+Sans+Thai', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        [id] {
+            scroll-margin-top: 100px;
+        }
+        .dynamic-island {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .red-accent {
+            color: #C41E3A;
+        }
+        .bg-red-accent {
+            background-color: #C41E3A;
+        }
+        .gallery-item img {
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Language Dropdown Custom CSS */
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
+            width: 180px;
+            max-height: 350px;
+            overflow-y: auto;
+            z-index: 100;
+            border: 1px solid #f0f0f0;
+        }
+        .dark .lang-dropdown {
+            background: #1f2937;
+            border-color: #374151;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+        }
+        .lang-item {
+            padding: 10px 16px;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .lang-item:hover {
+            background-color: #f9fafb;
+            color: #C41E3A;
+        }
+        .dark .lang-item:hover {
+            background-color: #374151;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+
+    <!-- Dynamic Island Navigation -->
+    <nav id="nav-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
+        <div id="dynamic-island" class="dynamic-island bg-white/90 dark:bg-gray-800/95 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-2xl rounded-[40px] px-4 md:px-6 py-3 flex items-center justify-between">
+            <!-- Logo Section -->
+            <a href="#home" class="nav-link flex items-center gap-2 cursor-pointer hover:opacity-80 transition shrink-0">
+                <div class="w-8 h-8 bg-red-accent rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm">HS</div>
+                <span class="hidden lg:block font-bold tracking-tight text-gray-900 dark:text-white uppercase">Heritage <span class="red-accent">Seafood</span></span>
+            </a>
+
+            <!-- Menu Links -->
+            <div class="hidden md:flex items-center gap-4 lg:gap-8 text-sm font-medium">
+                <a href="#home" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_home">หน้าหลัก</a>
+                <a href="#menu" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_menu">เมนูอาหาร</a>
+                <a href="#about" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_about">ประวัติร้าน</a>
+                <a href="#map" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_map">แผนที่</a>
+            </div>
+
+            <!-- Utilities (Dark Mode + Language) & Action Buttons -->
+            <div class="flex items-center gap-1 md:gap-3">
+                <button onclick="toggleDarkMode()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 11H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 118.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+
+                <!-- Language Selector -->
+                <div class="relative px-2 py-1">
+                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="flex items-center gap-1 text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-red-600 transition focus:outline-none">
+                        <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                        <span class="hidden sm:inline uppercase pointer-events-none">TH</span>
+                    </button>
+                    <div id="lang-menu" class="lang-dropdown hidden shadow-xl border dark:border-gray-700">
+                        <div class="lang-item" onclick="selectLang('TH')"><span>🇹🇭</span> ไทย (TH)</div>
+                        <div class="lang-item" onclick="selectLang('EN')"><span>🇺🇸</span> English (EN)</div>
+                        <div class="lang-item" onclick="selectLang('ZH')"><span>🇨🇳</span> 中文 (ZH)</div>
+                        <div class="lang-item" onclick="selectLang('DE')"><span>🇩🇪</span> Deutsch (DE)</div>
+                        <div class="lang-item" onclick="selectLang('RU')"><span>🇷🇺</span> Русский (RU)</div>
+                        <div class="lang-item" onclick="selectLang('FR')"><span>🇫🇷</span> Français (FR)</div>
+                        <div class="lang-item" onclick="selectLang('JP')"><span>🇯🇵</span> 日本語 (JP)</div>
+                        <div class="lang-item" onclick="selectLang('MM')"><span>🇲🇲</span> မြันมา (MM)</div>
+                        <div class="lang-item" onclick="selectLang('KH')"><span>🇰🇭</span> ខ្មែរ (KH)</div>
+                        <div class="lang-item" onclick="selectLang('VN')"><span>🇻🇳</span> Tiếng Việt (VN)</div>
+                        <div class="lang-item" onclick="selectLang('MS')"><span>🇲🇾</span> Melayu (MS)</div>
+                    </div>
+                </div>
+
+                <!-- Booking Button -->
+                <a href="https://line.me/ti/p/@YOUR_LINE_ID" target="_blank" class="bg-red-accent text-white px-4 md:px-5 py-2.5 rounded-full text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-2 whitespace-nowrap">
+                    <svg class="w-4 h-4 hidden sm:block" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
+                    <span data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. หน้าหลัก (Home) -->
+    <header id="home" class="relative h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-950">
+        <div class="text-center z-10 px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight dark:text-white">
+                <span data-i18n="hero_title_part1">รสชาติแห่ง</span> <span class="red-accent" data-i18n="hero_title_part2">ท้องทะเล</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto" data-i18n="hero_desc">ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม</p>
+            <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto"></div>
+        </div>
+        <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-red-50 dark:bg-red-900/10 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-yellow-50 dark:bg-yellow-900/10 rounded-full blur-3xl opacity-50"></div>
+    </header>
+
+    <!-- 2. ประวัติร้าน (About) -->
+    <section id="about" class="py-24 bg-white dark:bg-gray-900 transition-colors">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1">
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-4 dark:text-white">
+                    <span class="w-10 h-1 bg-red-accent"></span>
+                    <span data-i18n="about_title">ประวัติความเป็นมา</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6" data-i18n="about_desc">
+                    ร้าน Heritage Seafood เริ่มต้นจากความหลงไหลในวัตถุดิบจากทะเลสดๆ ผสมผสานกับสูตรลับการปรุงอาหารสไตล์จีนดั้งเดิม และรสชาติที่จัดจ้านแบบไทย เราคัดสรรของดีที่สุดจากสะพานปลาทุกเช้า เพื่อส่งมอบความประทับใจให้แก่ทุกครอบครัว
+                </p>
+                <div class="p-6 border-l-4 border-[#D4AF37] bg-gray-50 dark:bg-gray-800">
+                    <p class="italic text-gray-700 dark:text-gray-300" data-i18n="about_quote">"ความสดคือหัวใจ บริการคือชีวิต รสชาติคือตำนาน"</p>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 bg-gray-200 dark:bg-gray-800 rounded-2xl aspect-video flex items-center justify-center text-gray-400 overflow-hidden shadow-xl border dark:border-gray-700"></div>
+        </div>
+    </section>
+
+    <!-- 3. เมนูอาหาร (Menu) -->
+    <section id="menu" class="py-24 bg-gray-50 dark:bg-gray-950 transition-colors">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 dark:text-white" data-i18n="menu_title">เมนูแนะนำ</h2>
+                <p class="text-gray-500 dark:text-gray-400" data-i18n="menu_subtitle">สัมผัสความอร่อยผ่านภาพถ่ายเมนูซิกเนเจอร์ของเรา</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="p-4">
+                        <h3 class="font-bold dark:text-white" data-i18n="food_1_name">กุ้งแม่น้ำเผา</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_1_desc">มันเยิ้ม เนื้อเด้ง สดจากแม่น้ำ</p>
+                    </div>
+                </div>
+                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="p-4">
+                        <h3 class="font-bold dark:text-white" data-i18n="food_2_name">ปูผัดผงกะหรี่</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_2_desc">รสชาติเข้มข้น หอมเครื่องเทศ</p>
+                    </div>
+                </div>
+                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="p-4">
+                        <h3 class="font-bold dark:text-white" data-i18n="food_3_name">ปลากะพงทอดน้ำปลา</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_3_desc">กรอบนอกนุ่มใน น้ำปลาปรุงรสพิเศษ</p>
+                    </div>
+                </div>
+                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="p-4">
+                        <h3 class="font-bold dark:text-white" data-i18n="food_4_name">ต้มยำกุ้งแชบ๊วย</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_4_desc">รสจัดจ้านถึงใจสไตล์ไทยแท้</p>
+                    </div>
+                </div>
+                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="p-4">
+                        <h3 class="font-bold dark:text-white" data-i18n="food_5_name">หอยเชลล์ย่างเนย</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_5_desc">หอมเนยแท้ กระเทียมเจียวกรอบ</p>
+                    </div>
+                </div>
+                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="p-4">
+                        <h3 class="font-bold dark:text-white" data-i18n="food_6_name">ออส่วนกระทะร้อน</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_6_desc">แป้งนุ่ม หอยนางรมสดตัวโต</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. แผนที่ (Map) -->
+    <section id="map" class="py-24 bg-white dark:bg-gray-900 text-center transition-colors">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-8 dark:text-white" data-i18n="map_title">ที่ตั้งร้านของเรา</h2>
+            <div class="relative bg-gray-100 dark:bg-gray-800 rounded-3xl h-80 w-full mb-8 flex items-center justify-center border dark:border-gray-700">
+                <a href="https://www.google.com/maps" target="_blank" class="bg-white dark:bg-gray-700 px-8 py-3 rounded-full shadow-sm font-medium dark:text-white" data-i18n="map_btn">เปิดใน Google Maps</a>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 italic" data-i18n="map_address">ถนนสุขุมวิท, กรุงเทพมหานคร | เปิดบริการทุกวัน 11:00 - 22:00 น.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-100 dark:border-gray-800 dark:bg-gray-900 transition-colors">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-gray-400 text-sm">© 2024 Heritage Seafood. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data สำหรับแปลภาษา
+        const translations = {
+            TH: {
+                nav_home: "หน้าหลัก", nav_menu: "เมนูอาหาร", nav_about: "ประวัติร้าน", nav_map: "แผนที่",
+                btn_booking: "จองโต๊ะ / สั่งอาหาร",
+                hero_title_part1: "รสชาติแห่ง", hero_title_part2: "ท้องทะเล",
+                hero_desc: "ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม",
+                about_title: "ประวัติความเป็นมา",
+                about_desc: "ร้าน Heritage Seafood เริ่มต้นจากความหลงไหลในวัตถุดิบจากทะเลสดๆ ผสมผสานกับสูตรลับการปรุงอาหารสไตล์จีนดั้งเดิม และรสชาติที่จัดจ้านแบบไทย เราคัดสรรของดีที่สุดจากสะพานปลาทุกเช้า เพื่อส่งมอบความประทับใจให้แก่ทุกครอบครัว",
+                about_quote: "\"ความสดคือหัวใจ บริการคือชีวิต รสชาติคือตำนาน\"",
+                menu_title: "เมนูแนะนำ", menu_subtitle: "สัมผัสความอร่อยผ่านภาพถ่ายเมนูซิกเนเจอร์ของเรา",
+                food_1_name: "กุ้งแม่น้ำเผา", food_1_desc: "มันเยิ้ม เนื้อเด้ง สดจากแม่น้ำ",
+                food_2_name: "ปูผัดผงกะหรี่", food_2_desc: "รสชาติเข้มข้น หอมเครื่องเทศ",
+                food_3_name: "ปลากะพงทอดน้ำปลา", food_3_desc: "กรอบนอกนุ่มใน น้ำปลาปรุงรสพิเศษ",
+                food_4_name: "ต้มยำกุ้งแชบ๊วย", food_4_desc: "รสจัดจ้านถึงใจสไตล์ไทยแท้",
+                food_5_name: "หอยเชลล์ย่างเนย", food_5_desc: "หอมเนยแท้ กระเทียมเจียวกรอบ",
+                food_6_name: "ออส่วนกระทะร้อน", food_6_desc: "แป้งนุ่ม หอยนางรมสดตัวโต",
+                map_title: "ที่ตั้งร้านของเรา", map_btn: "เปิดใน Google Maps", map_address: "ถนนสุขุมวิท, กรุงเทพมหานคร | เปิดบริการทุกวัน 11:00 - 22:00 น."
+            },
+            EN: {
+                nav_home: "Home", nav_menu: "Menu", nav_about: "Our Story", nav_map: "Location",
+                btn_booking: "Book Now / Order",
+                hero_title_part1: "The Taste of", hero_title_part2: "The Sea",
+                hero_desc: "Authentic Thai-Chinese premium seafood passed down through generations. Freshness and balanced flavor in every bite.",
+                about_title: "Our Heritage",
+                about_desc: "Heritage Seafood began with a passion for fresh ingredients, blending traditional Chinese cooking with bold Thai flavors. We hand-pick the best daily catch for every family.",
+                about_quote: "\"Freshness is the heart, service is the life, taste is the legend.\"",
+                menu_title: "Recommended", menu_subtitle: "Experience the deliciousness through our signature dishes.",
+                food_1_name: "Grilled River Prawn", food_1_desc: "Creamy head, firm meat, fresh from the river",
+                food_2_name: "Stir-fried Crab Curry", food_2_desc: "Rich flavor with aromatic spices",
+                food_3_name: "Deep-fried Seabass", food_3_desc: "Crispy outside, tender inside with special fish sauce",
+                food_4_name: "Tom Yum Kung", food_4_desc: "Authentic spicy and sour Thai soup",
+                food_5_name: "Grilled Scallops", food_5_desc: "Fragrant butter and crispy fried garlic",
+                food_6_name: "Hot Plate Oyster Omelet", food_6_desc: "Soft dough with fresh giant oysters",
+                map_title: "Our Location", map_btn: "Open Google Maps", map_address: "Sukhumvit Road, Bangkok | Open daily 11:00 - 22:00"
+            },
+            ZH: {
+                nav_home: "首页", nav_menu: "菜谱", nav_about: "关于我们", nav_map: "地图",
+                btn_booking: "订位 / 点餐",
+                hero_title_part1: "大海的", hero_title_part2: "味道",
+                hero_desc: "传承数代的海鲜名店，融合泰中风味，每一口都尽享鲜香。",
+                about_title: "品牌故事",
+                about_desc: "我们甄选每日清晨最新鲜的海味，由资深大厨烹饪，为您和家人呈献最地道的佳肴。",
+                about_quote: "“鲜是灵魂，诚是生命，味是传奇”",
+                menu_title: "主厨推荐", menu_subtitle: "通过我们的招牌菜照片感受美味。",
+                food_1_name: "炭烤大虾", food_1_desc: "虾肉紧实，鲜甜无比",
+                food_2_name: "咖喱炒蟹", food_2_desc: "香浓咖喱，口感丰富",
+                food_3_name: "香酥炸鲈鱼", food_3_desc: "外焦里嫩，搭配秘制酱汁",
+                food_4_name: "冬阴功汤", food_4_desc: "正宗泰式酸辣汤，开胃解腻",
+                food_5_name: "黄油烤扇贝", food_5_desc: "黄油清香，蒜泥酥脆",
+                food_6_name: "铁板蚝烙", food_6_desc: "口感软糯，蚝肉肥美",
+                map_title: "餐厅位置", map_btn: "在地图中打开", map_address: "曼谷素坤逸路 | 营业时间 11:00 - 22:00"
+            },
+            DE: {
+                nav_home: "Start", nav_menu: "Menü", nav_about: "Über uns", nav_map: "Karte",
+                btn_booking: "Tisch reservieren",
+                hero_title_part1: "Geschmack des", hero_title_part2: "Meeres",
+                hero_desc: "Authentische thailändisch-chinesische Meeresfrüchte-Küche auf höchstem Niveau.",
+                about_title: "Unsere Geschichte",
+                about_desc: "Bei Heritage Seafood vereinen wir Frische mit traditionellen Rezepten für unvergessliche Genussmomente.",
+                about_quote: "\"Frische ist das Herz, Service das Leben, Geschmack die Legende.\"",
+                menu_title: "Empfehlungen", menu_subtitle: "Entdecken Sie unsere Signature-Gerichte.",
+                food_1_name: "Gegrillte Flussgarnele", food_1_desc: "Frisch aus dem Fluss, saftig und zart",
+                food_2_name: "Krabbe in Curry", food_2_desc: "Reichhaltiges Aroma mit feinen Gewürzen",
+                food_3_name: "Frittierter Wolfsbarsch", food_3_desc: "Außen knusprig mit spezieller Fischsauce",
+                food_4_name: "Tom Yum Kung", food_4_desc: "Die weltberühmte thailändische Suppe",
+                food_5_name: "Gegrillte Jakobsmuscheln", food_5_desc: "Mit feiner Butter und Knoblauch",
+                food_6_name: "Austern-Omelett", food_6_desc: "Frische Austern auf der heißen Platte",
+                map_title: "Standort", map_btn: "Google Maps öffnen", map_address: "Sukhumvit Road, Bangkok | Täglich 11:00 - 22:00"
+            },
+            RU: {
+                nav_home: "Главная", nav_menu: "Меню", nav_about: "О нас", nav_map: "Карта",
+                btn_booking: "Забронировать",
+                hero_title_part1: "Вкус", hero_title_part2: "моря",
+                hero_desc: "Премиальные морепродукты по традиционным тайско-китайским рецептам.",
+                about_title: "Наша история",
+                about_desc: "Мы отбираем лучшие морепродукты каждое утро, чтобы вы наслаждались идеальным вкусом.",
+                about_quote: "\"Свежесть — это сердце, сервис — жизнь, вкус — легенда.\"",
+                menu_title: "Рекомендуем", menu_subtitle: "Насладитесь нашими фирменными блюдами.",
+                food_1_name: "Речная креветка на гриле", food_1_desc: "Сочное мясо, свежайший улов",
+                food_2_name: "Краб в соусе карри", food_2_desc: "Насыщенный вкус и аромат",
+                food_3_name: "Жареный сибас", food_3_desc: "Хрустящая корочка и нежное мясо",
+                food_4_name: "Том Ям", food_4_desc: "Тот самый острый тайский суп",
+                food_5_name: "Гребешки с маслом", food_5_desc: "Ароматное сливочное масло и чеснок",
+                food_6_name: "Омлет с устрицами", food_6_desc: "Подается на раскаленной сковороде",
+                map_title: "Где мы находимся", map_btn: "Открыть Google Карты", map_address: "Сукхумвит, Бангкок | 11:00 - 22:00"
+            },
+            FR: {
+                nav_home: "Accueil", nav_menu: "Menu", nav_about: "Histoire", nav_map: "Carte",
+                btn_booking: "Réserver",
+                hero_title_part1: "Le Goût de", hero_title_part2: "la Mer",
+                hero_desc: "Cuisine de fruits de mer thaï-chinoise d'exception.",
+                about_title: "Notre Héritage",
+                about_desc: "Des produits frais et des saveurs authentiques pour une expérience gastronomique unique.",
+                about_quote: "\"La fraîcheur est le cœur, le service est la vie, le goût est la légende.\"",
+                menu_title: "Suggestions", menu_subtitle: "Découvrez nos plats signatures.",
+                food_1_name: "Crevette Géante Grillée", food_1_desc: "Chair ferme et savoureuse",
+                food_2_name: "Crabe au Curry", food_2_desc: "Saveurs riches et épices parfumées",
+                food_3_name: "Bar Frit", food_3_desc: "Croustillant avec sa sauce spéciale",
+                food_4_name: "Tom Yum Kung", food_4_desc: "La soupe thaïlandaise emblématique",
+                food_5_name: "Coquilles Saint-Jacques", food_5_desc: "Au beurre et à l'ail croustillant",
+                food_6_name: "Omelette aux Huîtres", food_6_desc: "Huîtres fraîches sur plaque chauffante",
+                map_title: "Nous trouver", map_btn: "Ouvrir Google Maps", map_address: "Sukhumvit Road, Bangkok | Ouvert 11:00 - 22:00"
+            },
+            JP: {
+                nav_home: "ホーム", nav_menu: "メニュー", nav_about: "私たちの物語", nav_map: "地図",
+                btn_booking: "予約・注文",
+                hero_title_part1: "海の", hero_title_part2: "味わい",
+                hero_desc: "代々受け継がれる本格的なタイ・中華風のプレミアムシーフード。",
+                about_title: "私たちの歩み",
+                about_desc: "毎朝市場から仕入れる新鮮な素材と、伝統の技術が生み出す至福の一皿。",
+                about_quote: "「鮮度は心、サービスは命、味わいは伝説」",
+                menu_title: "おすすめメニュー", menu_subtitle: "自慢の料理をぜひご堪能ください。",
+                food_1_name: "大エビの炭火焼き", food_1_desc: "ぷりぷりの食感と濃厚な味噌",
+                food_2_name: "蟹のカレー粉炒め", food_2_desc: "スパイス香る濃厚な味わい",
+                food_3_name: "スズキの唐揚げ", food_3_desc: "外はカリッと、特製ナンプラー仕立て",
+                food_4_name: "トムヤムクン", food_4_desc: "本場タイの辛味と酸味",
+                food_5_name: "ホタテのバター焼き", food_5_desc: "芳醇なバターとカリカリガーリック",
+                food_6_name: "牡蠣の鉄板焼き", food_6_desc: "ふっくらした牡蠣を熱々で",
+                map_title: "アクセス", map_btn: "地図アプリで見る", map_address: "バンコク・スクンビット通り | 11:00 - 22:00"
+            },
+            MM: {
+                nav_home: "ပင်မစာမျက်နှာ", nav_menu: "မီနူး", nav_about: "ကျွန်ုပ်တို့အကြောင်း", nav_map: "မြေပုံ",
+                btn_booking: "ဘိုကင်တင်ရန်",
+                hero_title_part1: "ပင်လယ်ပြင်၏", hero_title_part2: "အရသာ",
+                hero_desc: "မျိုးဆက်များစွာ လက်ဆင့်ကမ်းလာသည့် ထိုင်း-တရုတ် ပရီမီယံ ပင်လယ်စာများ။",
+                about_title: "ကျွန်ုပ်တို့၏ သမိုင်းကြောင်း",
+                about_desc: "လတ်ဆတ်သော ပါဝင်ပစ္စည်းများကို အခြေခံ၍ အကောင်းဆုံးသော အရသာများကို ဖန်တီးပေးပါသည်။",
+                about_quote: "\"လတ်ဆတ်ခြင်းသည် နှလုံးသား၊ ဝန်ဆောင်မှုသည် အသက်၊ အရသာသည် ဒဏ္ဍာရီဖြစ်သည်။\"",
+                menu_title: "အကြံပြုမီနူးများ", menu_subtitle: "ကျွန်ုပ်တို့၏ အထူးဟင်းလျာများကို ခံစားကြည့်ရှုပါ။",
+                food_1_name: "မြစ်ပုစွန်ကင်", food_1_desc: "လတ်ဆတ်ပြီး အသားချိုမြိန်သော မြစ်ပုစွန်",
+                food_2_name: "ဂဏန်းကရင်ဟင်း", food_2_desc: "မွှေးကြိုင်သော ဟင်းခတ်အမွှေးအကြိုင်များနှင့် ဂဏန်းဟင်း",
+                food_3_name: "ကကတစ်ငါးကြော်", food_3_desc: "အပြင်ဘက်ကြွပ်ပြီး အတွင်းသားနူးညံ့သော ငါးကြော်",
+                food_4_name: "တုံယမ်းပုစွန်ဟင်း", food_4_desc: "စပ်စပ်ချဉ်ချဉ် ထိုင်းစတိုင်ဟင်းရည်",
+                food_5_name: "ကမာကင်", food_5_desc: "ထောပတ်နှင့် ကြက်သွန်ဖြူနံ့မွှေးမွှေး",
+                food_6_name: "ကမာဥကပ်ကြော်", food_6_desc: "ပူပူနွေးနွေး ကမာဥကပ်ကြော်",
+                map_title: "တည်နေရာ", map_btn: "မြေပုံကြည့်ရန်", map_address: "ဆူခွန်ဗစ်လမ်း၊ ဘန်ကောက် | ၁၁:၀၀ မှ ၂၂:၀၀ ထိ"
+            },
+            KH: {
+                nav_home: "ទំព័រដើម", nav_menu: "បញ្ជីម្ហូប", nav_about: "ប្រវត្តិហាង", nav_map: "ផែនទី",
+                btn_booking: "កក់តុ / កុម្ម៉ង់",
+                hero_title_part1: "រសជាតិមកពី", hero_title_part2: "សមុទ្រ",
+                hero_desc: "ម្ហូបសមុទ្រកម្រិតខ្ពស់បែបថៃ-ចិន ដែលមានរសជាតិដើមតាំងពីយូរលង់មកហើយ។",
+                about_title: "ប្រវត្តិហាង",
+                about_desc: "យើងជ្រើសរើសគ្រឿងសមុទ្រស្រស់ៗជារៀងរាល់ព្រឹក ដើម្បីផ្តល់ជូននូវរសជាតិដ៏អស្ចារ្យ។",
+                about_quote: "\"ភាពស្រស់ជាបេះដូង សេវាកម្មជាជីវិត រសជាតិជាព្រេងនិទាន\"",
+                menu_title: "ម្ហូបពិសេស", menu_subtitle: "រីករាយជាមួយរសជាតិម្ហូបពិសេសរបស់យើង។",
+                food_1_name: "បង្កងទន្លេអាំង", food_1_desc: "បង្កងស្រស់ៗ សាច់ផ្អែមឆ្ងាញ់",
+                food_2_name: "ក្តាមឆាការី", food_2_desc: "រសជាតិដិតជាប់មាត់ ជាមួយគ្រឿងទេសឈ្ងុយឆ្ងាញ់",
+                food_3_name: "ត្រីតុកកែបំពង", food_3_desc: "ស្រួយខាងក្រៅ ទន់ខាងក្នុង ជាមួយទឹកត្រីពិសេស",
+                food_4_name: "តុំយ៉ាំបង្កង", food_4_desc: "ស៊ុបហឹរជូរអែមបែបថៃពិតៗ",
+                food_5_name: "ងាវដុតប៊ឺ", food_5_desc: "ឈ្ងុយប៊ឺ និងខ្ទឹមសបំពងស្រួយ",
+                food_6_name: "ខ្ទះក្តៅអយស្ទ័រ", food_6_desc: "អយស្ទ័រស្រស់ៗ ឆ្អិនក្តៅៗលើខ្ទះ",
+                map_title: "ទីតាំងហាង", map_btn: "បើកផែនទី", map_address: "ផ្លូវស៊ូឃុមវិទ ទីក្រុងបាងកក | បើកជារៀងរាល់ថ្ងៃ ១១:០០ - ២២:០០"
+            },
+            VN: {
+                nav_home: "Trang chủ", nav_menu: "Thực đơn", nav_about: "Về chúng tôi", nav_map: "Bản đồ",
+                btn_booking: "Đặt bàn ngay",
+                hero_title_part1: "Hương vị", hero_title_part2: "biển cả",
+                hero_desc: "Hải sản cao cấp phong cách Thái-Hoa, truyền thống và tươi ngon.",
+                about_title: "Câu chuyện của chúng tôi",
+                about_desc: "Chúng tôi chọn lọc hải sản tươi nhất mỗi sáng để mang đến sự hài lòng cho thực khách.",
+                about_quote: "\"Tươi ngon là trái tim, phục vụ là cuộc sống, hương vị là huyền thoại.\"",
+                menu_title: "Món gợi ý", menu_subtitle: "Trải nghiệm hương vị tuyệt vời qua các món đặc trưng.",
+                food_1_name: "Tôm sông nướng", food_1_desc: "Tôm tươi, thịt chắc và ngọt",
+                food_2_name: "Cua xào cà ri", food_2_desc: "Hương vị đậm đà, thơm lừng",
+                food_3_name: "Cá chẽm chiên nước mắm", food_3_desc: "Giòn rụm với nước mắm đặc biệt",
+                food_4_name: "Tom Yum Kung", food_4_desc: "Súp Thái chua cay đúng điệu",
+                food_5_name: "Sò điệp nướng bơ", food_5_desc: "Thơm mùi bơ và tỏi phi giòn",
+                food_6_name: "Hàu né bàn gang", food_6_desc: "Hàu tươi nóng hổi trên bàn gang",
+                map_title: "Vị trí", map_btn: "Mở Bản đồ", map_address: "Đường Sukhumvit, Bangkok | Mở cửa 11:00 - 22:00"
+            },
+            MS: {
+                nav_home: "Utama", nav_menu: "Menu", nav_about: "Sejarah", nav_map: "Peta",
+                btn_booking: "Tempah Meja",
+                hero_title_part1: "Rasa Dari", hero_title_part2: "Lautan",
+                hero_desc: "Makanan laut premium Thai-Cina yang asli dan segar.",
+                about_title: "Sejarah Kami",
+                about_desc: "Kami memilih hasil laut terbaik setiap hari untuk kepuasan pelanggan kami.",
+                about_quote: "\"Kesegaran adalah jantung, perkhidmatan adalah nyawa, rasa adalah legenda.\"",
+                menu_title: "Cadangan Kami", menu_subtitle: "Nikmati hidangan istimewa melalui foto menu kami.",
+                food_1_name: "Udang Galah Bakar", food_1_desc: "Daging pejal dan segar dari sungai",
+                food_2_name: "Ketam Masak Kari", food_2_desc: "Rasa kaya dengan rempah ratus aromatik",
+                food_3_name: "Ikan Siakap Goreng", food_3_desc: "Garing di luar, lembut di dalam",
+                food_4_name: "Tom Yum Kung", food_4_desc: "Sup masam pedas Thai yang asli",
+                food_5_name: "Siput Bakar Mentega", food_5_desc: "Aroma mentega dan bawang putih garing",
+                food_6_name: "Telur Dadar Tiram", food_6_desc: "Tiram segar di atas kuali panas",
+                map_title: "Lokasi Kami", map_btn: "Buka Google Maps", map_address: "Jalan Sukhumvit, Bangkok | Dibuka setiap hari 11:00 - 22:00"
+            }
+        };
+
+        // ฟังก์ชันอัปเดตภาษา
+        function updateLanguage(lang) {
+            const data = translations[lang];
+            if (!data) return;
+
+            // หา Element ที่มี data-i18n และเปลี่ยน Text
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (data[key]) {
+                    el.innerText = data[key];
+                }
+            });
+
+            // อัปเดตตัวหนังสือที่ปุ่มเลือกภาษา
+            document.getElementById('lang-btn').querySelector('span').innerText = lang;
+            
+            // บันทึกภาษาลงใน LocalStorage
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        function toggleLangMenu(event) {
+            event.stopPropagation();
+            document.getElementById('lang-menu').classList.toggle('hidden');
+        }
+
+        function selectLang(code) {
+            updateLanguage(code);
+            document.getElementById('lang-menu').classList.add('hidden');
+        }
+
+        // โหลดภาษาล่าสุดเมื่อเปิดหน้าเว็บ
+        window.onload = () => {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'TH';
+            updateLanguage(savedLang);
+        };
+
+        // ปิดเมนูเมื่อคลิกข้างนอก
+        window.onclick = (e) => {
+            const menu = document.getElementById('lang-menu');
+            if (!menu.contains(e.target) && e.target !== document.getElementById('lang-btn')) {
+                menu.classList.add('hidden');
+            }
+        };
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</body>
+</html>
