@@ -23,7 +23,7 @@
             scroll-behavior: smooth;
         }
         body {
-            font-family: 'Noto+Sans+Thai', sans-serif;
+            font-family: 'Noto Sans Thai', sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
         [id] {
@@ -45,8 +45,8 @@
             transform: scale(1.05);
         }
 
-        /* Language Dropdown Custom CSS */
-        .lang-dropdown {
+        /* Language & Nav Dropdown Custom CSS */
+        .custom-dropdown {
             position: absolute;
             top: calc(100% + 10px);
             right: 0;
@@ -54,30 +54,31 @@
             border-radius: 16px;
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
             width: 180px;
-            max-height: 350px;
-            overflow-y: auto;
             z-index: 100;
             border: 1px solid #f0f0f0;
+            overflow: hidden;
         }
-        .dark .lang-dropdown {
+        .dark .custom-dropdown {
             background: #1f2937;
             border-color: #374151;
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
         }
-        .lang-item {
-            padding: 10px 16px;
+        .dropdown-item {
+            padding: 12px 16px;
             font-size: 14px;
             transition: all 0.2s;
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            width: 100%;
+            text-align: left;
         }
-        .lang-item:hover {
+        .dropdown-item:hover {
             background-color: #f9fafb;
             color: #C41E3A;
         }
-        .dark .lang-item:hover {
+        .dark .dropdown-item:hover {
             background-color: #374151;
         }
     </style>
@@ -93,7 +94,7 @@
                 <span class="hidden lg:block font-bold tracking-tight text-gray-900 dark:text-white uppercase">Heritage <span class="red-accent">Seafood</span></span>
             </a>
 
-            <!-- Menu Links -->
+            <!-- Menu Links (Desktop) -->
             <div class="hidden md:flex items-center gap-4 lg:gap-8 text-sm font-medium">
                 <a href="#home" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_home">หน้าหลัก</a>
                 <a href="#menu" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_menu">เมนูอาหาร</a>
@@ -101,37 +102,51 @@
                 <a href="#map" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_map">แผนที่</a>
             </div>
 
-            <!-- Utilities (Dark Mode + Language) & Action Buttons -->
+            <!-- Utilities (Mobile Nav + Dark Mode + Language) & Action Buttons -->
             <div class="flex items-center gap-1 md:gap-3">
+                
+                <!-- Mobile Navigation Dropdown (Added for Mobile Version) -->
+                <div class="relative md:hidden px-1">
+                    <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none">
+                        <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div id="mobile-nav-menu" class="custom-dropdown hidden shadow-xl border dark:border-gray-700 right-[-40px]">
+                        <a href="#home" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_home">หน้าหลัก</a>
+                        <a href="#menu" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_menu">เมนูอาหาร</a>
+                        <a href="#about" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_about">ประวัติร้าน</a>
+                        <a href="#map" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_map">แผนที่</a>
+                    </div>
+                </div>
+
                 <button onclick="toggleDarkMode()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
                     <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 11H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
                     <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 118.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
 
                 <!-- Language Selector -->
-                <div class="relative px-2 py-1">
-                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="flex items-center gap-1 text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-red-600 transition focus:outline-none">
+                <div class="relative px-1">
+                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="flex items-center gap-1 text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-red-600 transition focus:outline-none p-1">
                         <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                         <span class="hidden sm:inline uppercase pointer-events-none">TH</span>
                     </button>
-                    <div id="lang-menu" class="lang-dropdown hidden shadow-xl border dark:border-gray-700">
-                        <div class="lang-item" onclick="selectLang('TH')"><span>🇹🇭</span> ไทย (TH)</div>
-                        <div class="lang-item" onclick="selectLang('EN')"><span>🇺🇸</span> English (EN)</div>
-                        <div class="lang-item" onclick="selectLang('ZH')"><span>🇨🇳</span> 中文 (ZH)</div>
-                        <div class="lang-item" onclick="selectLang('DE')"><span>🇩🇪</span> Deutsch (DE)</div>
-                        <div class="lang-item" onclick="selectLang('RU')"><span>🇷🇺</span> Русский (RU)</div>
-                        <div class="lang-item" onclick="selectLang('FR')"><span>🇫🇷</span> Français (FR)</div>
-                        <div class="lang-item" onclick="selectLang('JP')"><span>🇯🇵</span> 日本語 (JP)</div>
-                        <div class="lang-item" onclick="selectLang('MM')"><span>🇲🇲</span> မြันมา (MM)</div>
-                        <div class="lang-item" onclick="selectLang('KH')"><span>🇰🇭</span> ខ្មែរ (KH)</div>
-                        <div class="lang-item" onclick="selectLang('VN')"><span>🇻🇳</span> Tiếng Việt (VN)</div>
-                        <div class="lang-item" onclick="selectLang('MS')"><span>🇲🇾</span> Melayu (MS)</div>
+                    <div id="lang-menu" class="custom-dropdown hidden shadow-xl border dark:border-gray-700">
+                        <div class="dropdown-item" onclick="selectLang('TH')"><span>🇹🇭</span> ไทย (TH)</div>
+                        <div class="dropdown-item" onclick="selectLang('EN')"><span>🇺🇸</span> English (EN)</div>
+                        <div class="dropdown-item" onclick="selectLang('ZH')"><span>🇨🇳</span> 中文 (ZH)</div>
+                        <div class="dropdown-item" onclick="selectLang('DE')"><span>🇩🇪</span> Deutsch (DE)</div>
+                        <div class="dropdown-item" onclick="selectLang('RU')"><span>🇷🇺</span> Русский (RU)</div>
+                        <div class="dropdown-item" onclick="selectLang('FR')"><span>🇫🇷</span> Français (FR)</div>
+                        <div class="dropdown-item" onclick="selectLang('JP')"><span>🇯🇵</span> 日本語 (JP)</div>
+                        <div class="dropdown-item" onclick="selectLang('MM')"><span>🇲🇲</span> မြန်မာ (MM)</div>
+                        <div class="dropdown-item" onclick="selectLang('KH')"><span>🇰🇭</span> ខ្មែរ (KH)</div>
+                        <div class="dropdown-item" onclick="selectLang('VN')"><span>🇻🇳</span> Tiếng Việt (VN)</div>
+                        <div class="dropdown-item" onclick="selectLang('MS')"><span>🇲🇾</span> Melayu (MS)</div>
                     </div>
                 </div>
 
                 <!-- Booking Button -->
-                <a href="https://line.me/ti/p/@YOUR_LINE_ID" target="_blank" class="bg-red-accent text-white px-4 md:px-5 py-2.5 rounded-full text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-2 whitespace-nowrap">
-                    <svg class="w-4 h-4 hidden sm:block" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
+                <a href="https://line.me/ti/p/@YOUR_LINE_ID" target="_blank" class="bg-red-accent text-white px-3 md:px-5 py-2 rounded-full text-[10px] md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1 md:gap-2 whitespace-nowrap">
+                    <svg class="w-3 h-3 md:w-4 md:h-4 hidden sm:block" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
                     <span data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
                 </a>
             </div>
@@ -244,7 +259,6 @@
     </footer>
 
     <script>
-        // Data สำหรับแปลภาษา
         const translations = {
             TH: {
                 nav_home: "หน้าหลัก", nav_menu: "เมนูอาหาร", nav_about: "ประวัติร้าน", nav_map: "แผนที่",
@@ -325,11 +339,11 @@
                 menu_title: "Рекомендуем", menu_subtitle: "Насладитесь нашими фирменными блюдами.",
                 food_1_name: "Речная креветка на гриле", food_1_desc: "Сочное мясо, свежайший улов",
                 food_2_name: "Краб в соусе карри", food_2_desc: "Насыщенный вкус и аромат",
-                food_3_name: "Жареный сибас", food_3_desc: "Хрустящая корочка и нежное мясо",
+                food_3_name: "Жาреный сибас", food_3_desc: "Хрустящая корочка и нежное мясо",
                 food_4_name: "Том Ям", food_4_desc: "Тот самый острый тайский суп",
                 food_5_name: "Гребешки с маслом", food_5_desc: "Ароматное сливочное масло и чеснок",
                 food_6_name: "Омлет с устрицами", food_6_desc: "Подается на раскаленной сковороде",
-                map_title: "Где мы находимся", map_btn: "Открыть Google Карты", map_address: "Сукхумвит, Бангкок | 11:00 - 22:00"
+                map_title: "Где мы находимся", map_btn: "Открыть Google Карты", map_address: "Сукхуมвит, Бангкок | 11:00 - 22:00"
             },
             FR: {
                 nav_home: "Accueil", nav_menu: "Menu", nav_about: "Histoire", nav_map: "Carte",
@@ -352,7 +366,7 @@
                 nav_home: "ホーム", nav_menu: "メニュー", nav_about: "私たちの物語", nav_map: "地図",
                 btn_booking: "予約・注文",
                 hero_title_part1: "海の", hero_title_part2: "味わい",
-                hero_desc: "代々受け継がれる本格的なタイ・中華風のプレミアムシーフード。",
+                hero_desc: "代々受け継がれる本格的なタイ・中華風ของプレミアムシーフード。",
                 about_title: "私たちの歩み",
                 about_desc: "毎朝市場から仕入れる新鮮な素材と、伝統の技術が生み出す至福の一皿。",
                 about_quote: "「鮮度は心、サービスは命、味わいは伝説」",
@@ -371,14 +385,14 @@
                 hero_title_part1: "ပင်လယ်ပြင်၏", hero_title_part2: "အရသာ",
                 hero_desc: "မျိုးဆက်များစွာ လက်ဆင့်ကမ်းလာသည့် ထိုင်း-တရုတ် ပရီမီယံ ပင်လယ်စာများ။",
                 about_title: "ကျွန်ုပ်တို့၏ သမိုင်းကြောင်း",
-                about_desc: "လတ်ဆတ်သော ပါဝင်ပစ္စည်းများကို အခြေခံ၍ အကောင်းဆုံးသော အရသာများကို ဖန်တီးပေးပါသည်။",
+                about_desc: "လတ်ဆတ်သော ပါဝင်ပစ္စည်းများကို အခြေခံ၍ အကောင်းဆုံးသော အရသာများကို ဖန်ตီးပေးပါသည်။",
                 about_quote: "\"လတ်ဆတ်ခြင်းသည် နှလုံးသား၊ ဝန်ဆောင်မှုသည် အသက်၊ အရသာသည် ဒဏ္ဍာရီဖြစ်သည်။\"",
                 menu_title: "အကြံပြုမီနူးများ", menu_subtitle: "ကျွန်ုပ်တို့၏ အထူးဟင်းလျာများကို ခံစားကြည့်ရှုပါ။",
                 food_1_name: "မြစ်ပုစွန်ကင်", food_1_desc: "လတ်ဆတ်ပြီး အသားချိုမြိန်သော မြစ်ပုစွန်",
                 food_2_name: "ဂဏန်းကရင်ဟင်း", food_2_desc: "မွှေးကြိုင်သော ဟင်းခတ်အမွှေးအကြိုင်များနှင့် ဂဏန်းဟင်း",
                 food_3_name: "ကကတစ်ငါးကြော်", food_3_desc: "အပြင်ဘက်ကြွပ်ပြီး အတွင်းသားနူးညံ့သော ငါးကြော်",
                 food_4_name: "တုံယမ်းပုစွန်ဟင်း", food_4_desc: "စပ်စပ်ချဉ်ချဉ် ထိုင်းစတိုင်ဟင်းရည်",
-                food_5_name: "ကမာကင်", food_5_desc: "ထောပတ်နှင့် ကြက်သွန်ဖြူနံ့မွှေးမွှေး",
+                food_5_name: "ကမာကင်", food_5_desc: "ထောပတ်နှင့် ကြက်သွันဖြူနံ့မွှေးမွှေး",
                 food_6_name: "ကမာဥကပ်ကြော်", food_6_desc: "ပူပူနွေးနွေး ကမာဥကပ်ကြော်",
                 map_title: "တည်နေရာ", map_btn: "မြေပုံကြည့်ရန်", map_address: "ဆူခွန်ဗစ်လမ်း၊ ဘန်ကောက် | ၁၁:၀၀ မှ ၂၂:၀၀ ထိ"
             },
@@ -390,7 +404,7 @@
                 about_title: "ប្រវត្តិហាង",
                 about_desc: "យើងជ្រើសរើសគ្រឿងសមុទ្រស្រស់ៗជារៀងរាល់ព្រឹក ដើម្បីផ្តល់ជូននូវរសជាតិដ៏អស្ចារ្យ។",
                 about_quote: "\"ភាពស្រស់ជាបេះដូង សេវាកម្មជាជីវិត រសជាតិជាព្រេងនិទាន\"",
-                menu_title: "ម្ហូបពិសេស", menu_subtitle: "រីករាយជាមួយរសជាតិម្ហូបពិសេសរបស់យើង។",
+                menu_title: "ម្ហូបពិសេស", menu_subtitle: "រីករាយជាមួយរសជាតិម្ហូបพิเศษของเรา।",
                 food_1_name: "បង្កងទន្លេអាំង", food_1_desc: "បង្កងស្រស់ៗ សាច់ផ្អែមឆ្ងាញ់",
                 food_2_name: "ក្តាមឆាការី", food_2_desc: "រសជាតិដិតជាប់មាត់ ជាមួយគ្រឿងទេសឈ្ងុយឆ្ងាញ់",
                 food_3_name: "ត្រីតុកកែបំពង", food_3_desc: "ស្រួយខាងក្រៅ ទន់ខាងក្នុង ជាមួយទឹកត្រីពិសេស",
@@ -404,7 +418,7 @@
                 btn_booking: "Đặt bàn ngay",
                 hero_title_part1: "Hương vị", hero_title_part2: "biển cả",
                 hero_desc: "Hải sản cao cấp phong cách Thái-Hoa, truyền thống và tươi ngon.",
-                about_title: "Câu chuyện của chúng tôi",
+                about_title: "Câu chuyệnของเร่",
                 about_desc: "Chúng tôi chọn lọc hải sản tươi nhất mỗi sáng để mang đến sự hài lòng cho thực khách.",
                 about_quote: "\"Tươi ngon là trái tim, phục vụ là cuộc sống, hương vị là huyền thoại.\"",
                 menu_title: "Món gợi ý", menu_subtitle: "Trải nghiệm hương vị tuyệt vời qua các món đặc trưng.",
@@ -435,51 +449,49 @@
             }
         };
 
-        // ฟังก์ชันอัปเดตภาษา
         function updateLanguage(lang) {
             const data = translations[lang];
             if (!data) return;
-
-            // หา Element ที่มี data-i18n และเปลี่ยน Text
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (data[key]) {
-                    el.innerText = data[key];
-                }
+                if (data[key]) el.innerText = data[key];
             });
-
-            // อัปเดตตัวหนังสือที่ปุ่มเลือกภาษา
             document.getElementById('lang-btn').querySelector('span').innerText = lang;
-            
-            // บันทึกภาษาลงใน LocalStorage
             localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // Toggle Menus
+        function toggleMobileNav(event) {
+            event.stopPropagation();
+            document.getElementById('lang-menu').classList.add('hidden');
+            document.getElementById('mobile-nav-menu').classList.toggle('hidden');
         }
 
         function toggleLangMenu(event) {
             event.stopPropagation();
+            document.getElementById('mobile-nav-menu').classList.add('hidden');
             document.getElementById('lang-menu').classList.toggle('hidden');
+        }
+
+        function closeAllMenus() {
+            document.getElementById('mobile-nav-menu').classList.add('hidden');
+            document.getElementById('lang-menu').classList.add('hidden');
         }
 
         function selectLang(code) {
             updateLanguage(code);
-            document.getElementById('lang-menu').classList.add('hidden');
+            closeAllMenus();
         }
 
-        // โหลดภาษาล่าสุดเมื่อเปิดหน้าเว็บ
         window.onload = () => {
             const savedLang = localStorage.getItem('selectedLanguage') || 'TH';
             updateLanguage(savedLang);
         };
 
-        // ปิดเมนูเมื่อคลิกข้างนอก
         window.onclick = (e) => {
-            const menu = document.getElementById('lang-menu');
-            if (!menu.contains(e.target) && e.target !== document.getElementById('lang-btn')) {
-                menu.classList.add('hidden');
-            }
+            if (!e.target.closest('.relative')) closeAllMenus();
         };
 
-        // Dark Mode Toggle
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
             localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
