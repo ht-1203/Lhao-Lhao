@@ -104,11 +104,11 @@
 </head>
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
     <!-- Dynamic Island Navigation -->
-    <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-fit max-w-[98%]">
-        <div id="dynamic-island" class="dynamic-island bg-white/90 dark:bg-gray-800/95 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-2xl rounded-[40px] px-2 md:px-4 py-1.5 flex items-center justify-between gap-1.5 md:gap-3">
+    <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-fit max-w-[98%]">
+        <div id="dynamic-island" class="dynamic-island bg-white/90 dark:bg-gray-800/95 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-2xl rounded-[40px] px-4 py-2.5 md:px-4 md:py-1.5 flex items-center justify-between gap-3 md:gap-3">
             <!-- Logo Section -->
             <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0 ml-1 whitespace-nowrap">
-                <span class="font-bold tracking-tight text-gray-900 dark:text-white text-sm md:text-base">Lhao <span class="red-accent">Lhao</span></span>
+                <span class="font-bold tracking-tight text-gray-900 dark:text-white text-base md:text-base">Lhao <span class="red-accent">Lhao</span></span>
             </a>
             <!-- Menu Links (Desktop) -->
             <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium shrink-0 whitespace-nowrap">
@@ -120,8 +120,8 @@
             <div class="flex items-center gap-0.5 shrink-0">
                 <!-- Mobile Nav Dropdown -->
                 <div class="relative md:hidden">
-                    <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none">
-                        <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none">
+                        <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                     <div id="mobile-nav-menu" class="custom-dropdown hidden shadow-xl border dark:border-gray-700 right-[-40px]">
                         <a href="#home" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_home">หน้าหลัก</a>
@@ -130,25 +130,25 @@
                     </div>
                 </div>
                 <!-- Dark Mode -->
-                <button onclick="toggleDarkMode()" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
+                <button onclick="toggleDarkMode()" class="p-2 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
                     <!-- Sun icon: แสดงใน dark mode -->
-                    <svg id="sun-icon" class="w-4 h-4 md:w-5 md:h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="sun-icon" class="w-5 h-5 md:w-5 md:h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" stroke-width="2"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
                     </svg>
                     <!-- Moon icon: แสดงใน light mode -->
-                    <svg id="moon-icon" class="w-4 h-4 md:w-5 md:h-5 block dark:hidden" fill="currentColor" stroke="none" viewBox="0 0 24 24">
+                    <svg id="moon-icon" class="w-5 h-5 md:w-5 md:h-5 block dark:hidden" fill="currentColor" stroke="none" viewBox="0 0 24 24">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                     </svg>
                 </button>
                 <!-- Map Button -->
-                <a href="https://www.google.com/maps/place/Lhao+Lhao/@13.7820964,100.5453428,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29c1c32d1cf51:0x108b5833bb2f87f0!8m2!3d13.7820964!4d100.5453428!16s%2Fg%2F1tgdwg9r?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300" title="ดูแผนที่ร้าน">
-                    <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <a href="https://www.google.com/maps/place/Lhao+Lhao/@13.7820964,100.5453428,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29c1c32d1cf51:0x108b5833bb2f87f0!8m2!3d13.7820964!4d100.5453428!16s%2Fg%2F1tgdwg9r?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="p-2 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300" title="ดูแผนที่ร้าน">
+                    <svg class="w-5 h-5 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </a>
                 <!-- Language Selector -->
                 <div class="relative">
-                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none flex items-center gap-1" title="เปลี่ยนภาษา">
-                        <svg class="w-4 h-4 md:w-5 md:h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="p-2 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none flex items-center gap-1" title="เปลี่ยนภาษา">
+                        <svg class="w-5 h-5 md:w-5 md:h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                         <!-- ✅ เพิ่ม: แสดงรหัสภาษาปัจจุบัน -->
                         <span class="text-[10px] md:text-xs font-bold pointer-events-none hidden md:inline">TH</span>
                     </button>
@@ -167,8 +167,8 @@
                     </div>
                 </div>
                 <!-- Booking Button -->
-                <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="bg-red-accent text-white px-2.5 md:px-4 py-1.5 rounded-full text-[10px] md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1 shrink-0 ml-1 whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
+                <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="bg-red-accent text-white px-3 md:px-4 py-2 md:py-1.5 rounded-full text-xs md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1.5 shrink-0 ml-1 whitespace-nowrap">
+                    <svg class="w-4 h-4 md:w-4 md:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
                     <span class="hidden md:inline" data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
                 </a>
             </div>
