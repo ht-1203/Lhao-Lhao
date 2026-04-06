@@ -89,9 +89,8 @@
     <nav id="nav-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
         <div id="dynamic-island" class="dynamic-island bg-white/90 dark:bg-gray-800/95 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-2xl rounded-[40px] px-4 md:px-6 py-3 flex items-center justify-between">
             <!-- Logo Section -->
-            <a href="#home" class="nav-link flex items-center gap-2 cursor-pointer hover:opacity-80 transition shrink-0">
-                <div class="w-8 h-8 bg-red-accent rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm">HS</div>
-                <span class="hidden lg:block font-bold tracking-tight text-gray-900 dark:text-white uppercase">Heritage <span class="red-accent">Seafood</span></span>
+            <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0">
+                <span class="font-bold tracking-tight text-gray-900 dark:text-white text-sm md:text-base">Lhao <span class="red-accent">Lhao</span></span>
             </a>
 
             <!-- Menu Links (Desktop) -->
@@ -102,13 +101,13 @@
                 <a href="#map" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_map">แผนที่</a>
             </div>
 
-            <!-- Utilities (Mobile Nav + Dark Mode + Language) & Action Buttons -->
-            <div class="flex items-center gap-1 md:gap-3">
-                
-                <!-- Mobile Navigation Dropdown (Added for Mobile Version) -->
-                <div class="relative md:hidden px-1">
-                    <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none">
-                        <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <!-- Utilities -->
+            <div class="flex items-center gap-0.5 md:gap-2">
+
+                <!-- Mobile Nav Dropdown -->
+                <div class="relative md:hidden">
+                    <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none">
+                        <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                     <div id="mobile-nav-menu" class="custom-dropdown hidden shadow-xl border dark:border-gray-700 right-[-40px]">
                         <a href="#home" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_home">หน้าหลัก</a>
@@ -118,16 +117,21 @@
                     </div>
                 </div>
 
-                <button onclick="toggleDarkMode()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
-                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 11H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
-                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 118.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <!-- Dark Mode -->
+                <button onclick="toggleDarkMode()" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
+                    <svg id="sun-icon" class="w-4 h-4 md:w-5 md:h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 11H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                    <svg id="moon-icon" class="w-4 h-4 md:w-5 md:h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 118.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
 
+                <!-- Map Button -->
+                <a href="https://www.google.com/maps/place/Lhao+Lhao/@13.7820964,100.5453428,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29c1c32d1cf51:0x108b5833bb2f87f0!8m2!3d13.7820964!4d100.5453428!16s%2Fg%2F1tgdwg9r?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300" title="ดูแผนที่ร้าน">
+                    <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </a>
+
                 <!-- Language Selector -->
-                <div class="relative px-1">
-                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="flex items-center gap-1 text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-red-600 transition focus:outline-none p-1">
-                        <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
-                        <span class="hidden sm:inline uppercase pointer-events-none">TH</span>
+                <div class="relative">
+                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none" title="เปลี่ยนภาษา">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                     </button>
                     <div id="lang-menu" class="custom-dropdown hidden shadow-xl border dark:border-gray-700">
                         <div class="dropdown-item" onclick="selectLang('TH')"><span>🇹🇭</span> ไทย (TH)</div>
@@ -145,10 +149,11 @@
                 </div>
 
                 <!-- Booking Button -->
-                <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="bg-red-accent text-white px-3 md:px-5 py-2 rounded-full text-[10px] md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1 md:gap-2 whitespace-nowrap">
-                    <svg class="w-3 h-3 md:w-4 md:h-4 hidden sm:block" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
-                    <span data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
+                <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="bg-red-accent text-white px-2.5 md:px-5 py-2 rounded-full text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1 md:gap-2 shrink-0 ml-1">
+                    <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
+                    <span class="hidden md:inline" data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
                 </a>
+
             </div>
         </div>
     </nav>
@@ -240,21 +245,7 @@
         </div>
     </section>
 
-    <!-- 4. แผนที่ (Map) -->
-    <section id="map" class="py-24 bg-white dark:bg-gray-900 text-center transition-colors">
-    <div class="max-w-4xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 dark:text-white" data-i18n="map_title">ที่ตั้งร้านของเรา</h2>
-        <div class="relative bg-gray-100 dark:bg-gray-800 rounded-3xl h-80 w-full mb-8 flex items-center justify-center border dark:border-gray-700 group">
-            <a href="https://www.google.com/maps/place/Lhao+Lhao/@13.7820964,100.5453428,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29c1c32d1cf51:0x108b5833bb2f87f0!8m2!3d13.7820964!4d100.5453428!16s%2Fg%2F1tgdwg9r?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="flex items-center gap-2 bg-white dark:bg-gray-700 px-8 py-3 rounded-full shadow-md hover:shadow-xl transition-all font-bold text-[#C41E3A]">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg> <span data-i18n="map_btn">เปิดใน Google Maps</span>
-            </a>
-        </div>
-        <p class="text-gray-500 dark:text-gray-400 italic" data-i18n="map_address">ถนนพระญาไท, กรุงเทพมหานคร | เปิดบริการทุกวัน 15:00 - 03:00 น.</p>
-    </div>
-</section>
+
 
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-100 dark:border-gray-800 dark:bg-gray-900 transition-colors">
@@ -306,7 +297,7 @@
                 hero_desc: "传承数代的海鲜名店，融合泰中风味，每一口都尽享鲜香。",
                 about_title: "品牌故事",
                 about_desc: "我们甄选每日清晨最新鲜的海味，由资深大厨烹饪，为您和家人呈献最地道的佳肴。",
-                about_quote: "“鲜是灵魂，诚是生命，味是传奇”",
+                about_quote: ""鲜是灵魂，诚是生命，味是传奇"",
                 menu_title: "主厨推荐", menu_subtitle: "通过我们的招牌菜照片感受美味。",
                 food_1_name: "炭烤大虾", food_1_desc: "虾肉紧实，鲜甜无比",
                 food_2_name: "咖喱炒蟹", food_2_desc: "香浓咖喱，口感丰富",
@@ -344,11 +335,11 @@
                 menu_title: "Рекомендуем", menu_subtitle: "Насладитесь нашими фирменными блюдами.",
                 food_1_name: "Речная креветка на гриле", food_1_desc: "Сочное мясо, свежайший улов",
                 food_2_name: "Краб в соусе карри", food_2_desc: "Насыщенный вкус и аромат",
-                food_3_name: "Жาреный сибас", food_3_desc: "Хрустящая корочка и нежное мясо",
+                food_3_name: "Жаренный сибас", food_3_desc: "Хрустящая корочка и нежное мясо",
                 food_4_name: "Том Ям", food_4_desc: "Тот самый острый тайский суп",
                 food_5_name: "Гребешки с маслом", food_5_desc: "Ароматное сливочное масло и чеснок",
                 food_6_name: "Омлет с устрицами", food_6_desc: "Подается на раскаленной сковороде",
-                map_title: "Где мы находимся", map_btn: "Открыть Google Карты", map_address: "Сукхуมвит, Бангкок | 11:00 - 22:00"
+                map_title: "Где мы находимся", map_btn: "Открыть Google Карты", map_address: "Сукхумвит, Бангкок | 11:00 - 22:00"
             },
             FR: {
                 nav_home: "Accueil", nav_menu: "Menu", nav_about: "Histoire", nav_map: "Carte",
@@ -371,7 +362,7 @@
                 nav_home: "ホーム", nav_menu: "メニュー", nav_about: "私たちの物語", nav_map: "地図",
                 btn_booking: "予約・注文",
                 hero_title_part1: "海の", hero_title_part2: "味わい",
-                hero_desc: "代々受け継がれる本格的なタイ・中華風ของプレミアムシーフード。",
+                hero_desc: "代々受け継がれる本格的なタイ・中華風プレミアムシーフード。",
                 about_title: "私たちの歩み",
                 about_desc: "毎朝市場から仕入れる新鮮な素材と、伝統の技術が生み出す至福の一皿。",
                 about_quote: "「鮮度は心、サービスは命、味わいは伝説」",
@@ -390,14 +381,14 @@
                 hero_title_part1: "ပင်လယ်ပြင်၏", hero_title_part2: "အရသာ",
                 hero_desc: "မျိုးဆက်များစွာ လက်ဆင့်ကမ်းလာသည့် ထိုင်း-တရုတ် ပရီမီယံ ပင်လယ်စာများ။",
                 about_title: "ကျွန်ုပ်တို့၏ သမိုင်းကြောင်း",
-                about_desc: "လတ်ဆတ်သော ပါဝင်ပစ္စည်းများကို အခြေခံ၍ အကောင်းဆုံးသော အရသာများကို ဖန်ตီးပေးပါသည်။",
+                about_desc: "လတ်ဆတ်သော ပါဝင်ပစ္စည်းများကို အခြေခံ၍ အကောင်းဆုံးသော အရသာများကို ဖန်တီးပေးပါသည်။",
                 about_quote: "\"လတ်ဆတ်ခြင်းသည် နှလုံးသား၊ ဝန်ဆောင်မှုသည် အသက်၊ အရသာသည် ဒဏ္ဍာရီဖြစ်သည်။\"",
                 menu_title: "အကြံပြုမီနူးများ", menu_subtitle: "ကျွန်ုပ်တို့၏ အထူးဟင်းလျာများကို ခံစားကြည့်ရှုပါ။",
                 food_1_name: "မြစ်ပုစွန်ကင်", food_1_desc: "လတ်ဆတ်ပြီး အသားချိုမြိန်သော မြစ်ပုစွန်",
                 food_2_name: "ဂဏန်းကရင်ဟင်း", food_2_desc: "မွှေးကြိုင်သော ဟင်းခတ်အမွှေးအကြိုင်များနှင့် ဂဏန်းဟင်း",
                 food_3_name: "ကကတစ်ငါးကြော်", food_3_desc: "အပြင်ဘက်ကြွပ်ပြီး အတွင်းသားနူးညံ့သော ငါးကြော်",
                 food_4_name: "တုံယမ်းပုစွန်ဟင်း", food_4_desc: "စပ်စပ်ချဉ်ချဉ် ထိုင်းစတိုင်ဟင်းရည်",
-                food_5_name: "ကမာကင်", food_5_desc: "ထောပတ်နှင့် ကြက်သွันဖြူနံ့မွှေးမွှေး",
+                food_5_name: "ကမာကင်", food_5_desc: "ထောပတ်နှင့် ကြက်သွမ်းဖြူနံ့မွှေးမွှေး",
                 food_6_name: "ကမာဥကပ်ကြော်", food_6_desc: "ပူပူနွေးနွေး ကမာဥကပ်ကြော်",
                 map_title: "တည်နေရာ", map_btn: "မြေပုံကြည့်ရန်", map_address: "ဆူခွန်ဗစ်လမ်း၊ ဘန်ကောက် | ၁၁:၀၀ မှ ၂၂:၀၀ ထိ"
             },
@@ -409,7 +400,7 @@
                 about_title: "ប្រវត្តិហាង",
                 about_desc: "យើងជ្រើសរើសគ្រឿងសមុទ្រស្រស់ៗជារៀងរាល់ព្រឹក ដើម្បីផ្តល់ជូននូវរសជាតិដ៏អស្ចារ្យ។",
                 about_quote: "\"ភាពស្រស់ជាបេះដូង សេវាកម្មជាជីវិត រសជាតិជាព្រេងនិទាន\"",
-                menu_title: "ម្ហូបពិសេស", menu_subtitle: "រីករាយជាមួយរសជាតិម្ហូបพิเศษของเรา।",
+                menu_title: "ម្ហូបពិសេស", menu_subtitle: "រីករាយជាមួយរសជាតិម្ហូបពិសេសរបស់យើង។",
                 food_1_name: "បង្កងទន្លេអាំង", food_1_desc: "បង្កងស្រស់ៗ សាច់ផ្អែមឆ្ងាញ់",
                 food_2_name: "ក្តាមឆាការី", food_2_desc: "រសជាតិដិតជាប់មាត់ ជាមួយគ្រឿងទេសឈ្ងុយឆ្ងាញ់",
                 food_3_name: "ត្រីតុកកែបំពង", food_3_desc: "ស្រួយខាងក្រៅ ទន់ខាងក្នុង ជាមួយទឹកត្រីពិសេស",
@@ -423,7 +414,7 @@
                 btn_booking: "Đặt bàn ngay",
                 hero_title_part1: "Hương vị", hero_title_part2: "biển cả",
                 hero_desc: "Hải sản cao cấp phong cách Thái-Hoa, truyền thống và tươi ngon.",
-                about_title: "Câu chuyệnของเร่",
+                about_title: "Câu chuyện của chúng tôi",
                 about_desc: "Chúng tôi chọn lọc hải sản tươi nhất mỗi sáng để mang đến sự hài lòng cho thực khách.",
                 about_quote: "\"Tươi ngon là trái tim, phục vụ là cuộc sống, hương vị là huyền thoại.\"",
                 menu_title: "Món gợi ý", menu_subtitle: "Trải nghiệm hương vị tuyệt vời qua các món đặc trưng.",
@@ -465,7 +456,6 @@
             localStorage.setItem('selectedLanguage', lang);
         }
 
-        // Toggle Menus
         function toggleMobileNav(event) {
             event.stopPropagation();
             document.getElementById('lang-menu').classList.add('hidden');
