@@ -98,7 +98,7 @@
                 <a href="#home" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_home">หน้าหลัก</a>
                 <a href="#menu" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_menu">เมนูอาหาร</a>
                 <a href="#about" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_about">ประวัติร้าน</a>
-                <a href="#map" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_map">แผนที่</a>
+
             </div>
 
             <!-- Utilities -->
@@ -113,7 +113,7 @@
                         <a href="#home" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_home">หน้าหลัก</a>
                         <a href="#menu" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_menu">เมนูอาหาร</a>
                         <a href="#about" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_about">ประวัติร้าน</a>
-                        <a href="#map" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_map">แผนที่</a>
+
                     </div>
                 </div>
 
@@ -175,8 +175,8 @@
     <section id="about" class="py-24 bg-white dark:bg-gray-900 transition-colors">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1">
-                <h2 class="text-3xl font-bold mb-6 flex items-center gap-4 dark:text-white">
-                    <span class="w-10 h-1 bg-red-accent"></span>
+                <h2 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-3 dark:text-white whitespace-nowrap">
+                    <span class="w-8 h-1 bg-red-accent shrink-0"></span>
                     <span data-i18n="about_title">ประวัติความเป็นมา</span>
                 </h2>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6" data-i18n="about_desc">
@@ -452,7 +452,8 @@
                 const key = el.getAttribute('data-i18n');
                 if (data[key]) el.innerText = data[key];
             });
-            document.getElementById('lang-btn').querySelector('span').innerText = lang;
+            const langSpan = document.getElementById('lang-btn').querySelector('span');
+            if (langSpan) langSpan.innerText = lang;
             localStorage.setItem('selectedLanguage', lang);
         }
 
