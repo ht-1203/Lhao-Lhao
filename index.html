@@ -56,18 +56,18 @@
             position: absolute;
             top: calc(100% + 10px);
             right: 0;
-            background: white;
+            background: #faf9f7;
             border-radius: 16px;
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
             width: 180px;
             z-index: 100;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #e8e4de;
             overflow: hidden;
         }
         .dark .custom-dropdown {
-            background: #1f2937;
-            border-color: #374151;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+            background: #242424;
+            border-color: #333333;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
         }
         .dropdown-item {
             padding: 12px 16px;
@@ -81,11 +81,11 @@
             text-align: left;
         }
         .dropdown-item:hover {
-            background-color: #f9fafb;
+            background-color: #ede9e3;
             color: #C41E3A;
         }
         .dark .dropdown-item:hover {
-            background-color: #374151;
+            background-color: #2e2e2e;
         }
 
         /* ===== COPY PROTECTION ===== */
@@ -102,13 +102,13 @@
         }
     </style>
 </head>
-<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+<body class="bg-[#faf9f7] text-[#2a2a2a] dark:bg-[#1a1a1a] dark:text-[#f0ede8]">
     <!-- Dynamic Island Navigation -->
     <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-fit max-w-[98%]">
-        <div id="dynamic-island" class="dynamic-island bg-white/90 dark:bg-gray-800/95 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-2xl rounded-[40px] px-4 py-2.5 md:px-4 md:py-1.5 flex items-center justify-between gap-3 md:gap-3">
+        <div id="dynamic-island" class="dynamic-island bg-[#faf9f7]/90 dark:bg-[#242424]/95 backdrop-blur-md border border-[#e8e4de] dark:border-[#333333] shadow-2xl rounded-[40px] px-4 py-2.5 md:px-4 md:py-1.5 flex items-center justify-between gap-3 md:gap-3">
             <!-- Logo Section -->
             <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0 ml-1 whitespace-nowrap">
-                <span class="font-bold tracking-tight text-gray-900 dark:text-white text-base md:text-base">Lhao <span class="red-accent">Lhao</span></span>
+                <span class="font-bold tracking-tight text-[#1a1a1a] dark:text-white text-base md:text-base">Lhao <span class="red-accent">Lhao</span></span>
             </a>
             <!-- Menu Links (Desktop) -->
             <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium shrink-0 whitespace-nowrap">
@@ -120,17 +120,17 @@
             <div class="flex items-center gap-0.5 shrink-0">
                 <!-- Mobile Nav Dropdown -->
                 <div class="relative md:hidden">
-                    <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none">
+                    <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-[#c8c2b8] focus:outline-none">
                         <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
-                    <div id="mobile-nav-menu" class="custom-dropdown hidden shadow-xl border dark:border-gray-700 right-[-40px]">
+                    <div id="mobile-nav-menu" class="custom-dropdown hidden shadow-xl border dark:border-[#333333] right-[-40px]">
                         <a href="#home" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_home">หน้าหลัก</a>
                         <a href="#menu" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_menu">เมนูอาหาร</a>
                         <a href="#about" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_about">ประวัติร้าน</a>
                     </div>
                 </div>
                 <!-- Dark Mode -->
-                <button onclick="toggleDarkMode()" class="p-2 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
+                <button onclick="toggleDarkMode()" class="p-2 md:p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
                     <!-- Sun icon: แสดงใน dark mode -->
                     <svg id="sun-icon" class="w-5 h-5 md:w-5 md:h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" stroke-width="2"/>
@@ -142,17 +142,17 @@
                     </svg>
                 </button>
                 <!-- Map Button -->
-                <a href="https://www.google.com/maps/place/Lhao+Lhao/@13.7820964,100.5453428,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29c1c32d1cf51:0x108b5833bb2f87f0!8m2!3d13.7820964!4d100.5453428!16s%2Fg%2F1tgdwg9r?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="p-2 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300" title="ดูแผนที่ร้าน">
+                <a href="https://www.google.com/maps/place/Lhao+Lhao/@13.7820964,100.5453428,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29c1c32d1cf51:0x108b5833bb2f87f0!8m2!3d13.7820964!4d100.5453428!16s%2Fg%2F1tgdwg9r?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="p-2 md:p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-[#c8c2b8]" title="ดูแผนที่ร้าน">
                     <svg class="w-5 h-5 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </a>
                 <!-- Language Selector -->
                 <div class="relative">
-                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="p-2 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none flex items-center gap-1" title="เปลี่ยนภาษา">
+                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="p-2 md:p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-[#c8c2b8] focus:outline-none flex items-center gap-1" title="เปลี่ยนภาษา">
                         <svg class="w-5 h-5 md:w-5 md:h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                         <!-- ✅ เพิ่ม: แสดงรหัสภาษาปัจจุบัน -->
                         <span class="text-[10px] md:text-xs font-bold pointer-events-none hidden md:inline">TH</span>
                     </button>
-                    <div id="lang-menu" class="custom-dropdown hidden shadow-xl border dark:border-gray-700">
+                    <div id="lang-menu" class="custom-dropdown hidden shadow-xl border dark:border-[#333333]">
                         <div class="dropdown-item" onclick="selectLang('TH')"><span>🇹🇭</span> ไทย (TH)</div>
                         <div class="dropdown-item" onclick="selectLang('EN')"><span>🇺🇸</span> English (EN)</div>
                         <div class="dropdown-item" onclick="selectLang('ZH')"><span>🇨🇳</span> 中文 (ZH)</div>
@@ -175,34 +175,34 @@
         </div>
     </nav>
     <!-- 1. หน้าหลัก (Home) -->
-    <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-950 pt-20 pb-12">
+    <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f3f1ee] dark:bg-[#111111] pt-20 pb-12">
         <div class="text-center z-10 px-4">
             <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight dark:text-white">
                 <span data-i18n="hero_title_part1">รสชาติแห่ง</span> <span class="red-accent" data-i18n="hero_title_part2">ท้องทะเล</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto" data-i18n="hero_desc">ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม</p>
+            <p class="text-lg md:text-xl text-[#7a7268] dark:text-[#9e9890] mb-8 max-w-2xl mx-auto" data-i18n="hero_desc">ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม</p>
             <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto"></div>
         </div>
         <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-red-50 dark:bg-red-900/10 rounded-full blur-3xl opacity-50"></div>
         <div class="absolute -top-20 -left-20 w-96 h-96 bg-yellow-50 dark:bg-yellow-900/10 rounded-full blur-3xl opacity-50"></div>
     </header>
     <!-- 2. ประวัติร้าน (About) -->
-    <section id="about" class="py-14 bg-white dark:bg-gray-900 transition-colors">
+    <section id="about" class="py-14 bg-[#faf9f7] dark:bg-[#1a1a1a] transition-colors">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1">
                 <h2 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-3 dark:text-white whitespace-nowrap">
                     <span class="w-8 h-1 bg-red-accent shrink-0"></span>
                     <span data-i18n="about_title">ประวัติความเป็นมา</span>
                 </h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4" data-i18n="about_desc">
+                <p class="text-[#6b6560] dark:text-[#c8c2b8] leading-relaxed mb-4" data-i18n="about_desc">
                     ร้านข้าวต้ม อาหารจีน ซีฟู้ด ตำนานแห่งย่านอารีย์ เปิดมาแล้วกว่า 40 ปี ด้วยรสชาติและบรรยากาศเสมือนบ้านหลังที่สองของทุกคน
                 </p>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 italic">Traditional Thai, Chinese & Seafood — A local favorite, serving generations since 1980</p>
-                <div class="p-6 border-l-4 border-[#D4AF37] bg-gray-50 dark:bg-gray-800">
-                    <p class="italic text-gray-700 dark:text-gray-300" data-i18n="about_quote">"ความสดคือหัวใจ บริการคือชีวิต รสชาติคือตำนาน"</p>
+                <p class="text-sm text-[#7a7268] dark:text-[#9e9890] mb-6 italic">Traditional Thai, Chinese & Seafood — A local favorite, serving generations since 1980</p>
+                <div class="p-6 border-l-4 border-[#D4AF37] bg-[#f3f1ee] dark:bg-[#242424]">
+                    <p class="italic text-[#3d3830] dark:text-[#c8c2b8]" data-i18n="about_quote">"ความสดคือหัวใจ บริการคือชีวิต รสชาติคือตำนาน"</p>
                 </div>
             </div>
-            <div class="order-1 md:order-2 rounded-2xl aspect-video overflow-hidden shadow-xl border dark:border-gray-700">
+            <div class="order-1 md:order-2 rounded-2xl aspect-video overflow-hidden shadow-xl border dark:border-[#333333]">
                 <img
                     src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80"
                     alt="Lhao Lhao Restaurant"
@@ -214,62 +214,62 @@
         </div>
     </section>
     <!-- 3. เมนูอาหาร (Menu) -->
-    <section id="menu" class="py-14 bg-gray-50 dark:bg-gray-950 transition-colors">
+    <section id="menu" class="py-14 bg-[#f3f1ee] dark:bg-[#111111] transition-colors">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-10">
                 <h2 class="text-4xl font-bold mb-4 dark:text-white" data-i18n="menu_title">เมนูแนะนำ</h2>
-                <p class="text-gray-500 dark:text-gray-400" data-i18n="menu_subtitle">สัมผัสความอร่อยผ่านภาพถ่ายเมนูซิกเนเจอร์ของเรา</p>
+                <p class="text-[#7a7268] dark:text-[#9e9890]" data-i18n="menu_subtitle">สัมผัสความอร่อยผ่านภาพถ่ายเมนูซิกเนเจอร์ของเรา</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_1_name">กุ้งแม่น้ำเผา</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_1_desc">มันเยิ้ม เนื้อเด้ง สดจากแม่น้ำ</p>
+                        <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_1_desc">มันเยิ้ม เนื้อเด้ง สดจากแม่น้ำ</p>
                     </div>
                 </div>
-                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_2_name">ปูผัดผงกะหรี่</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_2_desc">รสชาติเข้มข้น หอมเครื่องเทศ</p>
+                        <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_2_desc">รสชาติเข้มข้น หอมเครื่องเทศ</p>
                     </div>
                 </div>
-                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_3_name">ปลากะพงทอดน้ำปลา</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_3_desc">กรอบนอกนุ่มใน น้ำปลาปรุงรสพิเศษ</p>
+                        <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_3_desc">กรอบนอกนุ่มใน น้ำปลาปรุงรสพิเศษ</p>
                     </div>
                 </div>
-                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_4_name">ต้มยำกุ้งแชบ๊วย</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_4_desc">รสจัดจ้านถึงใจสไตล์ไทยแท้</p>
+                        <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_4_desc">รสจัดจ้านถึงใจสไตล์ไทยแท้</p>
                     </div>
                 </div>
-                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_5_name">หอยเชลล์ย่างเนย</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_5_desc">หอมเนยแท้ กระเทียมเจียวกรอบ</p>
+                        <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_5_desc">หอมเนยแท้ กระเทียมเจียวกรอบ</p>
                     </div>
                 </div>
-                <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_6_name">ออส่วนกระทะร้อน</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="food_6_desc">แป้งนุ่ม หอยนางรมสดตัวโต</p>
+                        <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_6_desc">แป้งนุ่ม หอยนางรมสดตัวโต</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Footer -->
-    <footer class="py-12 border-t border-gray-100 dark:border-gray-800 dark:bg-gray-900 transition-colors">
+    <footer class="py-12 border-t border-[#e8e4de] dark:border-[#2a2a2a] dark:bg-[#1a1a1a] transition-colors">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-gray-400 text-sm">© 1980 Lhao Lhao. All Rights Reserved.</p>
+            <p class="text-[#9e9890] text-sm">© 1980 Lhao Lhao. All Rights Reserved.</p>
         </div>
     </footer>
     <script>
