@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
-        // ✅ เพิ่ม: ตรวจ dark mode ก่อน body โหลด ป้องกันหน้าจอกระพริบ
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -26,32 +25,23 @@
         }
     </script>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Noto Sans Thai', sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
-        [id] {
-            scroll-margin-top: 100px;
-        }
+        [id] { scroll-margin-top: 100px; }
         .dynamic-island {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .red-accent {
-            color: #C41E3A;
-        }
-        .bg-red-accent {
-            background-color: #C41E3A;
-        }
+        .red-accent { color: #C41E3A; }
+        .bg-red-accent { background-color: #C41E3A; }
         .gallery-item img {
             transition: transform 0.6s ease;
         }
         .gallery-item:hover img {
             transform: scale(1.05);
         }
-        /* Language & Nav Dropdown Custom CSS */
         .custom-dropdown {
             position: absolute;
             top: calc(100% + 10px);
@@ -87,8 +77,6 @@
         .dark .dropdown-item:hover {
             background-color: #2e2e2e;
         }
-
-        /* ===== COPY PROTECTION ===== */
         * {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -106,19 +94,15 @@
     <!-- Dynamic Island Navigation -->
     <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-fit max-w-[98%]">
         <div id="dynamic-island" class="dynamic-island bg-[#faf9f7]/90 dark:bg-[#242424]/95 backdrop-blur-md border border-[#e8e4de] dark:border-[#333333] shadow-2xl rounded-[40px] px-4 py-2.5 md:px-4 md:py-1.5 flex items-center justify-between gap-3 md:gap-3">
-            <!-- Logo Section -->
             <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0 ml-1 whitespace-nowrap">
                 <span class="font-bold tracking-tight text-[#1a1a1a] dark:text-white text-base md:text-base">Lhao <span class="red-accent">Lhao</span></span>
             </a>
-            <!-- Menu Links (Desktop) -->
             <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium shrink-0 whitespace-nowrap">
                 <a href="#home" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_home">หน้าหลัก</a>
                 <a href="#menu" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_menu">เมนูอาหาร</a>
                 <a href="#about" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_about">ประวัติร้าน</a>
             </div>
-            <!-- Utilities -->
             <div class="flex items-center gap-0.5 shrink-0">
-                <!-- Mobile Nav Dropdown -->
                 <div class="relative md:hidden">
                     <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-[#c8c2b8] focus:outline-none">
                         <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -129,27 +113,21 @@
                         <a href="#about" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_about">ประวัติร้าน</a>
                     </div>
                 </div>
-                <!-- Dark Mode -->
                 <button onclick="toggleDarkMode()" class="p-2 md:p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
-                    <!-- Sun icon: แสดงใน dark mode -->
                     <svg id="sun-icon" class="w-5 h-5 md:w-5 md:h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" stroke-width="2"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
                     </svg>
-                    <!-- Moon icon: แสดงใน light mode -->
                     <svg id="moon-icon" class="w-5 h-5 md:w-5 md:h-5 block dark:hidden" fill="currentColor" stroke="none" viewBox="0 0 24 24">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                     </svg>
                 </button>
-                <!-- Map Button -->
                 <a href="https://www.google.com/maps/place/Lhao+Lhao/@13.7820964,100.5453428,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29c1c32d1cf51:0x108b5833bb2f87f0!8m2!3d13.7820964!4d100.5453428!16s%2Fg%2F1tgdwg9r?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="p-2 md:p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-[#c8c2b8]" title="ดูแผนที่ร้าน">
                     <svg class="w-5 h-5 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </a>
-                <!-- Language Selector -->
                 <div class="relative">
                     <button id="lang-btn" onclick="toggleLangMenu(event)" class="p-2 md:p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-[#c8c2b8] focus:outline-none flex items-center gap-1" title="เปลี่ยนภาษา">
                         <svg class="w-5 h-5 md:w-5 md:h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
-                        <!-- ✅ เพิ่ม: แสดงรหัสภาษาปัจจุบัน -->
                         <span class="text-[10px] md:text-xs font-bold pointer-events-none hidden md:inline">TH</span>
                     </button>
                     <div id="lang-menu" class="custom-dropdown hidden shadow-xl border dark:border-[#333333]">
@@ -166,7 +144,6 @@
                         <div class="dropdown-item" onclick="selectLang('MS')"><span>🇲🇾</span> Melayu (MS)</div>
                     </div>
                 </div>
-                <!-- Booking Button -->
                 <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="bg-red-accent text-white px-3 md:px-4 py-2 md:py-1.5 rounded-full text-xs md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1.5 shrink-0 ml-1 whitespace-nowrap">
                     <svg class="w-4 h-4 md:w-4 md:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
                     <span class="hidden md:inline" data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
@@ -174,6 +151,7 @@
             </div>
         </div>
     </nav>
+
     <!-- 1. หน้าหลัก (Home) -->
     <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f3f1ee] dark:bg-[#111111] pt-20 pb-12">
         <div class="text-center z-10 px-4">
@@ -186,6 +164,7 @@
         <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-red-50 dark:bg-red-900/10 rounded-full blur-3xl opacity-50"></div>
         <div class="absolute -top-20 -left-20 w-96 h-96 bg-yellow-50 dark:bg-yellow-900/10 rounded-full blur-3xl opacity-50"></div>
     </header>
+
     <!-- 2. ประวัติร้าน (About) -->
     <section id="about" class="py-14 bg-[#faf9f7] dark:bg-[#1a1a1a] transition-colors">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
@@ -213,6 +192,7 @@
             </div>
         </div>
     </section>
+
     <!-- 3. เมนูอาหาร (Menu) -->
     <section id="menu" class="py-14 bg-[#f3f1ee] dark:bg-[#111111] transition-colors">
         <div class="max-w-6xl mx-auto px-6">
@@ -221,57 +201,126 @@
                 <p class="text-[#7a7268] dark:text-[#9e9890]" data-i18n="menu_subtitle">สัมผัสความอร่อยผ่านภาพถ่ายเมนูซิกเนเจอร์ของเรา</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- เมนู 1: กุ้งแม่น้ำเผา -->
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
+                    <div class="aspect-square overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=600&q=80"
+                            alt="กุ้งแม่น้ำเผา"
+                            class="w-full h-full object-cover"
+                            draggable="false"
+                            oncontextmenu="return false"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=600&q=80'"
+                        >
+                    </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_1_name">กุ้งแม่น้ำเผา</h3>
                         <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_1_desc">มันเยิ้ม เนื้อเด้ง สดจากแม่น้ำ</p>
                     </div>
                 </div>
+
+                <!-- เมนู 2: ปูผัดผงกะหรี่ -->
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
+                    <div class="aspect-square overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80"
+                            alt="ปูผัดผงกะหรี่"
+                            class="w-full h-full object-cover"
+                            draggable="false"
+                            oncontextmenu="return false"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80'"
+                        >
+                    </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_2_name">ปูผัดผงกะหรี่</h3>
                         <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_2_desc">รสชาติเข้มข้น หอมเครื่องเทศ</p>
                     </div>
                 </div>
+
+                <!-- เมนู 3: ปลากะพงทอดน้ำปลา -->
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
+                    <div class="aspect-square overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=600&q=80"
+                            alt="ปลากะพงทอดน้ำปลา"
+                            class="w-full h-full object-cover"
+                            draggable="false"
+                            oncontextmenu="return false"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80'"
+                        >
+                    </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_3_name">ปลากะพงทอดน้ำปลา</h3>
                         <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_3_desc">กรอบนอกนุ่มใน น้ำปลาปรุงรสพิเศษ</p>
                     </div>
                 </div>
+
+                <!-- เมนู 4: ต้มยำกุ้งแชบ๊วย -->
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
+                    <div class="aspect-square overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1569562211093-4ed0d0758359?w=600&q=80"
+                            alt="ต้มยำกุ้งแชบ๊วย"
+                            class="w-full h-full object-cover"
+                            draggable="false"
+                            oncontextmenu="return false"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=600&q=80'"
+                        >
+                    </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_4_name">ต้มยำกุ้งแชบ๊วย</h3>
                         <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_4_desc">รสจัดจ้านถึงใจสไตล์ไทยแท้</p>
                     </div>
                 </div>
+
+                <!-- เมนู 5: หอยเชลล์ย่างเนย -->
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
+                    <div class="aspect-square overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=600&q=80"
+                            alt="หอยเชลล์ย่างเนย"
+                            class="w-full h-full object-cover"
+                            draggable="false"
+                            oncontextmenu="return false"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80'"
+                        >
+                    </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_5_name">หอยเชลล์ย่างเนย</h3>
                         <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_5_desc">หอมเนยแท้ กระเทียมเจียวกรอบ</p>
                     </div>
                 </div>
+
+                <!-- เมนู 6: ออส่วนกระทะร้อน -->
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
-                    <div class="aspect-square bg-[#e8e4de] dark:bg-[#2e2e2e]"></div>
+                    <div class="aspect-square overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80"
+                            alt="ออส่วนกระทะร้อน"
+                            class="w-full h-full object-cover"
+                            draggable="false"
+                            oncontextmenu="return false"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80'"
+                        >
+                    </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_6_name">ออส่วนกระทะร้อน</h3>
                         <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="food_6_desc">แป้งนุ่ม หอยนางรมสดตัวโต</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer class="py-12 border-t border-[#e8e4de] dark:border-[#2a2a2a] dark:bg-[#1a1a1a] transition-colors">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <p class="text-[#9e9890] text-sm">© 1980 Lhao Lhao. All Rights Reserved.</p>
         </div>
     </footer>
+
     <script>
         const translations = {
             TH: {
@@ -458,7 +507,6 @@
                 const key = el.getAttribute('data-i18n');
                 if (data[key]) el.innerText = data[key];
             });
-            // ✅ อัปเดตป้ายภาษาบน nav button
             const langSpan = document.getElementById('lang-btn').querySelector('span');
             if (langSpan) langSpan.innerText = lang;
             localStorage.setItem('selectedLanguage', lang);
@@ -491,7 +539,6 @@
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
-        // ✅ เปลี่ยนจาก window.onload เป็น DOMContentLoaded (เร็วกว่าและเชื่อถือได้กว่า)
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('selectedLanguage') || 'TH';
             updateLanguage(savedLang);
@@ -502,10 +549,7 @@
         };
 
         // ===== COPY PROTECTION =====
-        // ปิด right-click
         document.addEventListener('contextmenu', e => e.preventDefault());
-
-        // ปิด Ctrl+C, Ctrl+A, Ctrl+S, Ctrl+U, Ctrl+P, Ctrl+X, F12, PrintScreen
         document.addEventListener('keydown', e => {
             const blocked = (
                 (e.ctrlKey && ['c','a','s','u','p','x'].includes(e.key.toLowerCase())) ||
@@ -514,14 +558,8 @@
             );
             if (blocked) e.preventDefault();
         });
-
-        // ปิด drag
         document.addEventListener('dragstart', e => e.preventDefault());
-
-        // ปิด copy event
         document.addEventListener('copy', e => e.preventDefault());
-
-        // ปิด print
         window.onbeforeprint = () => { document.body.style.display = 'none'; };
         window.onafterprint = () => { document.body.style.display = ''; };
     </script>
