@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Heritage Seafood - ร้านอาหารไทยจีนซีฟู้ด</title>
+    <title>Lhao Lhao - ร้านข้าวต้ม อาหารจีน ซีฟู้ด</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
+        // ✅ เพิ่ม: ตรวจ dark mode ก่อน body โหลด ป้องกันหน้าจอกระพริบ
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -44,7 +51,6 @@
         .gallery-item:hover img {
             transform: scale(1.05);
         }
-
         /* Language & Nav Dropdown Custom CSS */
         .custom-dropdown {
             position: absolute;
@@ -81,28 +87,37 @@
         .dark .dropdown-item:hover {
             background-color: #374151;
         }
+
+        /* ===== COPY PROTECTION ===== */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
-
     <!-- Dynamic Island Navigation -->
-    <nav id="nav-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
-        <div id="dynamic-island" class="dynamic-island bg-white/90 dark:bg-gray-800/95 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-2xl rounded-[40px] px-4 md:px-6 py-3 flex items-center justify-between">
+    <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-fit max-w-[98%]">
+        <div id="dynamic-island" class="dynamic-island bg-white/90 dark:bg-gray-800/95 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-2xl rounded-[40px] px-2 md:px-4 py-1.5 flex items-center justify-between gap-1.5 md:gap-3">
             <!-- Logo Section -->
-            <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0">
+            <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0 ml-1 whitespace-nowrap">
                 <span class="font-bold tracking-tight text-gray-900 dark:text-white text-sm md:text-base">Lhao <span class="red-accent">Lhao</span></span>
             </a>
-
             <!-- Menu Links (Desktop) -->
-            <div class="hidden md:flex items-center gap-4 lg:gap-8 text-sm font-medium">
-                <a href="#home" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_home">หน้าหลัก</a>
-                <a href="#menu" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_menu">เมนูอาหาร</a>
-                <a href="#about" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition" data-i18n="nav_about">ประวัติร้าน</a>
+            <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium shrink-0 whitespace-nowrap">
+                <a href="#home" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_home">หน้าหลัก</a>
+                <a href="#menu" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_menu">เมนูอาหาร</a>
+                <a href="#about" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_about">ประวัติร้าน</a>
             </div>
-
             <!-- Utilities -->
-            <div class="flex items-center gap-0.5 md:gap-2">
-
+            <div class="flex items-center gap-0.5 shrink-0">
                 <!-- Mobile Nav Dropdown -->
                 <div class="relative md:hidden">
                     <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none">
@@ -114,22 +129,28 @@
                         <a href="#about" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_about">ประวัติร้าน</a>
                     </div>
                 </div>
-
                 <!-- Dark Mode -->
                 <button onclick="toggleDarkMode()" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
-                    <svg id="sun-icon" class="w-4 h-4 md:w-5 md:h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 11H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
-                    <svg id="moon-icon" class="w-4 h-4 md:w-5 md:h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 118.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    <!-- Sun icon: แสดงใน dark mode -->
+                    <svg id="sun-icon" class="w-4 h-4 md:w-5 md:h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4" stroke-width="2"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <!-- Moon icon: แสดงใน light mode -->
+                    <svg id="moon-icon" class="w-4 h-4 md:w-5 md:h-5 block dark:hidden" fill="currentColor" stroke="none" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
                 </button>
-
                 <!-- Map Button -->
                 <a href="https://www.google.com/maps/place/Lhao+Lhao/@13.7820964,100.5453428,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29c1c32d1cf51:0x108b5833bb2f87f0!8m2!3d13.7820964!4d100.5453428!16s%2Fg%2F1tgdwg9r?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300" title="ดูแผนที่ร้าน">
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </a>
-
                 <!-- Language Selector -->
                 <div class="relative">
-                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none" title="เปลี่ยนภาษา">
+                    <button id="lang-btn" onclick="toggleLangMenu(event)" class="p-1.5 md:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition text-gray-600 dark:text-gray-300 focus:outline-none flex items-center gap-1" title="เปลี่ยนภาษา">
                         <svg class="w-4 h-4 md:w-5 md:h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                        <!-- ✅ เพิ่ม: แสดงรหัสภาษาปัจจุบัน -->
+                        <span class="text-[10px] md:text-xs font-bold pointer-events-none hidden md:inline">TH</span>
                     </button>
                     <div id="lang-menu" class="custom-dropdown hidden shadow-xl border dark:border-gray-700">
                         <div class="dropdown-item" onclick="selectLang('TH')"><span>🇹🇭</span> ไทย (TH)</div>
@@ -139,25 +160,22 @@
                         <div class="dropdown-item" onclick="selectLang('RU')"><span>🇷🇺</span> Русский (RU)</div>
                         <div class="dropdown-item" onclick="selectLang('FR')"><span>🇫🇷</span> Français (FR)</div>
                         <div class="dropdown-item" onclick="selectLang('JP')"><span>🇯🇵</span> 日本語 (JP)</div>
-                        <div class="dropdown-item" onclick="selectLang('MM')"><span>🇲🇲</span> မြันမာ (MM)</div>
+                        <div class="dropdown-item" onclick="selectLang('MM')"><span>🇲🇲</span> မြန်မာ (MM)</div>
                         <div class="dropdown-item" onclick="selectLang('KH')"><span>🇰🇭</span> ខ្មែរ (KH)</div>
                         <div class="dropdown-item" onclick="selectLang('VN')"><span>🇻🇳</span> Tiếng Việt (VN)</div>
                         <div class="dropdown-item" onclick="selectLang('MS')"><span>🇲🇾</span> Melayu (MS)</div>
                     </div>
                 </div>
-
                 <!-- Booking Button -->
-                <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="bg-red-accent text-white px-2.5 md:px-5 py-2 rounded-full text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1 md:gap-2 shrink-0 ml-1">
-                    <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
+                <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="bg-red-accent text-white px-2.5 md:px-4 py-1.5 rounded-full text-[10px] md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1 shrink-0 ml-1 whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
                     <span class="hidden md:inline" data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
                 </a>
-
             </div>
         </div>
     </nav>
-
     <!-- 1. หน้าหลัก (Home) -->
-    <header id="home" class="relative h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-950">
+    <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-950 pt-20 pb-12">
         <div class="text-center z-10 px-4">
             <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight dark:text-white">
                 <span data-i18n="hero_title_part1">รสชาติแห่ง</span> <span class="red-accent" data-i18n="hero_title_part2">ท้องทะเล</span>
@@ -168,34 +186,40 @@
         <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-red-50 dark:bg-red-900/10 rounded-full blur-3xl opacity-50"></div>
         <div class="absolute -top-20 -left-20 w-96 h-96 bg-yellow-50 dark:bg-yellow-900/10 rounded-full blur-3xl opacity-50"></div>
     </header>
-
     <!-- 2. ประวัติร้าน (About) -->
-    <section id="about" class="py-24 bg-white dark:bg-gray-900 transition-colors">
+    <section id="about" class="py-14 bg-white dark:bg-gray-900 transition-colors">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1">
                 <h2 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-3 dark:text-white whitespace-nowrap">
                     <span class="w-8 h-1 bg-red-accent shrink-0"></span>
                     <span data-i18n="about_title">ประวัติความเป็นมา</span>
                 </h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6" data-i18n="about_desc">
-                    ร้าน Heritage Seafood เริ่มต้นจากความหลงไหลในวัตถุดิบจากทะเลสดๆ ผสมผสานกับสูตรลับการปรุงอาหารสไตล์จีนดั้งเดิม และรสชาติที่จัดจ้านแบบไทย เราคัดสรรของดีที่สุดจากสะพานปลาทุกเช้า เพื่อส่งมอบความประทับใจให้แก่ทุกครอบครัว
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4" data-i18n="about_desc">
+                    ร้านข้าวต้ม อาหารจีน ซีฟู้ด ตำนานแห่งย่านอารีย์ เปิดมาแล้วกว่า 40 ปี ด้วยรสชาติและบรรยากาศเสมือนบ้านหลังที่สองของทุกคน
                 </p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 italic">Traditional Thai, Chinese & Seafood — A local favorite, serving generations since 1980</p>
                 <div class="p-6 border-l-4 border-[#D4AF37] bg-gray-50 dark:bg-gray-800">
                     <p class="italic text-gray-700 dark:text-gray-300" data-i18n="about_quote">"ความสดคือหัวใจ บริการคือชีวิต รสชาติคือตำนาน"</p>
                 </div>
             </div>
-            <div class="order-1 md:order-2 bg-gray-200 dark:bg-gray-800 rounded-2xl aspect-video flex items-center justify-center text-gray-400 overflow-hidden shadow-xl border dark:border-gray-700"></div>
+            <div class="order-1 md:order-2 rounded-2xl aspect-video overflow-hidden shadow-xl border dark:border-gray-700">
+                <img
+                    src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80"
+                    alt="Lhao Lhao Restaurant"
+                    class="w-full h-full object-cover"
+                    draggable="false"
+                    oncontextmenu="return false"
+                >
+            </div>
         </div>
     </section>
-
     <!-- 3. เมนูอาหาร (Menu) -->
-    <section id="menu" class="py-24 bg-gray-50 dark:bg-gray-950 transition-colors">
+    <section id="menu" class="py-14 bg-gray-50 dark:bg-gray-950 transition-colors">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-10">
                 <h2 class="text-4xl font-bold mb-4 dark:text-white" data-i18n="menu_title">เมนูแนะนำ</h2>
                 <p class="text-gray-500 dark:text-gray-400" data-i18n="menu_subtitle">สัมผัสความอร่อยผ่านภาพถ่ายเมนูซิกเนเจอร์ของเรา</p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="gallery-item relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
                     <div class="aspect-square bg-gray-200 dark:bg-gray-700"></div>
@@ -242,23 +266,21 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-100 dark:border-gray-800 dark:bg-gray-900 transition-colors">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-gray-400 text-sm">© 2024 Heritage Seafood. All Rights Reserved.</p>
+            <p class="text-gray-400 text-sm">© 1980 Lhao Lhao. All Rights Reserved.</p>
         </div>
     </footer>
-
     <script>
         const translations = {
             TH: {
                 nav_home: "หน้าหลัก", nav_menu: "เมนูอาหาร", nav_about: "ประวัติร้าน", nav_map: "แผนที่",
                 btn_booking: "จองโต๊ะ / สั่งอาหาร",
                 hero_title_part1: "รสชาติแห่ง", hero_title_part2: "ท้องทะเล",
-                hero_desc: "ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม",
+                hero_desc: "ร้านข้าวต้ม อาหารจีน ซีฟู้ด ตำนานแห่งย่านอารีย์ เปิดมาแล้วกว่า 40 ปี ด้วยรสชาติและบรรยากาศเสมือนบ้านหลังที่สองของทุกคน",
                 about_title: "ประวัติความเป็นมา",
-                about_desc: "ร้าน Heritage Seafood เริ่มต้นจากความหลงไหลในวัตถุดิบจากทะเลสดๆ ผสมผสานกับสูตรลับการปรุงอาหารสไตล์จีนดั้งเดิม และรสชาติที่จัดจ้านแบบไทย เราคัดสรรของดีที่สุดจากสะพานปลาทุกเช้า เพื่อส่งมอบความประทับใจให้แก่ทุกครอบครัว",
+                about_desc: "ร้านข้าวต้ม อาหารจีน ซีฟู้ด ตำนานแห่งย่านอารีย์ เปิดมาแล้วกว่า 40 ปี ด้วยรสชาติและบรรยากาศเสมือนบ้านหลังที่สองของทุกคน",
                 about_quote: "\"ความสดคือหัวใจ บริการคือชีวิต รสชาติคือตำนาน\"",
                 menu_title: "เมนูแนะนำ", menu_subtitle: "สัมผัสความอร่อยผ่านภาพถ่ายเมนูซิกเนเจอร์ของเรา",
                 food_1_name: "กุ้งแม่น้ำเผา", food_1_desc: "มันเยิ้ม เนื้อเด้ง สดจากแม่น้ำ",
@@ -266,16 +288,15 @@
                 food_3_name: "ปลากะพงทอดน้ำปลา", food_3_desc: "กรอบนอกนุ่มใน น้ำปลาปรุงรสพิเศษ",
                 food_4_name: "ต้มยำกุ้งแชบ๊วย", food_4_desc: "รสจัดจ้านถึงใจสไตล์ไทยแท้",
                 food_5_name: "หอยเชลล์ย่างเนย", food_5_desc: "หอมเนยแท้ กระเทียมเจียวกรอบ",
-                food_6_name: "ออส่วนกระทะร้อน", food_6_desc: "แป้งนุ่ม หอยนางรมสดตัวโต",
-                map_title: "ที่ตั้งร้านของเรา", map_btn: "เปิดใน Google Maps", map_address: "ถนนสุขุมวิท, กรุงเทพมหานคร | เปิดบริการทุกวัน 11:00 - 22:00 น."
+                food_6_name: "ออส่วนกระทะร้อน", food_6_desc: "แป้งนุ่ม หอยนางรมสดตัวโต"
             },
             EN: {
                 nav_home: "Home", nav_menu: "Menu", nav_about: "Our Story", nav_map: "Location",
                 btn_booking: "Book Now / Order",
                 hero_title_part1: "The Taste of", hero_title_part2: "The Sea",
-                hero_desc: "Authentic Thai-Chinese premium seafood passed down through generations. Freshness and balanced flavor in every bite.",
+                hero_desc: "Traditional Thai, Chinese & Seafood — A local favorite in Ari, serving generations since 1980.",
                 about_title: "Our Heritage",
-                about_desc: "Heritage Seafood began with a passion for fresh ingredients, blending traditional Chinese cooking with bold Thai flavors. We hand-pick the best daily catch for every family.",
+                about_desc: "Lhao Lhao is a legendary Thai-Chinese seafood restaurant in the heart of Ari, Bangkok. Open for over 40 years, we've been a second home for every family who walks through our door.",
                 about_quote: "\"Freshness is the heart, service is the life, taste is the legend.\"",
                 menu_title: "Recommended", menu_subtitle: "Experience the deliciousness through our signature dishes.",
                 food_1_name: "Grilled River Prawn", food_1_desc: "Creamy head, firm meat, fresh from the river",
@@ -283,16 +304,15 @@
                 food_3_name: "Deep-fried Seabass", food_3_desc: "Crispy outside, tender inside with special fish sauce",
                 food_4_name: "Tom Yum Kung", food_4_desc: "Authentic spicy and sour Thai soup",
                 food_5_name: "Grilled Scallops", food_5_desc: "Fragrant butter and crispy fried garlic",
-                food_6_name: "Hot Plate Oyster Omelet", food_6_desc: "Soft dough with fresh giant oysters",
-                map_title: "Our Location", map_btn: "Open Google Maps", map_address: "Sukhumvit Road, Bangkok | Open daily 11:00 - 22:00"
+                food_6_name: "Hot Plate Oyster Omelet", food_6_desc: "Soft dough with fresh giant oysters"
             },
             ZH: {
                 nav_home: "首页", nav_menu: "菜谱", nav_about: "关于我们", nav_map: "地图",
                 btn_booking: "订位 / 点餐",
                 hero_title_part1: "大海的", hero_title_part2: "味道",
-                hero_desc: "传承数代的海鲜名店，融合泰中风味，每一口都尽享鲜香。",
+                hero_desc: "曼谷阿里区传奇泰中海鲜餐厅，40年老字号，家的味道。",
                 about_title: "品牌故事",
-                about_desc: "我们甄选每日清晨最新鲜的海味，由资深大厨烹饪，为您和家人呈献最地道的佳肴。",
+                about_desc: "Lhao Lhao 是阿里区的传奇餐厅，融合泰式、中式与海鲜料理，40余年来深受一代又一代食客喜爱，宛如每个人的第二个家。",
                 about_quote: "\"鲜是灵魂，诚是生命，味是传奇\"",
                 menu_title: "主厨推荐", menu_subtitle: "通过我们的招牌菜照片感受美味。",
                 food_1_name: "炭烤大虾", food_1_desc: "虾肉紧实，鲜甜无比",
@@ -300,8 +320,7 @@
                 food_3_name: "香酥炸鲈鱼", food_3_desc: "外焦里嫩，搭配秘制酱汁",
                 food_4_name: "冬阴功汤", food_4_desc: "正宗泰式酸辣汤，开胃解腻",
                 food_5_name: "黄油烤扇贝", food_5_desc: "黄油清香，蒜泥酥脆",
-                food_6_name: "铁板蚝烙", food_6_desc: "口感软糯，蚝肉肥美",
-                map_title: "餐厅位置", map_btn: "在地图中打开", map_address: "曼谷素坤逸路 | 营业时间 11:00 - 22:00"
+                food_6_name: "铁板蚝烙", food_6_desc: "口感软糯，蚝肉肥美"
             },
             DE: {
                 nav_home: "Start", nav_menu: "Menü", nav_about: "Über uns", nav_map: "Karte",
@@ -317,8 +336,7 @@
                 food_3_name: "Frittierter Wolfsbarsch", food_3_desc: "Außen knusprig mit spezieller Fischsauce",
                 food_4_name: "Tom Yum Kung", food_4_desc: "Die weltberühmte thailändische Suppe",
                 food_5_name: "Gegrillte Jakobsmuscheln", food_5_desc: "Mit feiner Butter und Knoblauch",
-                food_6_name: "Austern-Omelett", food_6_desc: "Frische Austern auf der heißen Platte",
-                map_title: "Standort", map_btn: "Google Maps öffnen", map_address: "Sukhumvit Road, Bangkok | Täglich 11:00 - 22:00"
+                food_6_name: "Austern-Omelett", food_6_desc: "Frische Austern auf der heißen Platte"
             },
             RU: {
                 nav_home: "Главная", nav_menu: "Меню", nav_about: "О нас", nav_map: "Карта",
@@ -334,8 +352,7 @@
                 food_3_name: "Жаренный сибас", food_3_desc: "Хрустящая корочка и нежное мясо",
                 food_4_name: "Том Ям", food_4_desc: "Тот самый острый тайский суп",
                 food_5_name: "Гребешки с маслом", food_5_desc: "Ароматное сливочное масло и чеснок",
-                food_6_name: "Омлет с устрицами", food_6_desc: "Подается на раскаленной сковороде",
-                map_title: "Где мы находимся", map_btn: "Открыть Google Карты", map_address: "Сукхумвит, Бангкок | 11:00 - 22:00"
+                food_6_name: "Омлет с устрицами", food_6_desc: "Подается на раскаленной сковороде"
             },
             FR: {
                 nav_home: "Accueil", nav_menu: "Menu", nav_about: "Histoire", nav_map: "Carte",
@@ -351,8 +368,7 @@
                 food_3_name: "Bar Frit", food_3_desc: "Croustillant avec sa sauce spéciale",
                 food_4_name: "Tom Yum Kung", food_4_desc: "La soupe thaïlandaise emblématique",
                 food_5_name: "Coquilles Saint-Jacques", food_5_desc: "Au beurre et à l'ail croustillant",
-                food_6_name: "Omelette aux Huîtres", food_6_desc: "Huîtres fraîches sur plaque chauffante",
-                map_title: "Nous trouver", map_btn: "Ouvrir Google Maps", map_address: "Sukhumvit Road, Bangkok | Ouvert 11:00 - 22:00"
+                food_6_name: "Omelette aux Huîtres", food_6_desc: "Huîtres fraîches sur plaque chauffante"
             },
             JP: {
                 nav_home: "ホーム", nav_menu: "メニュー", nav_about: "私たちの物語", nav_map: "地図",
@@ -360,16 +376,15 @@
                 hero_title_part1: "海の", hero_title_part2: "味わい",
                 hero_desc: "代々受け継がれる本格的なタイ・中華風プレミアムシーフード。",
                 about_title: "私たちの歩み",
-                about_desc: "毎朝市場จาก仕入れる新鮮な素材と、伝統の技術が生み出す至福の一皿。",
+                about_desc: "毎朝市場から仕入れる新鮮な素材と、伝統の技術が生み出す至福の一皿。",
                 about_quote: "「鮮度は心、サービスは命、味わいは伝説」",
                 menu_title: "おすすめメニュー", menu_subtitle: "自慢の料理をぜひご堪能ください。",
                 food_1_name: "大エビの炭火焼き", food_1_desc: "ぷりぷりの食感と濃厚な味噌",
                 food_2_name: "蟹のカレー粉炒め", food_2_desc: "スパイス香る濃厚な味わい",
                 food_3_name: "スズキの唐揚げ", food_3_desc: "外はカリッと、特製ナンプラー仕立て",
-                food_4_name: "トムヤムクン", food_4_desc: "本場タイの辛味และ酸味",
+                food_4_name: "トムヤムクン", food_4_desc: "本場タイの辛味と酸味",
                 food_5_name: "ホタテのバター焼き", food_5_desc: "芳醇なバターとカリカリガーリック",
-                food_6_name: "牡蠣の鉄板焼き", food_6_desc: "ふっくらした牡蠣を熱々で",
-                map_title: "アクセス", map_btn: "地図アプリで見る", map_address: "バンコク・スクンビット通り | 11:00 - 22:00"
+                food_6_name: "牡蠣の鉄板焼き", food_6_desc: "ふっくらした牡蠣を熱々で"
             },
             MM: {
                 nav_home: "ပင်မစာမျက်နှာ", nav_menu: "မီနူး", nav_about: "ကျွန်ုပ်တို့အကြောင်း", nav_map: "မြေပုံ",
@@ -377,7 +392,7 @@
                 hero_title_part1: "ပင်လယ်ပြင်၏", hero_title_part2: "အရသာ",
                 hero_desc: "မျိုးဆက်များစွာ လက်ဆင့်ကမ်းလာသည့် ထိုင်း-တရုတ် ပရီမီယံ ပင်လယ်စာများ။",
                 about_title: "ကျွန်ုပ်တို့၏ သမိုင်းကြောင်း",
-                about_desc: "လတ်ဆတ်သော ပါဝင်ပစ္စည်းများကို အခြေခံ၍ အကောင်းဆုံးသော အရသာများကို ဖันတီးပေးပါသည်။",
+                about_desc: "လတ်ဆတ်သော ပါဝင်ပစ္စည်းများကို အခြေခံ၍ အကောင်းဆုံးသော အရသာများကို ဖန်တီးပေးပါသည်။",
                 about_quote: "\"လတ်ဆတ်ခြင်းသည် နှလုံးသား၊ ဝန်ဆောင်မှုသည် အသက်၊ အရသာသည် ဒဏ္ဍာရီဖြစ်သည်။\"",
                 menu_title: "အကြံပြုမီနူးများ", menu_subtitle: "ကျွန်ုပ်တို့၏ အထူးဟင်းလျာများကို ခံစားကြည့်ရှုပါ။",
                 food_1_name: "မြစ်ပုစွန်ကင်", food_1_desc: "လတ်ဆတ်ပြီး အသားချိုမြိန်သော မြစ်ပုစွန်",
@@ -385,8 +400,7 @@
                 food_3_name: "ကကတစ်ငါးကြော်", food_3_desc: "အပြင်ဘက်ကြွပ်ပြီး အတွင်းသားနူးညံ့သော ငါးကြော်",
                 food_4_name: "တုံယမ်းပုစွန်ဟင်း", food_4_desc: "စပ်စပ်ချဉ်ချဉ် ထိုင်းစတိုင်ဟင်းရည်",
                 food_5_name: "ကမာကင်", food_5_desc: "ထောပတ်နှင့် ကြက်သွမ်းဖြူနံ့မွှေးမွှေး",
-                food_6_name: "ကမာဥကပ်ကြော်", food_6_desc: "ပူပူနွေးနွေး ကမာဥကပ်ကြော်",
-                map_title: "တည်နေရာ", map_btn: "မြေပုံကြည့်ရန်", map_address: "ဆူခွန်ဗစ်လမ်း၊ ဘန်ကောက် | ၁၁:၀၀ မှ ၂၂:၀၀ ထိ"
+                food_6_name: "ကမာဥကပ်ကြော်", food_6_desc: "ပူပူနွေးနွေး ကမာဥကပ်ကြော်"
             },
             KH: {
                 nav_home: "ទំព័រដើម", nav_menu: "បញ្ជីម្ហូប", nav_about: "ប្រវត្តិហាង", nav_map: "ផែនទី",
@@ -396,14 +410,13 @@
                 about_title: "ប្រវត្តិហាង",
                 about_desc: "យើងជ្រើសរើសគ្រឿងសមុទ្រស្រស់ៗជារៀងរាល់ព្រឹក ដើម្បីផ្តល់ជូននូវរសជាតិដ៏អស្ចារ្យ។",
                 about_quote: "\"ភាពស្រស់ជាបេះដូង សេវាកម្មជាជីវិត រសជាតិជាព្រេងនិទាន\"",
-                menu_title: "ម្ហូបពិសេស", menu_subtitle: "រីករាយជាមួយរសជាតិម្ហូបពិសេសของเรา",
+                menu_title: "ម្ហូបពិសេស", menu_subtitle: "រីករាយជាមួយរសជាតិម្ហូបពិសេសរបស់យើង",
                 food_1_name: "បង្កងទន្លេអាំង", food_1_desc: "បង្កងស្រស់ៗ សាច់ផ្អែមឆ្ងាញ់",
                 food_2_name: "ក្តាមឆាការី", food_2_desc: "រសជាតិដិតជាប់មាត់ ជាមួយគ្រឿងទេសឈ្ងុយឆ្ងាញ់",
                 food_3_name: "ត្រីតុកកែបំពង", food_3_desc: "ស្រួយខាងក្រៅ ទន់ខាងក្នុង ជាមួយទឹកត្រីពិសេស",
                 food_4_name: "តុំយ៉ាំបង្កង", food_4_desc: "ស៊ុបហឹរជូរអែមបែបថៃពិតៗ",
-                food_5_name: "ងាវដុតប៊ឺ", food_5_desc: "ឈ្ងុយប៊ឺ និងខ្ทឹមសបំពងស្រួយ",
-                food_6_name: "ខ្ទះក្តៅអយស្ទ័រ", food_6_desc: "អយស្ទ័រស្រស់ៗ ឆ្អិនក្តៅๆលើខ្ទះ",
-                map_title: "ទីតាំងហាង", map_btn: "បើកផែនទី", map_address: "ផ្លូវស៊ូឃុមវិទ ទីក្រុងបាងកក | បើកជារៀងរាល់ថ្ងៃ ១១:០០ - ២២:០០"
+                food_5_name: "ងាវដុតប៊ឺ", food_5_desc: "ឈ្ងុយប៊ឺ និងខ្ទឹមសបំពងស្រួយ",
+                food_6_name: "ខ្ទះក្តៅអយស្ទ័រ", food_6_desc: "អយស្ទ័រស្រស់ៗ ឆ្អិនក្តៅៗលើខ្ទះ"
             },
             VN: {
                 nav_home: "Trang chủ", nav_menu: "Thực đơn", nav_about: "Về chúng tôi", nav_map: "Bản đồ",
@@ -414,40 +427,38 @@
                 about_desc: "Chúng tôi chọn lọc hải sản tươi nhất mỗi sáng để mang đến sự hài lòng cho thực khách.",
                 about_quote: "\"Tươi ngon là trái tim, phục vụ là cuộc sống, hương vị là huyền thoại.\"",
                 menu_title: "Món gợi ý", menu_subtitle: "Trải nghiệm hương vị tuyệt vời qua các món đặc trưng.",
-                food_1_name: "Tôm sông nướng", food_1_desc: "Tôm tươi, thịt chắcและ ngọt",
+                food_1_name: "Tôm sông nướng", food_1_desc: "Tôm tươi, thịt chắc và ngọt",
                 food_2_name: "Cua xào cà ri", food_2_desc: "Hương vị đậm đà, thơm lừng",
                 food_3_name: "Cá chẽm chiên nước mắm", food_3_desc: "Giòn rụm với nước mắm đặc biệt",
                 food_4_name: "Tom Yum Kung", food_4_desc: "Súp Thái chua cay đúng điệu",
                 food_5_name: "Sò điệp nướng bơ", food_5_desc: "Thơm mùi bơ và tỏi phi giòn",
-                food_6_name: "Hàu né bàn gang", food_6_desc: "Hàu tươi nóng hổi trên bàn gang",
-                map_title: "Vị trí", map_btn: "Mở Bản đồ", map_address: "Đường Sukhumvit, Bangkok | Mở cửa 11:00 - 22:00"
+                food_6_name: "Hàu né bàn gang", food_6_desc: "Hàu tươi nóng hổi trên bàn gang"
             },
             MS: {
                 nav_home: "Utama", nav_menu: "Menu", nav_about: "Sejarah", nav_map: "Peta",
                 btn_booking: "Tempah Meja",
                 hero_title_part1: "Rasa Dari", hero_title_part2: "Lautan",
-                hero_desc: "Makanan laut premium Thai-Cina yang asli และ segar.",
+                hero_desc: "Makanan laut premium Thai-Cina yang asli dan segar.",
                 about_title: "Sejarah Kami",
                 about_desc: "Kami memilih hasil laut terbaik setiap hari untuk kepuasan pelanggan kami.",
                 about_quote: "\"Kesegaran adalah jantung, perkhidmatan adalah nyawa, rasa adalah legenda.\"",
                 menu_title: "Cadangan Kami", menu_subtitle: "Nikmati hidangan istimewa melalui foto menu kami.",
-                food_1_name: "Udang Galah Bakar", food_1_desc: "Daging pejal และ segar dari sungai",
+                food_1_name: "Udang Galah Bakar", food_1_desc: "Daging pejal dan segar dari sungai",
                 food_2_name: "Ketam Masak Kari", food_2_desc: "Rasa kaya dengan rempah ratus aromatik",
                 food_3_name: "Ikan Siakap Goreng", food_3_desc: "Garing di luar, lembut di dalam",
                 food_4_name: "Tom Yum Kung", food_4_desc: "Sup masam pedas Thai yang asli",
-                food_5_name: "Siput Bakar Mentega", food_5_desc: "Aroma mentega และ bawang putih garing",
-                food_6_name: "Telur Dadar Tiram", food_6_desc: "Tiram segar di atas kuali panas",
-                map_title: "Lokasi Kami", map_btn: "Buka Google Maps", map_address: "Jalan Sukhumvit, Bangkok | Dibuka setiap hari 11:00 - 22:00"
+                food_5_name: "Siput Bakar Mentega", food_5_desc: "Aroma mentega dan bawang putih garing",
+                food_6_name: "Telur Dadar Tiram", food_6_desc: "Tiram segar di atas kuali panas"
             }
         };
 
         function updateLanguage(lang) {
-            const data = translations[lang];
-            if (!data) return;
+            const data = translations[lang] || translations['TH'];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (data[key]) el.innerText = data[key];
             });
+            // ✅ อัปเดตป้ายภาษาบน nav button
             const langSpan = document.getElementById('lang-btn').querySelector('span');
             if (langSpan) langSpan.innerText = lang;
             localStorage.setItem('selectedLanguage', lang);
@@ -475,19 +486,44 @@
             closeAllMenus();
         }
 
-        window.onload = () => {
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // ✅ เปลี่ยนจาก window.onload เป็น DOMContentLoaded (เร็วกว่าและเชื่อถือได้กว่า)
+        window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('selectedLanguage') || 'TH';
             updateLanguage(savedLang);
-        };
+        });
 
         window.onclick = (e) => {
             if (!e.target.closest('.relative')) closeAllMenus();
         };
 
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-        }
+        // ===== COPY PROTECTION =====
+        // ปิด right-click
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // ปิด Ctrl+C, Ctrl+A, Ctrl+S, Ctrl+U, Ctrl+P, Ctrl+X, F12, PrintScreen
+        document.addEventListener('keydown', e => {
+            const blocked = (
+                (e.ctrlKey && ['c','a','s','u','p','x'].includes(e.key.toLowerCase())) ||
+                (e.metaKey && ['c','a','s','u','p','x'].includes(e.key.toLowerCase())) ||
+                e.key === 'F12' || e.key === 'PrintScreen'
+            );
+            if (blocked) e.preventDefault();
+        });
+
+        // ปิด drag
+        document.addEventListener('dragstart', e => e.preventDefault());
+
+        // ปิด copy event
+        document.addEventListener('copy', e => e.preventDefault());
+
+        // ปิด print
+        window.onbeforeprint = () => { document.body.style.display = 'none'; };
+        window.onafterprint = () => { document.body.style.display = ''; };
     </script>
 </body>
 </html>
