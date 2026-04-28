@@ -111,6 +111,7 @@
                 <a href="#home" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_home">หน้าหลัก</a>
                 <a href="#menu" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_menu">เมนูอาหาร</a>
                 <a href="#about" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_about">ประวัติร้าน</a>
+                <a href="#contact" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_contact">ติดต่อ</a>
             </div>
             <div class="flex items-center gap-0.5 shrink-0">
                 <div class="relative md:hidden">
@@ -121,6 +122,7 @@
                         <a href="#home" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_home">หน้าหลัก</a>
                         <a href="#menu" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_menu">เมนูอาหาร</a>
                         <a href="#about" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_about">ประวัติร้าน</a>
+                        <a href="#contact" class="dropdown-item" onclick="closeAllMenus()" data-i18n="nav_contact">ติดต่อ</a>
                     </div>
                 </div>
                 <button onclick="toggleDarkMode()" class="p-2 md:p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-yellow-400" title="สลับโหมดมืด/สว่าง">
@@ -164,6 +166,17 @@
 
     <!-- 1. หน้าหลัก (Home) -->
     <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f3f1ee] dark:bg-[#111111] pt-20 pb-12">
+        <!-- Hero Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img
+                src="images/backgrounds/hero.jpg"
+                alt=""
+                class="w-full h-full object-cover opacity-20 dark:opacity-10"
+                draggable="false"
+                oncontextmenu="return false"
+                onerror="this.style.display='none'"
+            >
+        </div>
         <div class="text-center z-10 px-4">
             <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight dark:text-white">
                 <span data-i18n="hero_title_part1">Lhao Lhao</span> <span class="red-accent" data-i18n="hero_title_part2">Restaurant</span>
@@ -193,11 +206,12 @@
             </div>
             <div class="order-1 md:order-2 rounded-2xl aspect-video overflow-hidden shadow-xl border dark:border-[#333333]">
                 <img
-                    src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80"
+                    src="images/backgrounds/about.jpg"
                     alt="Lhao Lhao Restaurant"
                     class="w-full h-full object-cover"
                     draggable="false"
                     oncontextmenu="return false"
+                    onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80'"
                 >
             </div>
         </div>
@@ -216,12 +230,12 @@
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
                     <div class="aspect-square overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=600&q=80"
+                            src="images/food/grilled-river-prawn.jpg"
                             alt="กุ้งแม่น้ำเผา"
                             class="w-full h-full object-cover"
                             draggable="false"
                             oncontextmenu="return false"
-                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=600&q=80'"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=600&q=80'"
                         >
                     </div>
                     <div class="p-4">
@@ -234,12 +248,12 @@
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
                     <div class="aspect-square overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80"
+                            src="images/food/crab-curry.jpg"
                             alt="ปูผัดผงกะหรี่"
                             class="w-full h-full object-cover"
                             draggable="false"
                             oncontextmenu="return false"
-                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80'"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80'"
                         >
                     </div>
                     <div class="p-4">
@@ -252,12 +266,12 @@
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
                     <div class="aspect-square overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=600&q=80"
+                            src="images/food/fried-seabass.jpg"
                             alt="ปลากะพงทอดน้ำปลา"
                             class="w-full h-full object-cover"
                             draggable="false"
                             oncontextmenu="return false"
-                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80'"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=600&q=80'"
                         >
                     </div>
                     <div class="p-4">
@@ -270,12 +284,12 @@
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
                     <div class="aspect-square overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1569562211093-4ed0d0758359?w=600&q=80"
+                            src="images/food/tom-yum-kung.jpg"
                             alt="ต้มยำกุ้งแชบ๊วย"
                             class="w-full h-full object-cover"
                             draggable="false"
                             oncontextmenu="return false"
-                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=600&q=80'"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1569562211093-4ed0d0758359?w=600&q=80'"
                         >
                     </div>
                     <div class="p-4">
@@ -288,12 +302,12 @@
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
                     <div class="aspect-square overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=600&q=80"
+                            src="images/food/grilled-scallops.jpg"
                             alt="หอยเชลล์ย่างเนย"
                             class="w-full h-full object-cover"
                             draggable="false"
                             oncontextmenu="return false"
-                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80'"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=600&q=80'"
                         >
                     </div>
                     <div class="p-4">
@@ -306,12 +320,12 @@
                 <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
                     <div class="aspect-square overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80"
+                            src="images/food/oyster-omelet.jpg"
                             alt="ออส่วนกระทะร้อน"
                             class="w-full h-full object-cover"
                             draggable="false"
                             oncontextmenu="return false"
-                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80'"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80'"
                         >
                     </div>
                     <div class="p-4">
@@ -324,17 +338,65 @@
         </div>
     </section>
 
+    <!-- 4. ติดต่อเรา (Contact) -->
+    <section id="contact" class="py-14 bg-[#faf9f7] dark:bg-[#1a1a1a] transition-colors border-t border-[#e8e4de] dark:border-[#2a2a2a]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2 dark:text-white" data-i18n="contact_title">ติดต่อเรา</h2>
+                <p class="text-[#7a7268] dark:text-[#9e9890]" data-i18n="contact_subtitle">ยินดีต้อนรับทุกวัน</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <!-- ที่อยู่ -->
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-[#f3f1ee] dark:bg-[#242424] flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#C41E3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3 class="font-bold dark:text-white" data-i18n="contact_address_title">ที่อยู่</h3>
+                    <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="contact_address">ย่านอารีย์ กรุงเทพมหานคร</p>
+                </div>
+                <!-- เวลาเปิด -->
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-[#f3f1ee] dark:bg-[#242424] flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#C41E3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3 class="font-bold dark:text-white" data-i18n="contact_hours_title">เวลาเปิด-ปิด</h3>
+                    <p class="text-sm text-[#7a7268] dark:text-[#9e9890]" data-i18n="contact_hours">ทุกวัน 17:00 – 01:00 น.</p>
+                </div>
+                <!-- ช่องทางติดต่อ -->
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-[#f3f1ee] dark:bg-[#242424] flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#C41E3A]" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
+                    </div>
+                    <h3 class="font-bold dark:text-white" data-i18n="contact_line_title">LINE</h3>
+                    <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="text-sm text-[#C41E3A] hover:underline">@lhaolhao1980</a>
+                </div>
+            </div>
+            <!-- Google Maps Embed -->
+            <div class="mt-10 rounded-2xl overflow-hidden shadow-lg border border-[#e8e4de] dark:border-[#333333] aspect-video">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.745!2d100.5453428!3d13.7820964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29c1c32d1cf51%3A0x108b5833bb2f87f0!2sLhao%20Lhao!5e0!3m2!1sth!2sth!4v1714000000000"
+                    width="100%" height="100%"
+                    style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="แผนที่ร้าน Lhao Lhao"
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="py-12 border-t border-[#e8e4de] dark:border-[#2a2a2a] dark:bg-[#1a1a1a] transition-colors">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-[#9e9890] text-sm">© 1980 Lhao Lhao. All Rights Reserved.</p>
+    <footer class="py-8 border-t border-[#e8e4de] dark:border-[#2a2a2a] dark:bg-[#1a1a1a] transition-colors">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-bold text-[#2a2a2a] dark:text-white">Lhao <span class="red-accent">Lhao</span></p>
+            <p class="text-[#9e9890] text-sm" data-i18n="footer_copy">© 1980 Lhao Lhao. All Rights Reserved.</p>
+            <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="text-[#9e9890] hover:text-[#C41E3A] text-sm transition">LINE: @lhaolhao1980</a>
         </div>
     </footer>
 
     <script>
         const translations = {
             TH: {
-                nav_home: "หน้าหลัก", nav_menu: "เมนูอาหาร", nav_about: "ประวัติร้าน", nav_map: "แผนที่",
+                nav_home: "หน้าหลัก", nav_menu: "เมนูอาหาร", nav_about: "ประวัติร้าน", nav_map: "แผนที่", nav_contact: "ติดต่อ",
                 btn_booking: "จองโต๊ะ / สั่งอาหาร",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "ร้านข้าวต้ม อาหารจีน ซีฟู้ด ตำนานแห่งย่านอารีย์ เปิดมาแล้วกว่า 40 ปี ด้วยรสชาติและบรรยากาศเสมือนบ้านหลังที่สองของทุกคน",
@@ -347,10 +409,15 @@
                 food_3_name: "ปลากะพงทอดน้ำปลา", food_3_desc: "กรอบนอกนุ่มใน น้ำปลาปรุงรสพิเศษ",
                 food_4_name: "ต้มยำกุ้งแชบ๊วย", food_4_desc: "รสจัดจ้านถึงใจสไตล์ไทยแท้",
                 food_5_name: "หอยเชลล์ย่างเนย", food_5_desc: "หอมเนยแท้ กระเทียมเจียวกรอบ",
-                food_6_name: "ออส่วนกระทะร้อน", food_6_desc: "แป้งนุ่ม หอยนางรมสดตัวโต"
+                food_6_name: "ออส่วนกระทะร้อน", food_6_desc: "แป้งนุ่ม หอยนางรมสดตัวโต",
+                contact_title: "ติดต่อเรา", contact_subtitle: "ยินดีต้อนรับทุกวัน",
+                contact_address_title: "ที่อยู่", contact_address: "ย่านอารีย์ กรุงเทพมหานคร",
+                contact_hours_title: "เวลาเปิด-ปิด", contact_hours: "ทุกวัน 17:00 – 01:00 น.",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             EN: {
-                nav_home: "Home", nav_menu: "Menu", nav_about: "Our Story", nav_map: "Location",
+                nav_home: "Home", nav_menu: "Menu", nav_about: "Our Story", nav_map: "Location", nav_contact: "Contact",
                 btn_booking: "Book Now / Order",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Traditional Thai, Chinese & Seafood — A local favorite in Ari, serving generations since 1980.",
@@ -363,10 +430,15 @@
                 food_3_name: "Deep-fried Seabass", food_3_desc: "Crispy outside, tender inside with special fish sauce",
                 food_4_name: "Tom Yum Kung", food_4_desc: "Authentic spicy and sour Thai soup",
                 food_5_name: "Grilled Scallops", food_5_desc: "Fragrant butter and crispy fried garlic",
-                food_6_name: "Hot Plate Oyster Omelet", food_6_desc: "Soft dough with fresh giant oysters"
+                food_6_name: "Hot Plate Oyster Omelet", food_6_desc: "Soft dough with fresh giant oysters",
+                contact_title: "Contact Us", contact_subtitle: "Open every day",
+                contact_address_title: "Address", contact_address: "Ari District, Bangkok",
+                contact_hours_title: "Opening Hours", contact_hours: "Daily 17:00 – 01:00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             ZH: {
-                nav_home: "首页", nav_menu: "菜谱", nav_about: "关于我们", nav_map: "地图",
+                nav_home: "首页", nav_menu: "菜谱", nav_about: "关于我们", nav_map: "地图", nav_contact: "联系",
                 btn_booking: "订位 / 点餐",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "曼谷阿里区传奇泰中海鲜餐厅，40年老字号，家的味道。",
@@ -379,10 +451,15 @@
                 food_3_name: "香酥炸鲈鱼", food_3_desc: "外焦里嫩，搭配秘制酱汁",
                 food_4_name: "冬阴功汤", food_4_desc: "正宗泰式酸辣汤，开胃解腻",
                 food_5_name: "黄油烤扇贝", food_5_desc: "黄油清香，蒜泥酥脆",
-                food_6_name: "铁板蚝烙", food_6_desc: "口感软糯，蚝肉肥美"
+                food_6_name: "铁板蚝烙", food_6_desc: "口感软糯，蚝肉肥美",
+                contact_title: "联系我们", contact_subtitle: "每天营业",
+                contact_address_title: "地址", contact_address: "曼谷阿里区",
+                contact_hours_title: "营业时间", contact_hours: "每天 17:00 – 01:00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             DE: {
-                nav_home: "Start", nav_menu: "Menü", nav_about: "Über uns", nav_map: "Karte",
+                nav_home: "Start", nav_menu: "Menü", nav_about: "Über uns", nav_map: "Karte", nav_contact: "Kontakt",
                 btn_booking: "Tisch reservieren",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Authentische thailändisch-chinesische Meeresfrüchte-Küche auf höchstem Niveau.",
@@ -395,10 +472,15 @@
                 food_3_name: "Frittierter Wolfsbarsch", food_3_desc: "Außen knusprig mit spezieller Fischsauce",
                 food_4_name: "Tom Yum Kung", food_4_desc: "Die weltberühmte thailändische Suppe",
                 food_5_name: "Gegrillte Jakobsmuscheln", food_5_desc: "Mit feiner Butter und Knoblauch",
-                food_6_name: "Austern-Omelett", food_6_desc: "Frische Austern auf der heißen Platte"
+                food_6_name: "Austern-Omelett", food_6_desc: "Frische Austern auf der heißen Platte",
+                contact_title: "Kontakt", contact_subtitle: "Täglich geöffnet",
+                contact_address_title: "Adresse", contact_address: "Ari-Viertel, Bangkok",
+                contact_hours_title: "Öffnungszeiten", contact_hours: "Täglich 17:00 – 01:00 Uhr",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             RU: {
-                nav_home: "Главная", nav_menu: "Меню", nav_about: "О нас", nav_map: "Карта",
+                nav_home: "Главная", nav_menu: "Меню", nav_about: "О нас", nav_map: "Карта", nav_contact: "Контакты",
                 btn_booking: "Забронировать",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Премиальные морепродукты по традиционным тайско-китайским рецептам.",
@@ -411,10 +493,15 @@
                 food_3_name: "Жаренный сибас", food_3_desc: "Хрустящая корочка и нежное мясо",
                 food_4_name: "Том Ям", food_4_desc: "Тот самый острый тайский суп",
                 food_5_name: "Гребешки с маслом", food_5_desc: "Ароматное сливочное масло и чеснок",
-                food_6_name: "Омлет с устрицами", food_6_desc: "Подается на раскаленной сковороде"
+                food_6_name: "Омлет с устрицами", food_6_desc: "Подается на раскаленной сковороде",
+                contact_title: "Контакты", contact_subtitle: "Работаем каждый день",
+                contact_address_title: "Адрес", contact_address: "Район Ари, Бангкок",
+                contact_hours_title: "Часы работы", contact_hours: "Ежедневно 17:00 – 01:00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             FR: {
-                nav_home: "Accueil", nav_menu: "Menu", nav_about: "Histoire", nav_map: "Carte",
+                nav_home: "Accueil", nav_menu: "Menu", nav_about: "Histoire", nav_map: "Carte", nav_contact: "Contact",
                 btn_booking: "Réserver",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Cuisine de fruits de mer thaï-chinoise d'exception.",
@@ -427,10 +514,15 @@
                 food_3_name: "Bar Frit", food_3_desc: "Croustillant avec sa sauce spéciale",
                 food_4_name: "Tom Yum Kung", food_4_desc: "La soupe thaïlandaise emblématique",
                 food_5_name: "Coquilles Saint-Jacques", food_5_desc: "Au beurre et à l'ail croustillant",
-                food_6_name: "Omelette aux Huîtres", food_6_desc: "Huîtres fraîches sur plaque chauffante"
+                food_6_name: "Omelette aux Huîtres", food_6_desc: "Huîtres fraîches sur plaque chauffante",
+                contact_title: "Contactez-nous", contact_subtitle: "Ouvert tous les jours",
+                contact_address_title: "Adresse", contact_address: "Quartier Ari, Bangkok",
+                contact_hours_title: "Heures d'ouverture", contact_hours: "Tous les jours 17h00 – 01h00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             JP: {
-                nav_home: "ホーム", nav_menu: "メニュー", nav_about: "私たちの物語", nav_map: "地図",
+                nav_home: "ホーム", nav_menu: "メニュー", nav_about: "私たちの物語", nav_map: "地図", nav_contact: "お問い合わせ",
                 btn_booking: "予約・注文",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "代々受け継がれる本格的なタイ・中華風プレミアムシーフード。",
@@ -443,10 +535,15 @@
                 food_3_name: "スズキの唐揚げ", food_3_desc: "外はカリッと、特製ナンプラー仕立て",
                 food_4_name: "トムヤムクン", food_4_desc: "本場タイの辛味と酸味",
                 food_5_name: "ホタテのバター焼き", food_5_desc: "芳醇なバターとカリカリガーリック",
-                food_6_name: "牡蠣の鉄板焼き", food_6_desc: "ふっくらした牡蠣を熱々で"
+                food_6_name: "牡蠣の鉄板焼き", food_6_desc: "ふっくらした牡蠣を熱々で",
+                contact_title: "お問い合わせ", contact_subtitle: "毎日営業",
+                contact_address_title: "住所", contact_address: "バンコク アリー地区",
+                contact_hours_title: "営業時間", contact_hours: "毎日 17:00 – 01:00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             MM: {
-                nav_home: "ပင်မစာမျက်နှာ", nav_menu: "မီနူး", nav_about: "ကျွန်ုပ်တို့အကြောင်း", nav_map: "မြေပုံ",
+                nav_home: "ပင်မစာမျက်နှာ", nav_menu: "မီနူး", nav_about: "ကျွန်ုပ်တို့အကြောင်း", nav_map: "မြေပုံ", nav_contact: "ဆက်သွယ်ရန်",
                 btn_booking: "ဘိုကင်တင်ရန်",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "မျိုးဆက်များစွာ လက်ဆင့်ကမ်းလာသည့် ထိုင်း-တရုတ် ပရီမီယံ ပင်လယ်စာများ။",
@@ -459,10 +556,15 @@
                 food_3_name: "ကကတစ်ငါးကြော်", food_3_desc: "အပြင်ဘက်ကြွပ်ပြီး အတွင်းသားနူးညံ့သော ငါးကြော်",
                 food_4_name: "တုံယမ်းပုစွန်ဟင်း", food_4_desc: "စပ်စပ်ချဉ်ချဉ် ထိုင်းစတိုင်ဟင်းရည်",
                 food_5_name: "ကမာကင်", food_5_desc: "ထောပတ်နှင့် ကြက်သွမ်းဖြူနံ့မွှေးမွှေး",
-                food_6_name: "ကမာဥကပ်ကြော်", food_6_desc: "ပူပူနွေးနွေး ကမာဥကပ်ကြော်"
+                food_6_name: "ကမာဥကပ်ကြော်", food_6_desc: "ပူပူနွေးနွေး ကမာဥကပ်ကြော်",
+                contact_title: "ဆက်သွယ်ရန်", contact_subtitle: "နေ့တိုင်း ဖွင့်သည်",
+                contact_address_title: "လိပ်စာ", contact_address: "အာရီမြို့နယ်, ဘန်ကောက်",
+                contact_hours_title: "ဖွင့်ချိန်", contact_hours: "နေ့တိုင်း 17:00 – 01:00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             KH: {
-                nav_home: "ទំព័រដើម", nav_menu: "បញ្ជីម្ហូប", nav_about: "ប្រវត្តិហាង", nav_map: "ផែនទី",
+                nav_home: "ទំព័រដើម", nav_menu: "បញ្ជីម្ហូប", nav_about: "ប្រវត្តិហាង", nav_map: "ផែនទី", nav_contact: "ទំនាក់ទំនង",
                 btn_booking: "កក់តុ / កុម្ម៉ង់",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "ម្ហូបសមុទ្រកម្រិតខ្ពស់បែបថៃ-ចិន ដែលមានរសជាតិដើមតាំងពីយូរលង់មកហើយ។",
@@ -475,10 +577,15 @@
                 food_3_name: "ត្រីតុកកែបំពង", food_3_desc: "ស្រួយខាងក្រៅ ទន់ខាងក្នុង ជាមួយទឹកត្រីពិសេស",
                 food_4_name: "តុំយ៉ាំបង្កង", food_4_desc: "ស៊ុបហឹរជូរអែមបែបថៃពិតៗ",
                 food_5_name: "ងាវដុតប៊ឺ", food_5_desc: "ឈ្ងុយប៊ឺ និងខ្ទឹមសបំពងស្រួយ",
-                food_6_name: "ខ្ទះក្តៅអយស្ទ័រ", food_6_desc: "អយស្ទ័រស្រស់ៗ ឆ្អិនក្តៅៗលើខ្ទះ"
+                food_6_name: "ខ្ទះក្តៅអយស្ទ័រ", food_6_desc: "អយស្ទ័រស្រស់ៗ ឆ្អិនក្តៅៗលើខ្ទះ",
+                contact_title: "ទំនាក់ទំនង", contact_subtitle: "បើករៀងរាល់ថ្ងៃ",
+                contact_address_title: "អាសយដ្ឋាន", contact_address: "តំបន់អារី ក្រុងបាងកក",
+                contact_hours_title: "ម៉ោងបើក", contact_hours: "រាល់ថ្ងៃ 17:00 – 01:00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             VN: {
-                nav_home: "Trang chủ", nav_menu: "Thực đơn", nav_about: "Về chúng tôi", nav_map: "Bản đồ",
+                nav_home: "Trang chủ", nav_menu: "Thực đơn", nav_about: "Về chúng tôi", nav_map: "Bản đồ", nav_contact: "Liên hệ",
                 btn_booking: "Đặt bàn ngay",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Hải sản cao cấp phong cách Thái-Hoa, truyền thống và tươi ngon.",
@@ -491,10 +598,15 @@
                 food_3_name: "Cá chẽm chiên nước mắm", food_3_desc: "Giòn rụm với nước mắm đặc biệt",
                 food_4_name: "Tom Yum Kung", food_4_desc: "Súp Thái chua cay đúng điệu",
                 food_5_name: "Sò điệp nướng bơ", food_5_desc: "Thơm mùi bơ và tỏi phi giòn",
-                food_6_name: "Hàu né bàn gang", food_6_desc: "Hàu tươi nóng hổi trên bàn gang"
+                food_6_name: "Hàu né bàn gang", food_6_desc: "Hàu tươi nóng hổi trên bàn gang",
+                contact_title: "Liên hệ", contact_subtitle: "Mở cửa mỗi ngày",
+                contact_address_title: "Địa chỉ", contact_address: "Khu Ari, Bangkok",
+                contact_hours_title: "Giờ mở cửa", contact_hours: "Hàng ngày 17:00 – 01:00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             },
             MS: {
-                nav_home: "Utama", nav_menu: "Menu", nav_about: "Sejarah", nav_map: "Peta",
+                nav_home: "Utama", nav_menu: "Menu", nav_about: "Sejarah", nav_map: "Peta", nav_contact: "Hubungi",
                 btn_booking: "Tempah Meja",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Makanan laut premium Thai-Cina yang asli dan segar.",
@@ -507,7 +619,12 @@
                 food_3_name: "Ikan Siakap Goreng", food_3_desc: "Garing di luar, lembut di dalam",
                 food_4_name: "Tom Yum Kung", food_4_desc: "Sup masam pedas Thai yang asli",
                 food_5_name: "Siput Bakar Mentega", food_5_desc: "Aroma mentega dan bawang putih garing",
-                food_6_name: "Telur Dadar Tiram", food_6_desc: "Tiram segar di atas kuali panas"
+                food_6_name: "Telur Dadar Tiram", food_6_desc: "Tiram segar di atas kuali panas",
+                contact_title: "Hubungi Kami", contact_subtitle: "Buka setiap hari",
+                contact_address_title: "Alamat", contact_address: "Kawasan Ari, Bangkok",
+                contact_hours_title: "Waktu Buka", contact_hours: "Setiap hari 17:00 – 01:00",
+                contact_line_title: "LINE",
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
             }
         };
 
