@@ -677,20 +677,36 @@
 
         // ===== DRAGGABLE NAV =====
         (function() {
-            const nav = document.getElementById('nav-container');
+            const nav    = document.getElementById('nav-container');
+            const island = document.getElementById('dynamic-island');
             let dragging = false;
-            let startX, startY, origLeft, origTop;
+            let startX, startY, origCX, origTop;
             let idleTimer = null;
             let hasDragged = false;
-            const PAD = 16; // ระยะห่างจากขอบจอทุกด้าน
 
-            function clampPos(left, top) {
-                const navW = nav.offsetWidth;
-                const navH = nav.offsetHeight;
+            const PAD    = 20; // ระยะห่างจากขอบซ้าย/ขวา/บน
+            const PAD_B  = 48; // ระยะห่างจากขอบล่าง (เผื่อ home bar บน iOS)
+
+            // คำนวณขอบเขตจาก island จริง (ไม่ใช่ container ที่กว้าง 95%)
+            function clampPos(cx, top) {
+                const w = island.offsetWidth;
+                const h = island.offsetHeight;
                 return {
-                    left: Math.max(navW / 2 + PAD, Math.min(window.innerWidth  - navW / 2 - PAD, left)),
-                    top:  Math.max(PAD,             Math.min(window.innerHeight - navH     - PAD, top))
+                    cx:  Math.max(w / 2 + PAD,  Math.min(window.innerWidth  - w / 2 - PAD,  cx)),
+                    top: Math.max(PAD,            Math.min(window.innerHeight - h     - PAD_B, top))
                 };
+            }
+
+            // ใช้ translateX(-50%) ตลอด เพื่อให้ island ติดกับ left ที่ตั้งไว้
+            function applyPos(cx, top) {
+                nav.style.left      = cx + 'px';
+                nav.style.top       = top + 'px';
+                nav.style.transform = 'translateX(-50%)';
+            }
+
+            function getCX() {
+                const r = nav.getBoundingClientRect();
+                return r.left + r.width / 2;
             }
 
             function setDragging(on) {
@@ -698,7 +714,8 @@
                 if (on) {
                     nav.classList.add('dragging');
                     nav.style.transition = 'none';
-                    nav.style.cursor = 'grabbing';
+                    nav.style.cursor     = 'grabbing';
+                    nav.style.width      = 'auto'; // หดเหลือแค่ island เพื่อขยับได้อิสระบนมือถือ
                 } else {
                     nav.classList.remove('dragging');
                     nav.style.cursor = '';
@@ -706,29 +723,27 @@
             }
 
             function snapToDefault() {
-                nav.style.transition = 'left 0.55s cubic-bezier(0.34,1.56,0.64,1), top 0.55s cubic-bezier(0.34,1.56,0.64,1), transform 0.55s cubic-bezier(0.34,1.56,0.64,1)';
-                nav.style.left = '50%';
-                nav.style.top = '16px';
-                nav.style.transform = 'translateX(-50%)';
+                nav.style.transition = 'left 0.55s cubic-bezier(0.34,1.56,0.64,1), top 0.55s cubic-bezier(0.34,1.56,0.64,1), width 0.3s ease';
+                nav.style.left       = '50%';
+                nav.style.top        = '16px';
+                nav.style.transform  = 'translateX(-50%)';
+                nav.style.width      = ''; // คืน responsive width
                 hasDragged = false;
             }
 
             function startIdle() {
                 clearTimeout(idleTimer);
-                if (hasDragged) {
-                    idleTimer = setTimeout(snapToDefault, 3000);
-                }
+                if (hasDragged) idleTimer = setTimeout(snapToDefault, 3000);
             }
 
-            // ---- Touch events ----
+            // ---- Touch ----
             nav.addEventListener('touchstart', (e) => {
                 if (e.touches.length !== 1) return;
                 const t = e.touches[0];
-                startX = t.clientX;
-                startY = t.clientY;
-                const rect = nav.getBoundingClientRect();
-                origLeft = rect.left + rect.width / 2;
-                origTop = rect.top;
+                startX  = t.clientX;
+                startY  = t.clientY;
+                origCX  = getCX();
+                origTop = nav.getBoundingClientRect().top;
                 setDragging(true);
                 clearTimeout(idleTimer);
             }, { passive: true });
@@ -737,36 +752,28 @@
                 if (!dragging || e.touches.length !== 1) return;
                 e.preventDefault();
                 const t = e.touches[0];
-                const { left, top } = clampPos(origLeft + (t.clientX - startX), origTop + (t.clientY - startY));
-                nav.style.transform = 'none';
-                nav.style.left = left + 'px';
-                nav.style.top  = top  + 'px';
+                const { cx, top } = clampPos(origCX + t.clientX - startX, origTop + t.clientY - startY);
+                applyPos(cx, top);
                 hasDragged = true;
             }, { passive: false });
 
-            nav.addEventListener('touchend', () => {
-                setDragging(false);
-                startIdle();
-            });
+            nav.addEventListener('touchend', () => { setDragging(false); startIdle(); });
 
-            // ---- Mouse events (desktop fallback) ----
+            // ---- Mouse ----
             nav.addEventListener('mousedown', (e) => {
                 if (e.target.closest('a, button')) return;
-                startX = e.clientX;
-                startY = e.clientY;
-                const rect = nav.getBoundingClientRect();
-                origLeft = rect.left + rect.width / 2;
-                origTop = rect.top;
+                startX  = e.clientX;
+                startY  = e.clientY;
+                origCX  = getCX();
+                origTop = nav.getBoundingClientRect().top;
                 setDragging(true);
                 clearTimeout(idleTimer);
             });
 
             document.addEventListener('mousemove', (e) => {
                 if (!dragging) return;
-                const { left, top } = clampPos(origLeft + (e.clientX - startX), origTop + (e.clientY - startY));
-                nav.style.transform = 'none';
-                nav.style.left = left + 'px';
-                nav.style.top  = top  + 'px';
+                const { cx, top } = clampPos(origCX + e.clientX - startX, origTop + e.clientY - startY);
+                applyPos(cx, top);
                 hasDragged = true;
             });
 
@@ -776,13 +783,10 @@
                 startIdle();
             });
 
-            // cursor hint เมื่อ hover บนพื้นที่ลาก (ไม่ใช่ button/link)
             nav.addEventListener('mouseover', (e) => {
                 if (!dragging && !e.target.closest('a, button')) nav.style.cursor = 'grab';
             });
-            nav.addEventListener('mouseout', () => {
-                if (!dragging) nav.style.cursor = '';
-            });
+            nav.addEventListener('mouseout', () => { if (!dragging) nav.style.cursor = ''; });
         })();
 
         // ===== COPY PROTECTION =====
