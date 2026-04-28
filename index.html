@@ -98,12 +98,47 @@
             user-drag: none;
             pointer-events: none;
         }
+        /* ===== Island collapse animation ===== */
+        #dynamic-island {
+            position: relative;
+            will-change: width, border-radius;
+        }
+        #dynamic-island.drag-collapsed {
+            border-radius: 50% !important;
+            padding: 0 !important;
+            overflow: hidden;
+        }
+        /* ซ่อน children ทั้งหมดยกเว้น drag-dot ตอน collapse */
+        #dynamic-island > *:not(.drag-dot) {
+            transition: opacity 0.15s ease;
+        }
+        #dynamic-island.drag-collapsed > *:not(.drag-dot) {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .drag-dot {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.18s ease 0.12s;
+        }
+        #dynamic-island.drag-collapsed .drag-dot {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-[#faf9f7] text-[#2a2a2a] dark:bg-[#1a1a1a] dark:text-[#f0ede8]">
     <!-- Dynamic Island Navigation -->
     <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-fit max-w-[98%]" style="touch-action:none;">
         <div id="dynamic-island" class="dynamic-island bg-[#faf9f7]/90 dark:bg-[#242424]/95 backdrop-blur-md border border-[#e8e4de] dark:border-[#333333] shadow-2xl rounded-[40px] px-3 py-2 md:px-4 md:py-1.5 flex items-center justify-between gap-1 md:gap-2">
+            <!-- Dot shown while dragging -->
+            <div class="drag-dot">
+                <span class="font-bold text-sm tracking-tight text-[#1a1a1a] dark:text-white">L<span class="text-[#C41E3A]">·</span>L</span>
+            </div>
             <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0 ml-1 whitespace-nowrap">
                 <span class="font-bold tracking-tight text-[#1a1a1a] dark:text-white text-base md:text-base">Lhao <span class="red-accent">Lhao</span></span>
             </a>
@@ -679,25 +714,25 @@
         (function() {
             const nav    = document.getElementById('nav-container');
             const island = document.getElementById('dynamic-island');
-            let dragging = false;
+            let dragging   = false;
+            let collapsed  = false;
+            let naturalW   = 0;
+            let naturalH   = 0;
             let startX, startY, origCX, origTop;
-            let idleTimer = null;
+            let idleTimer  = null;
             let hasDragged = false;
 
-            const PAD    = 20; // ระยะห่างจากขอบซ้าย/ขวา/บน
-            const PAD_B  = 48; // ระยะห่างจากขอบล่าง (เผื่อ home bar บน iOS)
+            const PAD   = 20;
+            const PAD_B = 48; // เผื่อ home bar บน iOS
 
-            // คำนวณขอบเขตจาก island จริง (ไม่ใช่ container ที่กว้าง 95%)
             function clampPos(cx, top) {
-                const w = island.offsetWidth;
-                const h = island.offsetHeight;
+                const sz = collapsed ? naturalH : island.offsetWidth;
                 return {
-                    cx:  Math.max(w / 2 + PAD,  Math.min(window.innerWidth  - w / 2 - PAD,  cx)),
-                    top: Math.max(PAD,            Math.min(window.innerHeight - h     - PAD_B, top))
+                    cx:  Math.max(sz / 2 + PAD,  Math.min(window.innerWidth  - sz / 2 - PAD,  cx)),
+                    top: Math.max(PAD,             Math.min(window.innerHeight - naturalH - PAD_B, top))
                 };
             }
 
-            // ใช้ translateX(-50%) ตลอด เพื่อให้ island ติดกับ left ที่ตั้งไว้
             function applyPos(cx, top) {
                 nav.style.left      = cx + 'px';
                 nav.style.top       = top + 'px';
@@ -709,16 +744,48 @@
                 return r.left + r.width / 2;
             }
 
+            // ยุบเป็นวงกลม
+            function collapseIsland() {
+                if (collapsed) return;
+                naturalW = island.offsetWidth;
+                naturalH = island.offsetHeight;
+                // ล็อค width เป็น px ก่อน แล้วค่อย shrink (ต้องผ่าน 2 frame)
+                island.style.width  = naturalW + 'px';
+                island.style.height = naturalH + 'px';
+                island.offsetWidth; // force reflow
+                island.style.transition = 'width 0.28s cubic-bezier(0.4,0,0.2,1), height 0.28s cubic-bezier(0.4,0,0.2,1), border-radius 0.28s ease, padding 0.2s ease';
+                island.classList.add('drag-collapsed');
+                island.style.width  = naturalH + 'px'; // สี่เหลี่ยมจัตุรัส → border-radius 50% = วงกลม
+                collapsed = true;
+            }
+
+            // ขยายกลับปกติ
+            function expandIsland() {
+                if (!collapsed) return;
+                island.style.transition = 'width 0.45s cubic-bezier(0.34,1.56,0.64,1), height 0.45s cubic-bezier(0.34,1.56,0.64,1), border-radius 0.45s cubic-bezier(0.34,1.56,0.64,1), padding 0.3s ease';
+                island.classList.remove('drag-collapsed');
+                island.style.width  = naturalW + 'px';
+                island.style.height = naturalH + 'px';
+                collapsed = false;
+                // คืน auto หลัง animate เสร็จ
+                setTimeout(() => {
+                    island.style.width      = '';
+                    island.style.height     = '';
+                    island.style.transition = '';
+                }, 500);
+            }
+
             function setDragging(on) {
                 dragging = on;
                 if (on) {
                     nav.classList.add('dragging');
                     nav.style.transition = 'none';
                     nav.style.cursor     = 'grabbing';
-                    nav.style.width      = 'auto'; // หดเหลือแค่ island เพื่อขยับได้อิสระบนมือถือ
+                    nav.style.width      = 'auto';
                 } else {
                     nav.classList.remove('dragging');
                     nav.style.cursor = '';
+                    expandIsland();
                 }
             }
 
@@ -727,7 +794,7 @@
                 nav.style.left       = '50%';
                 nav.style.top        = '16px';
                 nav.style.transform  = 'translateX(-50%)';
-                nav.style.width      = ''; // คืน responsive width
+                nav.style.width      = '';
                 hasDragged = false;
             }
 
@@ -752,6 +819,7 @@
                 if (!dragging || e.touches.length !== 1) return;
                 e.preventDefault();
                 const t = e.touches[0];
+                if (!collapsed) collapseIsland(); // ยุบเมื่อเริ่มขยับจริงๆ
                 const { cx, top } = clampPos(origCX + t.clientX - startX, origTop + t.clientY - startY);
                 applyPos(cx, top);
                 hasDragged = true;
@@ -772,6 +840,7 @@
 
             document.addEventListener('mousemove', (e) => {
                 if (!dragging) return;
+                if (!collapsed) collapseIsland(); // ยุบเมื่อเริ่มขยับจริงๆ
                 const { cx, top } = clampPos(origCX + e.clientX - startX, origTop + e.clientY - startY);
                 applyPos(cx, top);
                 hasDragged = true;
