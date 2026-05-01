@@ -894,19 +894,21 @@
 
         function buildReviews(lang) {
             const data = translations[lang] || translations['TH'];
-            const thData = translations['TH'];
-            const row1 = data.reviews_row1 || thData.reviews_row1;
-            const row2 = data.reviews_row2 || thData.reviews_row2;
-            const el1 = document.getElementById('marquee-row1');
-            const el2 = document.getElementById('marquee-row2');
-            if (el1) {
-                const cards = row1.map(buildReviewCard).join('');
-                el1.innerHTML = cards + cards;
+            const row1 = (data.reviews_row1) || translations['TH'].reviews_row1;
+            const row2 = (data.reviews_row2) || translations['TH'].reviews_row2;
+
+            function setTrack(el, cards) {
+                if (!el) return;
+                const html = cards.map(buildReviewCard).join('');
+                el.innerHTML = html + html;
+                // reset animation so new content shows immediately
+                el.style.animation = 'none';
+                void el.offsetWidth;
+                el.style.animation = '';
             }
-            if (el2) {
-                const cards = row2.map(buildReviewCard).join('');
-                el2.innerHTML = cards + cards;
-            }
+
+            setTrack(document.getElementById('marquee-row1'), row1);
+            setTrack(document.getElementById('marquee-row2'), row2);
         }
 
         function updateLanguage(lang) {
@@ -958,7 +960,7 @@
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
+        function initPage() {
             const savedLang = localStorage.getItem('selectedLanguage') || 'TH';
             updateLanguage(savedLang);
 
@@ -967,7 +969,13 @@
                 entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
             }, { threshold: 0.12 });
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-        });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPage);
+        } else {
+            initPage();
+        }
 
         window.onclick = (e) => {
             if (!e.target.closest('.relative')) closeAllMenus();
