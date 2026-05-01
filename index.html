@@ -200,27 +200,27 @@
     </nav>
 
     <!-- 1. หน้าหลัก (Home) -->
-    <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f3f1ee] dark:bg-[#111111] pt-20 pb-12">
+    <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12">
         <!-- Hero Background Image -->
         <div class="absolute inset-0 z-0">
             <img
-                src="images/backgrounds/hero.jpg"
+                src="images/backgrounds/03_หน้าร้านเหลาเหลา.JPG"
                 alt=""
-                class="w-full h-full object-cover opacity-20 dark:opacity-10"
+                class="w-full h-full object-cover object-center"
                 draggable="false"
                 oncontextmenu="return false"
                 onerror="this.style.display='none'"
             >
+            <!-- Dark overlay gradient for readability -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
         </div>
         <div class="text-center z-10 px-4">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight dark:text-white">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight text-white drop-shadow-lg">
                 <span data-i18n="hero_title_part1">Lhao Lhao</span> <span class="red-accent" data-i18n="hero_title_part2">Restaurant</span>
             </h1>
-            <p class="text-lg md:text-xl text-[#7a7268] dark:text-[#9e9890] mb-8 max-w-2xl mx-auto" data-i18n="hero_desc">ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม</p>
+            <p class="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto drop-shadow" data-i18n="hero_desc">ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม</p>
             <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto"></div>
         </div>
-        <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-red-50 dark:bg-red-900/10 rounded-full blur-3xl opacity-50"></div>
-        <div class="absolute -top-20 -left-20 w-96 h-96 bg-yellow-50 dark:bg-yellow-900/10 rounded-full blur-3xl opacity-50"></div>
     </header>
 
     <!-- 2. ประวัติร้าน (About) -->
