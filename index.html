@@ -200,7 +200,7 @@
     </nav>
 
     <!-- 1. หน้าหลัก (Home) -->
-    <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12">
+    <header id="home" class="relative min-h-screen flex items-center justify-center overflow-visible pt-20 pb-32">
         <!-- Hero Background Image -->
         <div class="absolute inset-0 z-0">
             <img
@@ -220,6 +220,15 @@
             </h1>
             <p class="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto drop-shadow" data-i18n="hero_desc">ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม</p>
             <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto"></div>
+        </div>
+        <!-- Wave divider -->
+        <div class="absolute bottom-0 left-0 right-0 h-24 z-10">
+            <svg class="w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none" style="fill: #faf9f7;">
+                <path d="M0,30 C300,60 900,0 1200,40 L1200,120 L0,120 Z"></path>
+            </svg>
+            <svg class="w-full h-full dark:block hidden absolute bottom-0" viewBox="0 0 1200 120" preserveAspectRatio="none" style="fill: #1a1a1a;">
+                <path d="M0,30 C300,60 900,0 1200,40 L1200,120 L0,120 Z"></path>
+            </svg>
         </div>
     </header>
 
