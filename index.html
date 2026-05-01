@@ -181,6 +181,21 @@
         .hero-title { animation: heroFadeUp 0.9s ease-out both; }
         .hero-desc  { animation: heroFadeUp 0.9s ease-out 0.3s both; }
         .hero-line  { animation: heroFadeIn 0.8s ease-out 0.6s both; }
+        /* ===== Scroll fade-in animations ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
     </style>
 </head>
 <body class="bg-[#faf9f7] text-[#2a2a2a] dark:bg-[#1a1a1a] dark:text-[#f0ede8]">
@@ -243,10 +258,27 @@
                         <div class="dropdown-item" onclick="selectLang('MS')"><span>🇲🇾</span> Melayu (MS)</div>
                     </div>
                 </div>
-                <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="bg-red-accent text-white px-3 md:px-4 py-2 md:py-1.5 rounded-full text-xs md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1.5 shrink-0 ml-1 whitespace-nowrap">
-                    <svg class="w-4 h-4 md:w-4 md:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
-                    <span class="hidden md:inline" data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
-                </a>
+                <div class="relative">
+                    <button onclick="toggleOrderMenu(event)" class="bg-red-accent text-white px-3 md:px-4 py-2 md:py-1.5 rounded-full text-xs md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1.5 shrink-0 ml-1 whitespace-nowrap focus:outline-none">
+                        <svg class="w-4 h-4 md:w-4 md:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
+                        <span class="hidden md:inline" data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
+                        <svg class="w-3 h-3 shrink-0 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div id="order-menu" class="custom-dropdown hidden" style="min-width:200px;">
+                        <a href="https://line.me/ti/p/@lhaolhao1980" target="_blank" class="dropdown-item dark:text-[#f0ede8]" onclick="closeAllMenus()">
+                            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
+                            LINE @lhaolhao1980
+                        </a>
+                        <a href="https://grab.onelink.me/2695613898?af_js_web=true&af_ss_ver=2_7_3&pid=SEOBLOG&c=GrabFoodSEO2025&af_channel=null&af_ad=%2Fth%2Ffood-blog%2F%25e0%25b8%25a3%25e0%25b9%2589%25e0%25b8%25b2%25e0%25b8%2599%25e0%25b8%25ad%25e0%25b8%25b2%25e0%25b8%25ab%25e0%25b8%25b2%25e0%25b8%25a3%25e0%25b9%2584%25e0%25b8%2597%25e0%25b8%25a2%25e0%25b8%25ad%25e0%25b8%25b2%25e0%25b8%25a3%25e0%25b8%25b5%25e0%25b8%25a2%25e0%25b9%258c%2F&af_adset=grab_website&af_sub1=null&af_dp=grab%3A%2F%2Fopen%3FscreenType%3DGRABFOOD" target="_blank" class="dropdown-item dark:text-[#f0ede8]" onclick="closeAllMenus()">
+                            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#00B14F"/><text x="12" y="16.5" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="Arial,sans-serif">G</text></svg>
+                            สั่งผ่าน GrabFood
+                        </a>
+                        <a href="https://www.facebook.com/lhaolhao/?locale=th_TH" target="_blank" class="dropdown-item dark:text-[#f0ede8]" onclick="closeAllMenus()">
+                            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            Facebook
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -280,7 +312,7 @@
     <!-- 2. ประวัติร้าน (About) -->
     <section id="about" class="py-14 bg-[#faf9f7] dark:bg-[#1a1a1a] transition-colors">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div class="order-2 md:order-1">
+            <div class="order-2 md:order-1 reveal">
                 <h2 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-3 dark:text-white whitespace-nowrap">
                     <span class="w-8 h-1 bg-red-accent shrink-0"></span>
                     <span data-i18n="about_title">ประวัติความเป็นมา</span>
@@ -293,7 +325,7 @@
                     <p class="italic text-[#3d3830] dark:text-[#c8c2b8]" data-i18n="about_quote">"ความสดคือหัวใจ บริการคือชีวิต รสชาติคือตำนาน"</p>
                 </div>
             </div>
-            <div class="order-1 md:order-2 rounded-2xl aspect-video overflow-hidden shadow-xl border dark:border-[#333333]">
+            <div class="order-1 md:order-2 rounded-2xl aspect-video overflow-hidden shadow-xl border dark:border-[#333333] reveal reveal-delay-1">
                 <img
                     src="images/food/07_หน้าร้านอาหารทะเลสด.JPG"
                     alt="Lhao Lhao Restaurant"
@@ -316,7 +348,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                 <!-- เมนู 1: กุ้งแม่น้ำเผา -->
-                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition reveal reveal-delay-1">
                     <div class="aspect-square overflow-hidden">
                         <img
                             src="images/food/34_กุ้งแม่น้ำเผามันเยิ้ม_จานเดี่ยว.JPG"
@@ -334,7 +366,7 @@
                 </div>
 
                 <!-- เมนู 2: ยำบะเต็งไข่แดง -->
-                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition reveal reveal-delay-2">
                     <div class="aspect-square overflow-hidden">
                         <img
                             src="images/food/35_พะโล้หมูสามชั้นไข่เค็ม.JPG"
@@ -352,7 +384,7 @@
                 </div>
 
                 <!-- เมนู 3: ยำปูดอง -->
-                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition reveal reveal-delay-3">
                     <div class="aspect-square overflow-hidden">
                         <img
                             src="images/food/37_ปูม้าดองน้ำปลา_โคลสอัพ.JPG"
@@ -370,7 +402,7 @@
                 </div>
 
                 <!-- เมนู 4: ต้มยำไข่เจียวน้ำข้น -->
-                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition reveal reveal-delay-1">
                     <div class="aspect-square overflow-hidden">
                         <img
                             src="images/food/18_แกงเหลืองปูใส่ไส้กรอกหมูสับ.JPG"
@@ -388,7 +420,7 @@
                 </div>
 
                 <!-- เมนู 5: เป็ดพะโล้รวม -->
-                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition reveal reveal-delay-2">
                     <div class="aspect-square overflow-hidden">
                         <img
                             src="images/food/22_เป็ดตุ๋นเครื่องในเป็ด_โคลสอัพ.JPG"
@@ -406,7 +438,7 @@
                 </div>
 
                 <!-- เมนู 6: หอยแครงลวก -->
-                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition">
+                <div class="gallery-item relative bg-[#faf9f7] dark:bg-[#242424] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl group cursor-pointer transition reveal reveal-delay-3">
                     <div class="aspect-square overflow-hidden">
                         <img
                             src="images/food/39_หอยแครงลวก.JPG"
@@ -429,215 +461,85 @@
 
     <!-- 4. รีวิวจากลูกค้า (Reviews) -->
     <section id="reviews" class="py-14 bg-[#faf9f7] dark:bg-[#1a1a1a] transition-colors border-t border-[#e8e4de] dark:border-[#2a2a2a]">
-        <div class="max-w-6xl mx-auto px-6 mb-10 text-center">
-            <h2 class="text-3xl font-bold mb-2 dark:text-white">รีวิวจากลูกค้า</h2>
-            <p class="text-[#7a7268] dark:text-[#9e9890]">เสียงจากลูกค้าที่ไว้วางใจเรา</p>
+        <div class="max-w-6xl mx-auto px-6 mb-10 text-center reveal">
+            <h2 class="text-3xl font-bold mb-2 dark:text-white" data-i18n="reviews_title">รีวิวจากลูกค้า</h2>
+            <p class="text-[#7a7268] dark:text-[#9e9890]" data-i18n="reviews_subtitle">เสียงจากลูกค้าที่ไว้วางใจเรา</p>
         </div>
 
         <!-- Row 1: scroll left -->
         <div class="marquee-wrapper mb-4">
-            <div class="marquee-track marquee-left">
-                <!-- Set 1 -->
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"อาหารอร่อยมากครับ ซีฟู้ดสดใหม่ทุกวัน บรรยากาศดีมาก เหมาะสำหรับครอบครัว"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">สมชาย ว.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ข้าวต้มปลาอร่อยที่สุดที่เคยกิน น้ำซุปเข้มข้นหอมมาก มาซ้ำทุกสัปดาห์"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">นภา ก.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"มาทุกอาทิตย์ครับ อาหารสม่ำเสมอ ไม่เคยผิดหวังเลยสักครั้ง"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">วิชัย ป.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ปูผัดผงกะหรี่อร่อยมากๆ ราคาสมเหตุสมผล แนะนำให้ทุกคนมาลอง"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">ธนา ร.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"เปิดดึกมาก เหมาะสำหรับมื้อดึก อาหารยังอร่อยเหมือนเดิมตลอด"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">อรุณ ม.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"พนักงานใจดี บรรยากาศอบอุ่น รสชาติดั้งเดิมที่หากินยากมากแล้ว"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">มาลี ส.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
-                </div>
-                <!-- Set 2 (duplicate for seamless loop) -->
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"อาหารอร่อยมากครับ ซีฟู้ดสดใหม่ทุกวัน บรรยากาศดีมาก เหมาะสำหรับครอบครัว"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">สมชาย ว.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ข้าวต้มปลาอร่อยที่สุดที่เคยกิน น้ำซุปเข้มข้นหอมมาก มาซ้ำทุกสัปดาห์"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">นภา ก.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"มาทุกอาทิตย์ครับ อาหารสม่ำเสมอ ไม่เคยผิดหวังเลยสักครั้ง"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">วิชัย ป.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ปูผัดผงกะหรี่อร่อยมากๆ ราคาสมเหตุสมผล แนะนำให้ทุกคนมาลอง"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">ธนา ร.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"เปิดดึกมาก เหมาะสำหรับมื้อดึก อาหารยังอร่อยเหมือนเดิมตลอด"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">อรุณ ม.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"พนักงานใจดี บรรยากาศอบอุ่น รสชาติดั้งเดิมที่หากินยากมากแล้ว"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">มาลี ส.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
-                </div>
+            <div id="marquee-row1" class="marquee-track marquee-left">
+                <!-- populated by buildReviews() -->
             </div>
         </div>
 
         <!-- Row 2: scroll right -->
         <div class="marquee-wrapper">
-            <div class="marquee-track marquee-right">
-                <!-- Set 1 -->
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"เป็ดพะโล้อร่อยมาก หาทานยากมากแล้วในกรุงเทพฯ ต้นตำรับแท้ๆ"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">พิมพ์ ช.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            <div id="marquee-row2" class="marquee-track marquee-right">
+                <!-- populated by buildReviews() -->
+            </div>
+        </div>
+
+        <!-- Photo gallery from customers -->
+        <div class="max-w-6xl mx-auto px-6 mt-14">
+            <h3 class="text-xl font-bold mb-6 dark:text-white text-center reveal" data-i18n="reviews_photos_title">รูปจากลูกค้า</h3>
+            <div class="columns-2 md:columns-3 lg:columns-4 gap-3 reveal">
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2325.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2326.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2327.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2328.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2329.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2330.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2331.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2332.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2333.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2334.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2335.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2336.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2337.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2338.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2339.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2340.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2341.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2342.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2343.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2344.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2345.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2346.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2347.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2348.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2349.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2350.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2351.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2352.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2353.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2354.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2355.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ดาราที่มาเยือน (Celebrity Visits) -->
+    <section id="celebrity" class="py-14 bg-[#f3f1ee] dark:bg-[#111111] transition-colors border-t border-[#e8e4de] dark:border-[#2a2a2a]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-10 reveal">
+                <h2 class="text-3xl font-bold mb-2 dark:text-white" data-i18n="celebrity_title">ดาราที่มาเยือน</h2>
+                <p class="text-[#7a7268] dark:text-[#9e9890]" data-i18n="celebrity_subtitle">ศิลปิน นักแสดง และบุคคลที่มีชื่อเสียงที่แวะมาทานที่ร้าน</p>
+            </div>
+            <!-- Placeholder grid - owner will add celebrity photos here -->
+            <div id="celebrity-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 reveal">
+                <!-- Add celebrity photos here - use the same card structure below for each celebrity -->
+                <!-- Example card structure (duplicate and fill in):
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg aspect-[3/4] bg-[#e8e4de] dark:bg-[#242424]">
+                    <img src="PATH_TO_PHOTO" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" alt="Celebrity Name">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                        <p class="text-white font-bold text-sm">ชื่อดารา</p>
+                        <p class="text-white/70 text-xs">ตำแหน่ง/อาชีพ</p>
                     </div>
                 </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ปลานึ่งซีอิ๊วรสชาติกลมกล่อม ทานกับข้าวสวยร้อนๆ อร่อยมากครับ"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">กิตติ ส.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ร้านสะอาด บรรยากาศดี ราคาไม่แพง คุ้มค่ามากจริงๆ ชอบมาก"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">สุดา น.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"อาหารไทย-จีนแท้ๆ รสชาติที่หากินได้ยากในยุคนี้ ประทับใจมาก"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">ประสงค์ ท.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ซีฟู้ดสดทุกวัน หอยแครงลวกอร่อยมากครับ แนะนำให้ทุกคนมาลอง"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">วรรณา ภ.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"เปิดมากกว่า 40 ปี รสชาติยังเหมือนเดิม ประทับใจมากครับ"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">สมศรี อ.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
-                </div>
-                <!-- Set 2 (duplicate for seamless loop) -->
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"เป็ดพะโล้อร่อยมาก หาทานยากมากแล้วในกรุงเทพฯ ต้นตำรับแท้ๆ"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">พิมพ์ ช.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ปลานึ่งซีอิ๊วรสชาติกลมกล่อม ทานกับข้าวสวยร้อนๆ อร่อยมากครับ"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">กิตติ ส.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ร้านสะอาด บรรยากาศดี ราคาไม่แพง คุ้มค่ามากจริงๆ ชอบมาก"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">สุดา น.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"อาหารไทย-จีนแท้ๆ รสชาติที่หากินได้ยากในยุคนี้ ประทับใจมาก"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">ประสงค์ ท.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"ซีฟู้ดสดทุกวัน หอยแครงลวกอร่อยมากครับ แนะนำให้ทุกคนมาลอง"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">วรรณา ภ.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="text-[#D4AF37] text-sm">★★★★★</div>
-                    <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"เปิดมากกว่า 40 ปี รสชาติยังเหมือนเดิม ประทับใจมากครับ"</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">สมศรี อ.</span>
-                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
+                -->
+                <div class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-8 text-[#9e9890] text-sm">
+                    (เพิ่มรูปดาราที่มาเยือนได้ที่นี่)
                 </div>
             </div>
         </div>
@@ -673,7 +575,28 @@
                 contact_address_title: "ที่อยู่", contact_address: "ย่านอารีย์ กรุงเทพมหานคร",
                 contact_hours_title: "เวลาเปิด-ปิด", contact_hours: "ทุกวัน 17:00 – 01:00 น.",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "รีวิวจากลูกค้า",
+                reviews_subtitle: "เสียงจากลูกค้าที่ไว้วางใจเรา",
+                reviews_photos_title: "รูปจากลูกค้า",
+                celebrity_title: "ดาราที่มาเยือน",
+                celebrity_subtitle: "ศิลปิน นักแสดง และบุคคลที่มีชื่อเสียงที่แวะมาทานที่ร้าน",
+                reviews_row1: [
+                    { stars: 5, text: "อาหารอร่อยมากครับ ซีฟู้ดสดใหม่ทุกวัน บรรยากาศดีมาก เหมาะสำหรับครอบครัว", name: "สมชาย ว.", platform: "google" },
+                    { stars: 5, text: "ข้าวต้มปลาอร่อยที่สุดที่เคยกิน น้ำซุปเข้มข้นหอมมาก มาซ้ำทุกสัปดาห์", name: "นภา ก.", platform: "google" },
+                    { stars: 4, text: "มาทุกอาทิตย์ครับ อาหารดี แต่ที่จอดรถน้อยไปหน่อย นอกนั้นดีมาก", name: "วิชัย ป.", platform: "facebook" },
+                    { stars: 5, text: "ปูผัดผงกะหรี่อร่อยมากๆ ราคาสมเหตุสมผล แนะนำให้ทุกคนมาลอง", name: "ธนา ร.", platform: "google" },
+                    { stars: 5, text: "เปิดดึกมาก เหมาะสำหรับมื้อดึก อาหารยังอร่อยเหมือนเดิมตลอด", name: "อรุณ ม.", platform: "google" },
+                    { stars: 4, text: "รสชาติดั้งเดิม พนักงานใจดี บางทีรอนานหน่อยแต่คุ้มมากครับ", name: "มาลี ส.", platform: "facebook" }
+                ],
+                reviews_row2: [
+                    { stars: 5, text: "เป็ดพะโล้อร่อยมาก หาทานยากมากแล้วในกรุงเทพฯ ต้นตำรับแท้ๆ", name: "พิมพ์ ช.", platform: "google" },
+                    { stars: 5, text: "ปลานึ่งซีอิ๊วรสชาติกลมกล่อม ทานกับข้าวสวยร้อนๆ อร่อยมากครับ", name: "กิตติ ส.", platform: "google" },
+                    { stars: 4, text: "ร้านสะอาด ราคาไม่แพง บางช่วงคนเยอะมาก แนะนำจองล่วงหน้า", name: "สุดา น.", platform: "facebook" },
+                    { stars: 5, text: "อาหารไทย-จีนแท้ๆ รสชาติที่หากินได้ยากในยุคนี้ ประทับใจมาก", name: "ประสงค์ ท.", platform: "google" },
+                    { stars: 5, text: "ซีฟู้ดสดทุกวัน หอยแครงลวกอร่อยมากครับ แนะนำให้ทุกคนมาลอง", name: "วรรณา ภ.", platform: "google" },
+                    { stars: 4, text: "เปิดมากกว่า 40 ปี รสชาติยังเหมือนเดิม แต่ควรมีที่นั่งเพิ่มอีกนิด", name: "สมศรี อ.", platform: "facebook" }
+                ]
             },
             EN: {
                 nav_home: "Home", nav_menu: "Menu", nav_about: "Our Story", nav_map: "Location", nav_contact: "Reviews",
@@ -694,7 +617,28 @@
                 contact_address_title: "Address", contact_address: "Ari District, Bangkok",
                 contact_hours_title: "Opening Hours", contact_hours: "Daily 17:00 – 01:00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "Customer Reviews",
+                reviews_subtitle: "What our guests say about us",
+                reviews_photos_title: "Customer Photos",
+                celebrity_title: "Celebrity Visits",
+                celebrity_subtitle: "Artists, actors and notable personalities who have dined with us",
+                reviews_row1: [
+                    { stars: 5, text: "The food is incredible — fresh seafood every day, great atmosphere, perfect for the whole family.", name: "สมชาย ว.", platform: "google" },
+                    { stars: 5, text: "The best fish congee I've ever had. The broth is so rich and fragrant. I come back every week.", name: "นภา ก.", platform: "google" },
+                    { stars: 4, text: "Come every week. Great food, though parking is a bit tight. Everything else is excellent.", name: "วิชัย ป.", platform: "facebook" },
+                    { stars: 5, text: "The curry powder crab is amazing. Reasonably priced — highly recommend to everyone!", name: "ธนา ร.", platform: "google" },
+                    { stars: 5, text: "Open very late, perfect for a midnight meal. The food is always as delicious as ever.", name: "อรุณ ม.", platform: "google" },
+                    { stars: 4, text: "Authentic flavors, friendly staff. Sometimes the wait is long but it's absolutely worth it.", name: "มาลี ส.", platform: "facebook" }
+                ],
+                reviews_row2: [
+                    { stars: 5, text: "The braised duck is incredible — so hard to find this quality in Bangkok. Truly authentic.", name: "พิมพ์ ช.", platform: "google" },
+                    { stars: 5, text: "The soy-steamed fish is perfectly balanced. Eaten with hot steamed rice — absolutely delicious.", name: "กิตติ ส.", platform: "google" },
+                    { stars: 4, text: "Clean restaurant, affordable prices. Can get very busy, so reservation is recommended.", name: "สุดา น.", platform: "facebook" },
+                    { stars: 5, text: "Genuine Thai-Chinese cuisine with flavors that are rare to find nowadays. Truly impressive.", name: "ประสงค์ ท.", platform: "google" },
+                    { stars: 5, text: "Fresh seafood daily. The blanched clams are amazing — highly recommend to everyone!", name: "วรรณา ภ.", platform: "google" },
+                    { stars: 4, text: "Open over 40 years and still the same great taste. Could use a few more seats though.", name: "สมศรี อ.", platform: "facebook" }
+                ]
             },
             ZH: {
                 nav_home: "首页", nav_menu: "菜谱", nav_about: "关于我们", nav_map: "地图", nav_contact: "评价",
@@ -715,7 +659,12 @@
                 contact_address_title: "地址", contact_address: "曼谷阿里区",
                 contact_hours_title: "营业时间", contact_hours: "每天 17:00 – 01:00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "顾客评价",
+                reviews_subtitle: "听听顾客怎么说",
+                reviews_photos_title: "顾客照片",
+                celebrity_title: "名人到访",
+                celebrity_subtitle: "曾到访本店的艺人、演员及知名人士"
             },
             DE: {
                 nav_home: "Start", nav_menu: "Menü", nav_about: "Über uns", nav_map: "Karte", nav_contact: "Bewertungen",
@@ -736,7 +685,12 @@
                 contact_address_title: "Adresse", contact_address: "Ari-Viertel, Bangkok",
                 contact_hours_title: "Öffnungszeiten", contact_hours: "Täglich 17:00 – 01:00 Uhr",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "Kundenbewertungen",
+                reviews_subtitle: "Was unsere Gäste über uns sagen",
+                reviews_photos_title: "Kundenfotos",
+                celebrity_title: "Prominente Besuche",
+                celebrity_subtitle: "Künstler, Schauspieler und bekannte Persönlichkeiten, die bei uns gespeist haben"
             },
             RU: {
                 nav_home: "Главная", nav_menu: "Меню", nav_about: "О нас", nav_map: "Карта", nav_contact: "Отзывы",
@@ -757,7 +711,12 @@
                 contact_address_title: "Адрес", contact_address: "Район Ари, Бангкок",
                 contact_hours_title: "Часы работы", contact_hours: "Ежедневно 17:00 – 01:00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "Отзывы клиентов",
+                reviews_subtitle: "Что говорят наши гости",
+                reviews_photos_title: "Фото от клиентов",
+                celebrity_title: "Знаменитые гости",
+                celebrity_subtitle: "Артисты, актёры и известные личности, которые посетили наш ресторан"
             },
             FR: {
                 nav_home: "Accueil", nav_menu: "Menu", nav_about: "Histoire", nav_map: "Carte", nav_contact: "Reviews",
@@ -778,7 +737,12 @@
                 contact_address_title: "Adresse", contact_address: "Quartier Ari, Bangkok",
                 contact_hours_title: "Heures d'ouverture", contact_hours: "Tous les jours 17h00 – 01h00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "Avis clients",
+                reviews_subtitle: "Ce que nos clients disent de nous",
+                reviews_photos_title: "Photos des clients",
+                celebrity_title: "Visites de célébrités",
+                celebrity_subtitle: "Artistes, acteurs et personnalités connues qui ont dîné chez nous"
             },
             JP: {
                 nav_home: "ホーム", nav_menu: "メニュー", nav_about: "私たちの物語", nav_map: "地図", nav_contact: "レビュー",
@@ -799,7 +763,12 @@
                 contact_address_title: "住所", contact_address: "バンコク アリー地区",
                 contact_hours_title: "営業時間", contact_hours: "毎日 17:00 – 01:00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "お客様のレビュー",
+                reviews_subtitle: "お客様の声",
+                reviews_photos_title: "お客様の写真",
+                celebrity_title: "有名人のご来店",
+                celebrity_subtitle: "当店にご来店いただいたアーティスト・俳優・著名人の方々"
             },
             MM: {
                 nav_home: "ပင်မစာမျက်နှာ", nav_menu: "မီနူး", nav_about: "ကျွန်ုပ်တို့အကြောင်း", nav_map: "မြေပုံ", nav_contact: "သုံးသပ်ချက်",
@@ -820,7 +789,12 @@
                 contact_address_title: "လိပ်စာ", contact_address: "အာရီမြို့နယ်, ဘန်ကောက်",
                 contact_hours_title: "ဖွင့်ချိန်", contact_hours: "နေ့တိုင်း 17:00 – 01:00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "ဖောက်သည်သုံးသပ်ချက်",
+                reviews_subtitle: "ကျွန်ုပ်တို့၏ ဧည့်သည်များ ပြောသည့်အရာများ",
+                reviews_photos_title: "ဖောက်သည်ဓာတ်ပုံများ",
+                celebrity_title: "နာမည်ကျော်သူများ၏ ဆိုင်လာရောက်လည်ပတ်ခြင်း",
+                celebrity_subtitle: "ကျွန်ုပ်တို့ဆိုင်သို့ လာရောက်ရက်ကိုသော အနုပညာရှင်များနှင့် နာမည်ကျော်သူများ"
             },
             KH: {
                 nav_home: "ទំព័រដើម", nav_menu: "បញ្ជីម្ហូប", nav_about: "ប្រវត្តិហាង", nav_map: "ផែនទី", nav_contact: "ការវាយតម្លៃ",
@@ -841,7 +815,12 @@
                 contact_address_title: "អាសយដ្ឋាន", contact_address: "តំបន់អារី ក្រុងបាងកក",
                 contact_hours_title: "ម៉ោងបើក", contact_hours: "រាល់ថ្ងៃ 17:00 – 01:00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "មតិអតិថិជន",
+                reviews_subtitle: "អ្វីដែលភ្ញៀវរបស់យើងនិយាយអំពីយើង",
+                reviews_photos_title: "រូបភាពអតិថិជន",
+                celebrity_title: "ការមកទស្សនាអ្នកល្បី",
+                celebrity_subtitle: "សិល្បករ តារាសម្ដែង និងបុគ្គលល្បីៗដែលបានទទួលទានបាយនៅហាងយើង"
             },
             VN: {
                 nav_home: "Trang chủ", nav_menu: "Thực đơn", nav_about: "Về chúng tôi", nav_map: "Bản đồ", nav_contact: "Đánh giá",
@@ -862,7 +841,12 @@
                 contact_address_title: "Địa chỉ", contact_address: "Khu Ari, Bangkok",
                 contact_hours_title: "Giờ mở cửa", contact_hours: "Hàng ngày 17:00 – 01:00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "Đánh giá khách hàng",
+                reviews_subtitle: "Khách hàng nói gì về chúng tôi",
+                reviews_photos_title: "Ảnh từ khách hàng",
+                celebrity_title: "Người nổi tiếng ghé thăm",
+                celebrity_subtitle: "Các nghệ sĩ, diễn viên và nhân vật nổi tiếng đã đến dùng bữa tại nhà hàng"
             },
             MS: {
                 nav_home: "Utama", nav_menu: "Menu", nav_about: "Sejarah", nav_map: "Peta", nav_contact: "Ulasan",
@@ -883,9 +867,47 @@
                 contact_address_title: "Alamat", contact_address: "Kawasan Ari, Bangkok",
                 contact_hours_title: "Waktu Buka", contact_hours: "Setiap hari 17:00 – 01:00",
                 contact_line_title: "LINE",
-                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved."
+                footer_copy: "© 1980 Lhao Lhao. All Rights Reserved.",
+                reviews_title: "Ulasan Pelanggan",
+                reviews_subtitle: "Apa yang pelanggan kami katakan tentang kami",
+                reviews_photos_title: "Foto Pelanggan",
+                celebrity_title: "Kunjungan Selebriti",
+                celebrity_subtitle: "Artis, pelakon dan tokoh terkenal yang pernah menjamu selera di restoran kami"
             }
         };
+
+        const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>';
+        const FB_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
+
+        function buildReviewCard(r) {
+            const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+            const icon = r.platform === 'google' ? GOOGLE_SVG : FB_SVG;
+            return `<div class="review-card">
+                <div class="text-[#D4AF37] text-sm">${stars}</div>
+                <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"${r.text}"</p>
+                <div class="flex items-center justify-between mt-1">
+                    <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">${r.name}</span>
+                    ${icon}
+                </div>
+            </div>`;
+        }
+
+        function buildReviews(lang) {
+            const data = translations[lang] || translations['TH'];
+            const thData = translations['TH'];
+            const row1 = data.reviews_row1 || thData.reviews_row1;
+            const row2 = data.reviews_row2 || thData.reviews_row2;
+            const el1 = document.getElementById('marquee-row1');
+            const el2 = document.getElementById('marquee-row2');
+            if (el1) {
+                const cards = row1.map(buildReviewCard).join('');
+                el1.innerHTML = cards + cards;
+            }
+            if (el2) {
+                const cards = row2.map(buildReviewCard).join('');
+                el2.innerHTML = cards + cards;
+            }
+        }
 
         function updateLanguage(lang) {
             const data = translations[lang] || translations['TH'];
@@ -896,23 +918,34 @@
             const langSpan = document.getElementById('lang-btn').querySelector('span');
             if (langSpan) langSpan.innerText = lang;
             localStorage.setItem('selectedLanguage', lang);
+            buildReviews(lang);
         }
 
         function toggleMobileNav(event) {
             event.stopPropagation();
             document.getElementById('lang-menu').classList.add('hidden');
+            document.getElementById('order-menu').classList.add('hidden');
             document.getElementById('mobile-nav-menu').classList.toggle('hidden');
         }
 
         function toggleLangMenu(event) {
             event.stopPropagation();
             document.getElementById('mobile-nav-menu').classList.add('hidden');
+            document.getElementById('order-menu').classList.add('hidden');
             document.getElementById('lang-menu').classList.toggle('hidden');
+        }
+
+        function toggleOrderMenu(event) {
+            event.stopPropagation();
+            document.getElementById('mobile-nav-menu').classList.add('hidden');
+            document.getElementById('lang-menu').classList.add('hidden');
+            document.getElementById('order-menu').classList.toggle('hidden');
         }
 
         function closeAllMenus() {
             document.getElementById('mobile-nav-menu').classList.add('hidden');
             document.getElementById('lang-menu').classList.add('hidden');
+            document.getElementById('order-menu').classList.add('hidden');
         }
 
         function selectLang(code) {
@@ -928,6 +961,12 @@
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('selectedLanguage') || 'TH';
             updateLanguage(savedLang);
+
+            // ===== Scroll reveal observer =====
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+            }, { threshold: 0.12 });
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
         });
 
         window.onclick = (e) => {
