@@ -129,6 +129,18 @@
         #dynamic-island.drag-collapsed .drag-dot {
             opacity: 1;
         }
+        /* ===== Hero text animations ===== */
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        .hero-title { animation: heroFadeUp 0.9s ease-out both; }
+        .hero-desc  { animation: heroFadeUp 0.9s ease-out 0.3s both; }
+        .hero-line  { animation: heroFadeIn 0.8s ease-out 0.6s both; }
     </style>
 </head>
 <body class="bg-[#faf9f7] text-[#2a2a2a] dark:bg-[#1a1a1a] dark:text-[#f0ede8]">
@@ -206,22 +218,22 @@
             <img
                 src="images/backgrounds/03_หน้าร้านเหลาเหลา.JPG"
                 alt=""
-                class="w-full h-full object-cover object-center" style="filter: blur(1.5px); transform: scale(1.01);"
+                class="w-full h-full object-cover object-center"
                 draggable="false"
                 oncontextmenu="return false"
                 onerror="this.style.display='none'"
             >
             <!-- Overlay gradient - dark for dark mode, light for light mode -->
-            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30 dark:from-black/60 dark:via-black/40 dark:to-black/70"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/20 to-black/50 dark:from-black/60 dark:via-black/40 dark:to-black/70"></div>
             <!-- Soft fade to white/dark (light mode) -->
             <div class="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-b from-transparent to-[#faf9f7] dark:to-[#1a1a1a] pointer-events-none"></div>
         </div>
         <div class="text-center z-10 px-4">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight text-white drop-shadow-lg">
+            <h1 class="hero-title text-5xl md:text-7xl font-bold mb-4 tracking-tight text-white drop-shadow-lg">
                 <span data-i18n="hero_title_part1">Lhao Lhao</span> <span class="red-accent" data-i18n="hero_title_part2">Restaurant</span>
             </h1>
-            <p class="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto drop-shadow" data-i18n="hero_desc">ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม</p>
-            <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto"></div>
+            <p class="hero-desc text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto drop-shadow" data-i18n="hero_desc">ต้นตำรับอาหารไทย-จีน ซีฟู้ดระดับพรีเมียมที่สืบทอดจากรุ่นสู่รุ่น เน้นความสดใหม่และรสชาติที่กลมกล่อม</p>
+            <div class="hero-line w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto"></div>
         </div>
     </header>
 
