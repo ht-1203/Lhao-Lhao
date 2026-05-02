@@ -109,25 +109,31 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
         (function() {
             const nav    = document.getElementById('nav-container');
             const island = document.getElementById('dynamic-island');
-            let dragging   = false;
-            let collapsed  = false;
-            let naturalW   = 0;
-            let naturalH   = 0;
+            let dragging    = false;
+            let collapsed   = false;
+            let naturalW    = 0;
+            let naturalH    = 0;
+            let naturalNavW = 0; // nav container width (px) — ล็อคไม่ให้เปลี่ยน
             let startX, startY, origCX, origTop;
-            let idleTimer  = null;
-            let hasDragged = false;
-            let isAtEdge   = false;
+            let idleTimer   = null;
+            let hasDragged  = false;
+            let isAtEdge    = false;
 
             const PAD        = 20;
             const PAD_B      = 48;
-            const EDGE_DIST  = 72;  // px จากขอบจอที่จะ snap
-            const EDGE_PEEK  = 32;  // px ที่โผล่ออกมาเมื่อ snap ขอบ
+            const EDGE_DIST  = 72;
+            const EDGE_PEEK  = 32;
+
+            function captureNavSize() {
+                if (!naturalNavW) naturalNavW = nav.getBoundingClientRect().width;
+            }
 
             function clampPos(cx, top) {
-                const sz = collapsed ? naturalH : island.offsetWidth;
+                // ใช้ height ของ island เป็น reference → ลากได้อิสระทั้งบน mobile/desktop
+                const refH = naturalH || island.offsetHeight || 44;
                 return {
-                    cx:  Math.max(sz / 2 + PAD,  Math.min(window.innerWidth  - sz / 2 - PAD,  cx)),
-                    top: Math.max(PAD,             Math.min(window.innerHeight - naturalH - PAD_B, top))
+                    cx:  Math.max(refH / 2 + PAD,  Math.min(window.innerWidth  - refH / 2 - PAD,  cx)),
+                    top: Math.max(PAD,               Math.min(window.innerHeight - refH - PAD_B, top))
                 };
             }
 
@@ -176,11 +182,12 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             function setDragging(on) {
                 dragging = on;
                 if (on) {
+                    captureNavSize();
                     isAtEdge = false;
                     nav.classList.add('dragging');
                     nav.style.transition = 'none';
                     nav.style.cursor     = 'grabbing';
-                    nav.style.width      = 'auto';
+                    nav.style.width      = naturalNavW + 'px'; // ล็อค px ไม่ให้หด/ขยาย
                 } else {
                     nav.classList.remove('dragging');
                     nav.style.cursor = '';
@@ -190,12 +197,14 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
 
             function snapToDefault() {
                 isAtEdge = false;
-                nav.style.transition = 'left 0.55s cubic-bezier(0.34,1.56,0.64,1), top 0.55s cubic-bezier(0.34,1.56,0.64,1), width 0.3s ease';
+                // ไม่ transition width เลย — position เท่านั้น
+                nav.style.transition = 'left 0.55s cubic-bezier(0.34,1.56,0.64,1), top 0.55s cubic-bezier(0.34,1.56,0.64,1)';
                 nav.style.left       = '50%';
                 nav.style.top        = '16px';
                 nav.style.transform  = 'translateX(-50%)';
-                nav.style.width      = '';
                 hasDragged = false;
+                // คืน CSS class ควบคุม width หลัง animation เสร็จ
+                setTimeout(() => { nav.style.width = ''; naturalNavW = 0; }, 600);
             }
 
             function snapToEdge(cx) {
@@ -229,6 +238,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             nav.addEventListener('touchstart', (e) => {
                 if (isAtEdge) { snapToDefault(); return; }
                 if (e.touches.length !== 1) return;
+                captureNavSize();
                 const t = e.touches[0];
                 startX  = t.clientX;
                 startY  = t.clientY;
@@ -254,6 +264,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             nav.addEventListener('mousedown', (e) => {
                 if (e.target.closest('a, button')) return;
                 if (isAtEdge) { snapToDefault(); return; }
+                captureNavSize();
                 startX  = e.clientX;
                 startY  = e.clientY;
                 origCX  = getCX();
