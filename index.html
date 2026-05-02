@@ -348,10 +348,12 @@
     <!-- Lightbox -->
     <div id="lightbox" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8" onclick="closeLightbox()">
         <div class="absolute inset-0 bg-black/88 backdrop-blur-sm"></div>
-        <button class="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-white text-black shadow-lg hover:bg-gray-200 transition font-bold" onclick="closeLightbox();event.stopPropagation()">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-        <img id="lightbox-img" src="" alt="" class="relative z-10 max-w-full max-h-[90vh] rounded-2xl shadow-2xl object-contain" onclick="event.stopPropagation()" draggable="false" oncontextmenu="return false">
+        <div class="relative z-10 inline-block max-w-full" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="" class="block max-w-full max-h-[90vh] rounded-2xl shadow-2xl object-contain" draggable="false" oncontextmenu="return false">
+            <button class="absolute top-2 right-2 p-2 rounded-full bg-white text-black shadow-lg hover:bg-gray-200 transition" onclick="closeLightbox()">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
     </div>
 
     <script src="js/translations.js"></script>
