@@ -267,3 +267,41 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
         document.addEventListener('copy', e => e.preventDefault());
         window.onbeforeprint = () => { document.body.style.display = 'none'; };
         window.onafterprint = () => { document.body.style.display = ''; };
+
+        // ===== LIGHTBOX =====
+        function openLightbox(src) {
+            const lb  = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lb.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.getElementById('lightbox-img').src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+        // Desktop: click to open
+        document.querySelectorAll('.lightbox-trigger').forEach(el => {
+            el.addEventListener('click', () => {
+                const img = el.querySelector('img');
+                if (img) openLightbox(img.src);
+            });
+        });
+
+        // Mobile: long press (450ms) to open
+        let _lbTimer = null;
+        document.addEventListener('touchstart', e => {
+            const t = e.target.closest('.lightbox-trigger');
+            if (!t) return;
+            _lbTimer = setTimeout(() => {
+                const img = t.querySelector('img');
+                if (img) openLightbox(img.src);
+            }, 450);
+        }, { passive: true });
+        document.addEventListener('touchend',  () => clearTimeout(_lbTimer), { passive: true });
+        document.addEventListener('touchmove', () => clearTimeout(_lbTimer), { passive: true });
