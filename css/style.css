@@ -1,171 +1,171 @@
 html { scroll-behavior: smooth; }
-body {
-    font-family: 'Noto Sans Thai', sans-serif;
-    transition: background-color 0.3s, color 0.3s;
-}
-[id] { scroll-margin-top: 100px; }
-.dynamic-island {
-    transition: background 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
-}
-/* ขณะกำลังลาก: โปร่งใส เห็นพื้นหลังชัด */
-#nav-container.dragging .dynamic-island {
-    background: rgba(255,255,255,0.08) !important;
-    backdrop-filter: blur(2px) !important;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.10) !important;
-    opacity: 0.7;
-}
-.dark #nav-container.dragging .dynamic-island {
-    background: rgba(0,0,0,0.10) !important;
-}
-.red-accent { color: #C41E3A; }
-.bg-red-accent { background-color: #C41E3A; }
-.gallery-item img {
-    transition: transform 0.6s ease;
-}
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-.custom-dropdown {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    background: #faf9f7;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
-    width: 180px;
-    z-index: 100;
-    border: 1px solid #e8e4de;
-    overflow: hidden;
-}
-.dark .custom-dropdown {
-    background: #242424;
-    border-color: #333333;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
-}
-.dropdown-item {
-    padding: 12px 16px;
-    font-size: 14px;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-}
-.dropdown-item:hover {
-    background-color: #ede9e3;
-    color: #C41E3A;
-}
-.dark .dropdown-item:hover {
-    background-color: #2e2e2e;
-}
-* {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-img {
-    -webkit-user-drag: none;
-    user-drag: none;
-    pointer-events: none;
-}
-/* ===== Island collapse animation ===== */
-#dynamic-island {
-    position: relative;
-    will-change: width, border-radius;
-}
-#dynamic-island.drag-collapsed {
-    border-radius: 50% !important;
-    padding: 0 !important;
-    overflow: hidden;
-}
-/* ซ่อน children ทั้งหมดยกเว้น drag-dot ตอน collapse */
-#dynamic-island > *:not(.drag-dot) {
-    transition: opacity 0.15s ease;
-}
-#dynamic-island.drag-collapsed > *:not(.drag-dot) {
-    opacity: 0;
-    pointer-events: none;
-}
-.drag-dot {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.18s ease 0.12s;
-}
-#dynamic-island.drag-collapsed .drag-dot {
-    opacity: 1;
-}
-/* ===== Reviews Marquee ===== */
-@keyframes marqueeLeft {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-}
-@keyframes marqueeRight {
-    from { transform: translateX(-50%); }
-    to   { transform: translateX(0); }
-}
-.marquee-wrapper {
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-}
-.marquee-track {
-    display: flex;
-    gap: 16px;
-    width: max-content;
-    padding: 8px 0;
-}
-.marquee-left  { animation: marqueeLeft 40s linear infinite; }
-.marquee-right { animation: marqueeRight 44s linear infinite; }
-.marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
-.review-card {
-    width: 280px;
-    flex-shrink: 0;
-    background: #ffffff;
-    border: 1px solid #e8e4de;
-    border-radius: 16px;
-    padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.dark .review-card {
-    background: #1e1e1e;
-    border-color: #2e2e2e;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-/* ===== Hero text animations ===== */
-@keyframes heroFadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes heroFadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-.hero-title { animation: heroFadeUp 0.9s ease-out both; }
-.hero-desc  { animation: heroFadeUp 0.9s ease-out 0.3s both; }
-.hero-line  { animation: heroFadeIn 0.8s ease-out 0.6s both; }
-/* ===== Scroll fade-in animations ===== */
-.reveal {
-    opacity: 0;
-    transform: translateY(36px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-    opacity: 1;
-    transform: none;
-}
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        [id] { scroll-margin-top: 100px; }
+        .dynamic-island {
+            transition: background 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+        }
+        /* ขณะกำลังลาก: โปร่งใส เห็นพื้นหลังชัด */
+        #nav-container.dragging .dynamic-island {
+            background: rgba(255,255,255,0.08) !important;
+            backdrop-filter: blur(2px) !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10) !important;
+            opacity: 0.7;
+        }
+        .dark #nav-container.dragging .dynamic-island {
+            background: rgba(0,0,0,0.10) !important;
+        }
+        .red-accent { color: #C41E3A; }
+        .bg-red-accent { background-color: #C41E3A; }
+        .gallery-item img {
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .custom-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: #faf9f7;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
+            width: 180px;
+            z-index: 100;
+            border: 1px solid #e8e4de;
+            overflow: hidden;
+        }
+        .dark .custom-dropdown {
+            background: #242424;
+            border-color: #333333;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+        }
+        .dropdown-item {
+            padding: 12px 16px;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+        .dropdown-item:hover {
+            background-color: #ede9e3;
+            color: #C41E3A;
+        }
+        .dark .dropdown-item:hover {
+            background-color: #2e2e2e;
+        }
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
+        }
+        /* ===== Island collapse animation ===== */
+        #dynamic-island {
+            position: relative;
+            will-change: width, border-radius;
+        }
+        #dynamic-island.drag-collapsed {
+            border-radius: 50% !important;
+            padding: 0 !important;
+            overflow: hidden;
+        }
+        /* ซ่อน children ทั้งหมดยกเว้น drag-dot ตอน collapse */
+        #dynamic-island > *:not(.drag-dot) {
+            transition: opacity 0.15s ease;
+        }
+        #dynamic-island.drag-collapsed > *:not(.drag-dot) {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .drag-dot {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.18s ease 0.12s;
+        }
+        #dynamic-island.drag-collapsed .drag-dot {
+            opacity: 1;
+        }
+        /* ===== Reviews Marquee ===== */
+        @keyframes marqueeLeft {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        @keyframes marqueeRight {
+            from { transform: translateX(-50%); }
+            to   { transform: translateX(0); }
+        }
+        .marquee-wrapper {
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+        .marquee-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            padding: 8px 0;
+        }
+        .marquee-left  { animation: marqueeLeft 40s linear infinite; }
+        .marquee-right { animation: marqueeRight 44s linear infinite; }
+        .marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
+        .review-card {
+            width: 280px;
+            flex-shrink: 0;
+            background: #ffffff;
+            border: 1px solid #e8e4de;
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .dark .review-card {
+            background: #1e1e1e;
+            border-color: #2e2e2e;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        /* ===== Hero text animations ===== */
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        .hero-title { animation: heroFadeUp 0.9s ease-out both; }
+        .hero-desc  { animation: heroFadeUp 0.9s ease-out 0.3s both; }
+        .hero-line  { animation: heroFadeIn 0.8s ease-out 0.6s both; }
+        /* ===== Scroll fade-in animations ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
