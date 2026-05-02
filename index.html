@@ -31,14 +31,8 @@
             transition: background-color 0.3s, color 0.3s;
         }
         [id] { scroll-margin-top: 100px; }
-        /* ===== GPU compositing hints ===== */
-        #nav-container {
-            will-change: transform, top, left;
-            transform: translateZ(0);
-        }
         .dynamic-island {
             transition: background 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
-            backface-visibility: hidden;
         }
         /* ขณะกำลังลาก: โปร่งใส เห็นพื้นหลังชัด */
         #nav-container.dragging .dynamic-island {
@@ -54,12 +48,9 @@
         .bg-red-accent { background-color: #C41E3A; }
         .gallery-item img {
             transition: transform 0.6s ease;
-            will-change: transform;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
         .gallery-item:hover img {
-            transform: scale(1.05) translateZ(0);
+            transform: scale(1.05);
         }
         .custom-dropdown {
             position: absolute;
@@ -149,7 +140,6 @@
         }
         .marquee-wrapper {
             overflow: hidden;
-            contain: paint;
             mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
             -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
         }
@@ -158,9 +148,6 @@
             gap: 16px;
             width: max-content;
             padding: 8px 0;
-            will-change: transform;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
         .marquee-left  { animation: marqueeLeft 40s linear infinite; }
         .marquee-right { animation: marqueeRight 44s linear infinite; }
@@ -191,47 +178,24 @@
             from { opacity: 0; }
             to   { opacity: 1; }
         }
-        .hero-title { animation: heroFadeUp 0.9s ease-out both; will-change: transform, opacity; }
-        .hero-desc  { animation: heroFadeUp 0.9s ease-out 0.3s both; will-change: transform, opacity; }
-        .hero-line  { animation: heroFadeIn 0.8s ease-out 0.6s both; will-change: opacity; }
+        .hero-title { animation: heroFadeUp 0.9s ease-out both; }
+        .hero-desc  { animation: heroFadeUp 0.9s ease-out 0.3s both; }
+        .hero-line  { animation: heroFadeIn 0.8s ease-out 0.6s both; }
         /* ===== Scroll fade-in animations ===== */
         .reveal {
             opacity: 0;
-            transform: translateY(36px) translateZ(0);
-            transition: opacity 0.65s ease, transform 0.65s ease;
-            will-change: transform, opacity;
+            transform: translateY(36px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
         .reveal.visible {
             opacity: 1;
-            transform: translateY(0) translateZ(0);
-            will-change: auto;
+            transform: none;
         }
         .reveal-delay-1 { transition-delay: 0.1s; }
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
         .reveal-delay-5 { transition-delay: 0.5s; }
-        /* ===== Customer photo gallery ===== */
-        .photo-gallery-grid {
-            contain: layout paint;
-        }
-        .photo-gallery-grid img {
-            will-change: auto;
-            transform: translateZ(0);
-        }
-        /* ===== Smooth hover on photo cards ===== */
-        .photo-card {
-            transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
-            transform: translateZ(0);
-            will-change: transform;
-        }
-        .photo-card:hover {
-            transform: scale(1.04) translateZ(0);
-        }
-        /* Smooth scrolling on all platforms */
-        @media (prefers-reduced-motion: no-preference) {
-            html { scroll-behavior: smooth; }
-        }
     </style>
 </head>
 <body class="bg-[#faf9f7] text-[#2a2a2a] dark:bg-[#1a1a1a] dark:text-[#f0ede8]">
@@ -330,7 +294,7 @@
                 draggable="false"
                 oncontextmenu="return false"
                 onerror="this.style.display='none'"
-             decoding="async">
+            >
             <!-- Overlay gradient - dark for dark mode, light for light mode -->
             <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/20 to-black/50 dark:from-black/60 dark:via-black/40 dark:to-black/70"></div>
             <!-- Soft fade to white/dark (light mode) -->
@@ -369,7 +333,7 @@
                     draggable="false"
                     oncontextmenu="return false"
                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80'"
-                 decoding="async">
+                >
             </div>
         </div>
     </section>
@@ -393,7 +357,7 @@
                             draggable="false"
                             oncontextmenu="return false"
                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=600&q=80'"
-                         decoding="async">
+                        >
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_1_name">กุ้งแม่น้ำเผา</h3>
@@ -411,7 +375,7 @@
                             draggable="false"
                             oncontextmenu="return false"
                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80'"
-                         decoding="async">
+                        >
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_2_name">ยำบะเต็งไข่แดง</h3>
@@ -429,7 +393,7 @@
                             draggable="false"
                             oncontextmenu="return false"
                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=600&q=80'"
-                         decoding="async">
+                        >
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_3_name">ยำปูดอง</h3>
@@ -447,7 +411,7 @@
                             draggable="false"
                             oncontextmenu="return false"
                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1569562211093-4ed0d0758359?w=600&q=80'"
-                         decoding="async">
+                        >
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_4_name">ต้มยำไข่เจียวน้ำข้น</h3>
@@ -465,7 +429,7 @@
                             draggable="false"
                             oncontextmenu="return false"
                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=600&q=80'"
-                         decoding="async">
+                        >
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_5_name">เป็ดพะโล้รวม</h3>
@@ -483,7 +447,7 @@
                             draggable="false"
                             oncontextmenu="return false"
                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80'"
-                         decoding="async">
+                        >
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold dark:text-white" data-i18n="food_6_name">หอยแครงลวก</h3>
@@ -519,37 +483,38 @@
         <!-- Photo gallery from customers -->
         <div class="max-w-6xl mx-auto px-6 mt-14">
             <h3 class="text-xl font-bold mb-6 dark:text-white text-center reveal" data-i18n="reviews_photos_title">รูปจากลูกค้า</h3>
-            <div class="columns-2 md:columns-3 lg:columns-4 gap-3 reveal photo-gallery-grid">
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2325.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2326.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2327.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2328.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2329.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2330.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2331.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2332.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2333.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2334.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2335.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2336.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2337.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2338.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2339.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2340.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2341.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2342.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2343.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2344.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2345.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2346.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2348.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2349.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2350.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2351.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2352.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2353.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2354.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md photo-card"><img src="images/Add%20Review/IMG_2355.webp" loading="lazy" decoding="async" class="w-full h-auto" alt="Customer photo"></div>
+            <div class="columns-2 md:columns-3 lg:columns-4 gap-3 reveal">
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2325.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2326.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2327.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2328.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2329.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2330.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2331.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2332.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2333.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2334.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2335.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2336.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2337.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2338.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2339.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2340.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2341.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2342.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2343.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2344.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2345.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2346.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2347.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2348.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2349.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2350.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2351.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2352.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2353.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2354.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2355.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
             </div>
         </div>
     </section>
@@ -1156,8 +1121,6 @@
             let startX, startY, origCX, origTop;
             let idleTimer  = null;
             let hasDragged = false;
-            let rafId      = null;
-            let pendingCX  = null, pendingTop = null;
 
             const PAD   = 20;
             const PAD_B = 48; // เผื่อ home bar บน iOS
@@ -1173,7 +1136,7 @@
             function applyPos(cx, top) {
                 nav.style.left      = cx + 'px';
                 nav.style.top       = top + 'px';
-                nav.style.transform = 'translateX(-50%) translateZ(0)';
+                nav.style.transform = 'translateX(-50%)';
             }
 
             function getCX() {
@@ -1256,10 +1219,9 @@
                 if (!dragging || e.touches.length !== 1) return;
                 e.preventDefault();
                 const t = e.touches[0];
-                if (!collapsed) collapseIsland();
-                const pos = clampPos(origCX + t.clientX - startX, origTop + t.clientY - startY);
-                pendingCX = pos.cx; pendingTop = pos.top;
-                if (!rafId) rafId = requestAnimationFrame(() => { applyPos(pendingCX, pendingTop); rafId = null; });
+                if (!collapsed) collapseIsland(); // ยุบเมื่อเริ่มขยับจริงๆ
+                const { cx, top } = clampPos(origCX + t.clientX - startX, origTop + t.clientY - startY);
+                applyPos(cx, top);
                 hasDragged = true;
             }, { passive: false });
 
@@ -1278,10 +1240,9 @@
 
             document.addEventListener('mousemove', (e) => {
                 if (!dragging) return;
-                if (!collapsed) collapseIsland();
-                const pos = clampPos(origCX + e.clientX - startX, origTop + e.clientY - startY);
-                pendingCX = pos.cx; pendingTop = pos.top;
-                if (!rafId) rafId = requestAnimationFrame(() => { applyPos(pendingCX, pendingTop); rafId = null; });
+                if (!collapsed) collapseIsland(); // ยุบเมื่อเริ่มขยับจริงๆ
+                const { cx, top } = clampPos(origCX + e.clientX - startX, origTop + e.clientY - startY);
+                applyPos(cx, top);
                 hasDragged = true;
             });
 
