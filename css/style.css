@@ -57,6 +57,9 @@ html { scroll-behavior: smooth; }
             background-color: #ede9e3;
             color: #C41E3A;
         }
+        .dark .dropdown-item {
+            color: #f0ede8;
+        }
         .dark .dropdown-item:hover {
             background-color: #2e2e2e;
         }

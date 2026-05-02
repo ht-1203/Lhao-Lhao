@@ -8,7 +8,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
                 <div class="text-[#D4AF37] text-sm">${stars}</div>
                 <p class="text-sm text-[#4a4540] dark:text-[#c0bbb4] leading-relaxed">"${r.text}"</p>
                 <div class="flex items-center justify-between mt-1">
-                    <span class="text-xs font-semibold text-[#2a2a2a] dark:text-white">${r.name}</span>
+                    <span class="text-xs font-semibold text-[#2a2a2a] dark:text-[#f0ede8]">${r.name}</span>
                     ${icon}
                 </div>
             </div>`;
