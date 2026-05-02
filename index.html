@@ -6,23 +6,24 @@
     <title>Lhao Lhao - ร้านข้าวต้ม อาหารจีน ซีฟู้ด</title>
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                }
-        
-                tailwind.config = {
-                    darkMode: 'class',
-                    theme: {
-                        extend: {
-                            colors: {
-                                'red-accent': '#C41E3A',
-                            }
-                        }
-                    }
-                }
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'red-accent': '#C41E3A',
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -312,36 +313,28 @@
         <div class="max-w-6xl mx-auto px-6 mt-14">
             <h3 class="text-xl font-bold mb-6 dark:text-white text-center reveal" data-i18n="reviews_photos_title">รูปจากลูกค้า</h3>
             <div class="columns-2 md:columns-3 lg:columns-4 gap-3 reveal">
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2325.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2326.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2327.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2328.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2329.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2330.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2331.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2332.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2333.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2334.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2335.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2336.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2337.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2338.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2339.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2340.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2341.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2342.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2343.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2344.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2345.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2346.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2347.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2349.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2350.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2351.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2352.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2353.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2354.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
-                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2355.PNG" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2325.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2326.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2327.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2328.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2329.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2330.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2331.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2332.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2333.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2334.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2335.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2336.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2337.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2338.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2339.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2340.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2341.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2346.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2350.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2351.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2352.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
+                <div class="mb-3 rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300"><img src="images/Add%20Review/IMG_2355.jpg" loading="lazy" class="w-full h-auto" alt="Customer photo"></div>
             </div>
         </div>
     </section>
