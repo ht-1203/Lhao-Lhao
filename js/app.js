@@ -116,9 +116,12 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             let startX, startY, origCX, origTop;
             let idleTimer  = null;
             let hasDragged = false;
+            let isAtEdge   = false;
 
-            const PAD   = 20;
-            const PAD_B = 48; // เผื่อ home bar บน iOS
+            const PAD        = 20;
+            const PAD_B      = 48;
+            const EDGE_DIST  = 72;  // px จากขอบจอที่จะ snap
+            const EDGE_PEEK  = 32;  // px ที่โผล่ออกมาเมื่อ snap ขอบ
 
             function clampPos(cx, top) {
                 const sz = collapsed ? naturalH : island.offsetWidth;
@@ -173,6 +176,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             function setDragging(on) {
                 dragging = on;
                 if (on) {
+                    isAtEdge = false;
                     nav.classList.add('dragging');
                     nav.style.transition = 'none';
                     nav.style.cursor     = 'grabbing';
@@ -185,6 +189,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             }
 
             function snapToDefault() {
+                isAtEdge = false;
                 nav.style.transition = 'left 0.55s cubic-bezier(0.34,1.56,0.64,1), top 0.55s cubic-bezier(0.34,1.56,0.64,1), width 0.3s ease';
                 nav.style.left       = '50%';
                 nav.style.top        = '16px';
@@ -193,13 +198,36 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
                 hasDragged = false;
             }
 
+            function snapToEdge(cx) {
+                const W    = nav.getBoundingClientRect().width || naturalW || 300;
+                const side = cx < window.innerWidth / 2 ? 'left' : 'right';
+                const edgeCX = side === 'left'
+                    ? -(W / 2 - EDGE_PEEK)
+                    : window.innerWidth + W / 2 - EDGE_PEEK;
+                nav.style.transition = 'left 0.4s cubic-bezier(0.4,0,0.2,1), top 0.4s cubic-bezier(0.4,0,0.2,1)';
+                nav.style.left       = edgeCX + 'px';
+                nav.style.transform  = 'translateX(-50%)';
+                isAtEdge  = true;
+                hasDragged = true;
+                clearTimeout(idleTimer);
+                idleTimer = setTimeout(snapToDefault, 4000);
+            }
+
             function startIdle() {
                 clearTimeout(idleTimer);
-                if (hasDragged) idleTimer = setTimeout(snapToDefault, 3000);
+                if (!hasDragged) return;
+                const cx = getCX();
+                const W  = nav.getBoundingClientRect().width || 300;
+                if (cx < EDGE_DIST + W / 2 || cx > window.innerWidth - EDGE_DIST - W / 2) {
+                    snapToEdge(cx);
+                } else {
+                    idleTimer = setTimeout(snapToDefault, 3000);
+                }
             }
 
             // ---- Touch ----
             nav.addEventListener('touchstart', (e) => {
+                if (isAtEdge) { snapToDefault(); return; }
                 if (e.touches.length !== 1) return;
                 const t = e.touches[0];
                 startX  = t.clientX;
@@ -225,6 +253,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             // ---- Mouse ----
             nav.addEventListener('mousedown', (e) => {
                 if (e.target.closest('a, button')) return;
+                if (isAtEdge) { snapToDefault(); return; }
                 startX  = e.clientX;
                 startY  = e.clientY;
                 origCX  = getCX();
@@ -285,16 +314,20 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
 
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-        // Desktop: click to open
-        document.querySelectorAll('.lightbox-trigger').forEach(el => {
-            el.addEventListener('click', () => {
-                const img = el.querySelector('img');
-                if (img) openLightbox(img.src);
-            });
-        });
-
-        // Mobile: long press (450ms) to open
+        // Hold to open lightbox — desktop: mousedown hold, mobile: touchstart hold (450ms)
         let _lbTimer = null;
+
+        document.addEventListener('mousedown', e => {
+            const t = e.target.closest('.lightbox-trigger');
+            if (!t) return;
+            _lbTimer = setTimeout(() => {
+                const img = t.querySelector('img');
+                if (img) openLightbox(img.src);
+            }, 450);
+        });
+        document.addEventListener('mouseup',   () => clearTimeout(_lbTimer));
+        document.addEventListener('mousemove', () => clearTimeout(_lbTimer));
+
         document.addEventListener('touchstart', e => {
             const t = e.target.closest('.lightbox-trigger');
             if (!t) return;
