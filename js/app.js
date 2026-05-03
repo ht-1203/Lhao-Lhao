@@ -102,7 +102,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
         }
 
         window.addEventListener('click', (e) => {
-            if (!e.target.closest('.relative')) closeAllMenus();
+            if (!e.target.closest('#nav-dropdown-wrapper, #lang-dropdown-wrapper, #order-dropdown-wrapper')) closeAllMenus();
         });
 
         // ===== DRAGGABLE NAV =====
