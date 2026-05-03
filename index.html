@@ -30,7 +30,7 @@
 <body class="bg-[#faf9f7] text-[#2a2a2a] dark:bg-[#1a1a1a] dark:text-[#f0ede8]">
     <!-- Dynamic Island Navigation -->
     <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-fit max-w-[900px]" style="touch-action:none;">
-        <div id="dynamic-island" class="dynamic-island bg-white/95 dark:bg-[#242424]/95 backdrop-blur-md border border-[#e8e4de] dark:border-[#333333] shadow-2xl rounded-[40px] px-3 py-2 md:px-4 md:py-1.5 flex items-center justify-between gap-1 md:gap-2">
+        <div id="dynamic-island" class="dynamic-island bg-white/95 dark:bg-[#242424]/95 backdrop-blur-md border border-[#e8e4de] dark:border-[#333333] shadow-2xl rounded-[40px] px-3 py-2 md:px-4 md:py-1.5 flex items-center gap-1 md:gap-2">
             <!-- Dot shown while dragging -->
             <div class="drag-dot">
                 <span class="font-bold text-sm tracking-tight text-[#1a1a1a] dark:text-white">L<span class="text-[#C41E3A]">·</span>L</span>
@@ -38,13 +38,13 @@
             <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0 ml-1 whitespace-nowrap">
                 <span class="font-bold tracking-tight text-[#1a1a1a] dark:text-white text-base md:text-base">Lhao <span class="red-accent">Lhao</span></span>
             </a>
-            <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium overflow-hidden">
+            <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium">
                 <a href="#home" class="nav-link whitespace-nowrap hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_home">หน้าหลัก</a>
                 <a href="#about" class="nav-link whitespace-nowrap hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_about">ประวัติร้าน</a>
                 <a href="#menu" class="nav-link whitespace-nowrap hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_menu">เมนูแนะนำ</a>
                 <a href="#reviews" class="nav-link whitespace-nowrap hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_contact">รีวิว</a>
             </div>
-            <div class="flex items-center gap-0.5 shrink-0">
+            <div class="flex items-center gap-0.5 shrink-0 ml-auto">
                 <div id="nav-dropdown-wrapper" class="relative md:hidden">
                     <button id="mobile-nav-btn" onclick="toggleMobileNav(event)" class="p-2 hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] rounded-full transition text-[#6b6560] dark:text-[#c8c2b8] focus:outline-none">
                         <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
