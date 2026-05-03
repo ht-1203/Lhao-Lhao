@@ -1,6 +1,6 @@
 const translations = {
             TH: {
-                nav_home: "หน้าหลัก", nav_menu: "เมนูอาหาร", nav_about: "ประวัติร้าน", nav_contact: "รีวิว",
+                nav_home: "หน้าหลัก", nav_menu: "เมนูแนะนำ", nav_about: "ประวัติร้าน", nav_contact: "รีวิว",
                 btn_booking: "จองโต๊ะ / สั่งอาหาร",
                 order_line: "LINE @lhaolhao1980", order_grab: "สั่งผ่าน GrabFood", order_facebook: "Facebook",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
