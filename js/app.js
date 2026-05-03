@@ -39,7 +39,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             const data = translations[lang] || translations['TH'];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (data[key]) el.innerText = data[key];
+                if (key in data) el.innerText = data[key];
             });
             const langSpan = document.getElementById('lang-btn').querySelector('span');
             if (langSpan) langSpan.innerText = lang;
