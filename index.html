@@ -29,7 +29,7 @@
 </head>
 <body class="bg-[#faf9f7] text-[#2a2a2a] dark:bg-[#1a1a1a] dark:text-[#f0ede8]">
     <!-- Dynamic Island Navigation -->
-    <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-fit max-w-[98%]" style="touch-action:none;">
+    <nav id="nav-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-[900px]" style="touch-action:none;">
         <div id="dynamic-island" class="dynamic-island bg-white/95 dark:bg-[#242424]/95 backdrop-blur-md border border-[#e8e4de] dark:border-[#333333] shadow-2xl rounded-[40px] px-3 py-2 md:px-4 md:py-1.5 flex items-center justify-between gap-1 md:gap-2">
             <!-- Dot shown while dragging -->
             <div class="drag-dot">
@@ -38,11 +38,11 @@
             <a href="#home" class="nav-link flex items-center cursor-pointer hover:opacity-80 transition shrink-0 ml-1 whitespace-nowrap">
                 <span class="font-bold tracking-tight text-[#1a1a1a] dark:text-white text-base md:text-base">Lhao <span class="red-accent">Lhao</span></span>
             </a>
-            <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium shrink-0 whitespace-nowrap">
-                <a href="#home" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_home">หน้าหลัก</a>
-                <a href="#about" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_about">ประวัติร้าน</a>
-                <a href="#menu" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_menu">เมนูแนะนำ</a>
-                <a href="#reviews" class="nav-link hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_contact">รีวิว</a>
+            <div class="hidden md:flex flex-1 items-center justify-center gap-1 lg:gap-2 text-sm font-medium overflow-hidden">
+                <a href="#home" class="nav-link whitespace-nowrap hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_home">หน้าหลัก</a>
+                <a href="#about" class="nav-link whitespace-nowrap hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_about">ประวัติร้าน</a>
+                <a href="#menu" class="nav-link whitespace-nowrap hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_menu">เมนูแนะนำ</a>
+                <a href="#reviews" class="nav-link whitespace-nowrap hover:text-red-600 dark:hover:text-red-400 transition px-2 py-1" data-i18n="nav_contact">รีวิว</a>
             </div>
             <div class="flex items-center gap-0.5 shrink-0">
                 <div id="nav-dropdown-wrapper" class="relative md:hidden">
@@ -90,7 +90,7 @@
                 <div id="order-dropdown-wrapper" class="relative">
                     <button onclick="toggleOrderMenu(event)" class="bg-red-accent text-white px-3 md:px-4 py-2 md:py-1.5 rounded-full text-xs md:text-xs font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-1.5 shrink-0 ml-1 whitespace-nowrap focus:outline-none">
                         <svg class="w-4 h-4 md:w-4 md:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.8-5.4-8.8-12-8.8S0 5.5 0 10.3c0 4.3 4.3 7.9 10.1 8.7.4.1.9.4 1 .9.1.5-.1 1.2-.2 1.8 0 .1-.2.8.9.5 1.1-.3 6-3.5 8.2-6.1 2.6-2.6 4-5.2 4-7.8z"/></svg>
-                        <span class="hidden md:inline max-w-[108px] truncate" data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
+                        <span class="hidden md:inline whitespace-nowrap" data-i18n="btn_booking">จองโต๊ะ / สั่งอาหาร</span>
                         <svg class="w-3 h-3 shrink-0 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
                     </button>
                     <div id="order-menu" class="custom-dropdown hidden" style="min-width:210px;">
