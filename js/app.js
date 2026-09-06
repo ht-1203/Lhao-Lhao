@@ -85,7 +85,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
         }
 
         function initPage() {
-            const savedLang = localStorage.getItem('selectedLanguage') || 'TH';
+            const savedLang = localStorage.getItem('selectedLanguage') || 'EN';
             updateLanguage(savedLang);
 
             // ===== Scroll reveal observer =====
