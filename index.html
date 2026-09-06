@@ -187,7 +187,26 @@
         </div>
     </header>
 
-    <!-- 2. ประวัติร้าน (About) -->
+    <!-- 2. คลิปแนะนำร้าน (Video) -->
+    <section id="video" class="py-14 bg-[#f3f1ee] dark:bg-[#111111] transition-colors">
+        <div class="max-w-3xl mx-auto px-6 text-center reveal">
+            <h2 class="text-3xl font-bold mb-2 dark:text-white" data-i18n="video_title">ชมบรรยากาศร้านผ่านคลิป</h2>
+            <p class="text-[#7a7268] dark:text-[#9e9890] mb-8" data-i18n="video_subtitle">พาทัวร์ร้านเหลาเหลาแบบใกล้ชิด ก่อนมาสัมผัสด้วยตัวเอง</p>
+            <div class="aspect-video rounded-2xl overflow-hidden shadow-xl border dark:border-[#333333]">
+                <iframe
+                    class="w-full h-full"
+                    src="https://www.youtube-nocookie.com/embed/nxzd3qZ0luA"
+                    title="Lhao Lhao Restaurant"
+                    loading="lazy"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ประวัติร้าน (About) -->
     <section id="about" class="py-14 bg-[#faf9f7] dark:bg-[#1a1a1a] transition-colors">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1 reveal">
@@ -216,7 +235,7 @@
         </div>
     </section>
 
-    <!-- 3. เมนูอาหาร (Menu) -->
+    <!-- 4. เมนูอาหาร (Menu) -->
     <section id="menu" class="py-14 bg-[#f3f1ee] dark:bg-[#111111] transition-colors">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-10">
@@ -337,7 +356,7 @@
         </div>
     </section>
 
-    <!-- 4. รีวิวจากลูกค้า (Reviews) -->
+    <!-- 5. รีวิวจากลูกค้า (Reviews) -->
     <section id="reviews" class="py-14 bg-[#faf9f7] dark:bg-[#1a1a1a] transition-colors border-t border-[#e8e4de] dark:border-[#2a2a2a]">
         <div class="max-w-6xl mx-auto px-6 mb-10 text-center reveal">
             <h2 class="text-3xl font-bold mb-2 dark:text-white" data-i18n="reviews_title">รีวิวจากลูกค้า</h2>
