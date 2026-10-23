@@ -149,11 +149,11 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             function drawCoating() {
                 ctx.globalCompositeOperation = 'source-over';
                 const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
-                grad.addColorStop(0, '#D4AF37');
-                grad.addColorStop(1, '#C41E3A');
+                grad.addColorStop(0, '#d8d8d8');
+                grad.addColorStop(1, '#b0b0b0');
                 ctx.fillStyle = grad;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#ffffff';
+                ctx.fillStyle = '#5a5a5a';
                 ctx.font = 'bold 12px sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
