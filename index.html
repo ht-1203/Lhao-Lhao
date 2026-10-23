@@ -496,12 +496,11 @@
         </button>
         <h3 class="font-bold text-lg mb-1 pr-5 dark:text-white" data-i18n="discount_popup_title">🎉 รับส่วนลด 5% วันนี้!</h3>
         <p class="text-sm text-[#7a7268] dark:text-[#9e9890] mb-3" data-i18n="discount_popup_desc">โค้ดส่วนลดสำหรับทานที่ร้านเท่านั้น</p>
-        <div class="flex items-center gap-2 mb-3">
-            <div class="flex-1 border-2 border-dashed border-[#D4AF37] rounded-lg py-2 text-center overflow-hidden">
-                <span id="discount-code" class="font-mono font-bold text-lg tracking-wider text-[#C41E3A] dark:text-[#ff7a8a]"></span>
-            </div>
-            <button id="discount-copy-btn" onclick="copyDiscountCode()" class="shrink-0 bg-[#C41E3A] hover:bg-[#a8182f] text-white text-sm font-semibold px-3 py-2.5 rounded-lg transition" data-i18n="discount_popup_copy">คัดลอกโค้ด</button>
+        <div class="relative mb-2 h-12 rounded-lg overflow-hidden border-2 border-dashed border-[#D4AF37]">
+            <div id="discount-code" class="absolute inset-0 flex items-center justify-center font-mono font-bold text-lg tracking-wider text-[#C41E3A] dark:text-[#ff7a8a]"></div>
+            <canvas id="discount-scratch-canvas" class="absolute inset-0 w-full h-full cursor-pointer" style="touch-action: none;"></canvas>
         </div>
+        <p id="discount-scratch-hint" class="text-center text-xs text-[#9e9890] mb-3" data-i18n="discount_popup_scratch">ขูดเพื่อดูโค้ด</p>
         <p class="text-[11px] text-[#9e9890] leading-snug" data-i18n="discount_popup_terms">1 โค้ด / โต๊ะ / วัน • ใช้ได้เฉพาะวันนี้เท่านั้น</p>
     </div>
 

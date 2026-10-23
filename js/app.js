@@ -110,14 +110,16 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
         }
 
+        let discountExpandScrollY = 0;
+
         function expandDiscountPopup() {
             const popup = document.getElementById('discount-popup');
             const mini = document.getElementById('discount-mini');
             if (!popup || !mini) return;
-            document.getElementById('discount-code').textContent = getDiscountCode();
             popup.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
             mini.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
             localStorage.setItem('discountPopupShown', getTodayKey());
+            discountExpandScrollY = window.scrollY;
         }
 
         function collapseDiscountPopup() {
@@ -128,25 +130,89 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             mini.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
         }
 
-        function copyDiscountCode() {
-            const code = document.getElementById('discount-code').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.getElementById('discount-copy-btn');
-                const lang = localStorage.getItem('selectedLanguage') || 'EN';
-                const data = translations[lang] || translations['EN'];
-                const original = btn.textContent;
-                btn.textContent = data.discount_popup_copied || 'Copied!';
-                setTimeout(() => { btn.textContent = original; }, 2000);
+        function setupDiscountScratchCard() {
+            const canvas = document.getElementById('discount-scratch-canvas');
+            const codeEl = document.getElementById('discount-code');
+            const hint = document.getElementById('discount-scratch-hint');
+            if (!canvas || !codeEl) return;
+
+            codeEl.textContent = getDiscountCode();
+
+            const ctx = canvas.getContext('2d');
+            // offsetWidth/Height reflect layout size and are unaffected by the
+            // popup's collapsed scale(0) transform, unlike getBoundingClientRect().
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            function drawCoating() {
+                ctx.globalCompositeOperation = 'source-over';
+                const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                grad.addColorStop(0, '#D4AF37');
+                grad.addColorStop(1, '#C41E3A');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('ขูดตรงนี้', canvas.width / 2, canvas.height / 2);
+            }
+            drawCoating();
+
+            function posFromEvent(e) {
+                const r = canvas.getBoundingClientRect();
+                return { x: e.clientX - r.left, y: e.clientY - r.top };
+            }
+
+            function scratchAt(x, y) {
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 14, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            function revealProgress() {
+                const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                let cleared = 0, sampled = 0;
+                for (let i = 3; i < data.length; i += 40) {
+                    sampled++;
+                    if (data[i] === 0) cleared++;
+                }
+                return sampled ? cleared / sampled : 0;
+            }
+
+            function revealFully() {
+                canvas.style.transition = 'opacity 0.4s ease';
+                canvas.style.opacity = '0';
+                setTimeout(() => { canvas.style.display = 'none'; }, 400);
+                if (hint) hint.style.display = 'none';
+            }
+
+            let scratching = false;
+
+            canvas.addEventListener('pointerdown', (e) => {
+                scratching = true;
+                const p = posFromEvent(e);
+                scratchAt(p.x, p.y);
             });
+            canvas.addEventListener('pointermove', (e) => {
+                if (!scratching) return;
+                const p = posFromEvent(e);
+                scratchAt(p.x, p.y);
+                if (revealProgress() > 0.45) revealFully();
+            });
+            window.addEventListener('pointerup', () => { scratching = false; });
         }
 
         function initDiscountPopup() {
+            setupDiscountScratchCard();
             if (localStorage.getItem('discountPopupShown') !== getTodayKey()) {
                 setTimeout(expandDiscountPopup, 4000);
             }
             window.addEventListener('scroll', () => {
                 const popup = document.getElementById('discount-popup');
-                if (popup && !popup.classList.contains('scale-0')) collapseDiscountPopup();
+                if (!popup || popup.classList.contains('scale-0')) return;
+                if (Math.abs(window.scrollY - discountExpandScrollY) > 40) collapseDiscountPopup();
             }, { passive: true });
         }
 
