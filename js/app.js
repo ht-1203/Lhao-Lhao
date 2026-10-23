@@ -45,6 +45,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             if (langSpan) langSpan.innerText = lang;
             localStorage.setItem('selectedLanguage', lang);
             buildReviews(lang);
+            if (typeof redrawDiscountCoating === 'function') redrawDiscountCoating();
         }
 
         function toggleMobileNav(event) {
@@ -111,6 +112,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
         }
 
         let discountExpandScrollY = 0;
+        let redrawDiscountCoating = null;
 
         function expandDiscountPopup() {
             const popup = document.getElementById('discount-popup');
@@ -155,9 +157,12 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
                 ctx.font = 'bold 12px sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText('ขูดตรงนี้', canvas.width / 2, canvas.height / 2);
+                const lang = localStorage.getItem('selectedLanguage') || 'EN';
+                const data = translations[lang] || translations['EN'];
+                ctx.fillText(data.discount_popup_scratch_here || 'Scratch Here', canvas.width / 2, canvas.height / 2);
             }
             drawCoating();
+            redrawDiscountCoating = drawCoating;
 
             function posFromEvent(e) {
                 const r = canvas.getBoundingClientRect();
