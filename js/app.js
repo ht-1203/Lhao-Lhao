@@ -176,27 +176,11 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
                 ctx.fill();
             }
 
-            function revealProgress() {
-                const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-                let cleared = 0, sampled = 0;
-                for (let i = 3; i < data.length; i += 40) {
-                    sampled++;
-                    if (data[i] === 0) cleared++;
-                }
-                return sampled ? cleared / sampled : 0;
-            }
-
-            function revealFully() {
-                canvas.style.transition = 'opacity 0.4s ease';
-                canvas.style.opacity = '0';
-                setTimeout(() => { canvas.style.display = 'none'; }, 400);
-                if (hint) hint.style.display = 'none';
-            }
-
             let scratching = false;
 
             canvas.addEventListener('pointerdown', (e) => {
                 scratching = true;
+                if (hint) hint.style.display = 'none';
                 const p = posFromEvent(e);
                 scratchAt(p.x, p.y);
             });
@@ -204,7 +188,6 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
                 if (!scratching) return;
                 const p = posFromEvent(e);
                 scratchAt(p.x, p.y);
-                if (revealProgress() > 0.45) revealFully();
             });
             window.addEventListener('pointerup', () => { scratching = false; });
         }
