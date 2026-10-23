@@ -110,18 +110,22 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
         }
 
-        function showDiscountPopup() {
+        function expandDiscountPopup() {
             const popup = document.getElementById('discount-popup');
-            if (!popup) return;
+            const mini = document.getElementById('discount-mini');
+            if (!popup || !mini) return;
             document.getElementById('discount-code').textContent = getDiscountCode();
-            popup.classList.remove('translate-y-[150%]', 'opacity-0', 'pointer-events-none');
+            popup.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+            mini.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
             localStorage.setItem('discountPopupShown', getTodayKey());
         }
 
-        function closeDiscountPopup() {
+        function collapseDiscountPopup() {
             const popup = document.getElementById('discount-popup');
-            if (!popup) return;
-            popup.classList.add('translate-y-[150%]', 'opacity-0', 'pointer-events-none');
+            const mini = document.getElementById('discount-mini');
+            if (!popup || !mini) return;
+            popup.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+            mini.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
         }
 
         function copyDiscountCode() {
@@ -137,8 +141,13 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
         }
 
         function initDiscountPopup() {
-            if (localStorage.getItem('discountPopupShown') === getTodayKey()) return;
-            setTimeout(showDiscountPopup, 4000);
+            if (localStorage.getItem('discountPopupShown') !== getTodayKey()) {
+                setTimeout(expandDiscountPopup, 4000);
+            }
+            window.addEventListener('scroll', () => {
+                const popup = document.getElementById('discount-popup');
+                if (popup && !popup.classList.contains('scale-0')) collapseDiscountPopup();
+            }, { passive: true });
         }
 
         if (document.readyState === 'loading') {
