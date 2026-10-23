@@ -2,6 +2,7 @@ const translations = {
             TH: {
                 nav_home: "หน้าหลัก", nav_menu: "เมนูแนะนำ", nav_about: "ประวัติร้าน", nav_contact: "รีวิว",
                 btn_booking: "จองโต๊ะ", btn_order: "สั่งอาหาร",
+                discount_popup_title: "🎉 รับส่วนลด 5% วันนี้!", discount_popup_desc: "โค้ดส่วนลดสำหรับทานที่ร้านเท่านั้น", discount_popup_copy: "คัดลอกโค้ด", discount_popup_copied: "คัดลอกแล้ว!", discount_popup_terms: "1 โค้ด / โต๊ะ / วัน • ใช้ได้เฉพาะวันนี้เท่านั้น",
                 order_line: "LINE @lhaolhao1980", order_grab: "สั่งผ่าน GrabFood", order_facebook: "Facebook", order_lineman: "สั่งผ่าน Lineman", order_robinhood: "สั่งผ่าน Robinhood", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "สั่งอาหาร", dropdown_contact: "ติดต่อ",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "ร้านข้าวต้ม อาหารจีน ซีฟู้ด ตำนานแห่งย่านอารีย์ เปิดมาแล้วกว่า 40 ปี ด้วยรสชาติและบรรยากาศเสมือนบ้านหลังที่สองของทุกคน",
@@ -41,6 +42,7 @@ const translations = {
             EN: {
                 nav_home: "Home", nav_menu: "Menu", nav_about: "Our Story", nav_contact: "Reviews",
                 btn_booking: "Book a Table", btn_order: "Order Food",
+                discount_popup_title: "🎉 Get 5% Off Today!", discount_popup_desc: "Discount code for dine-in only", discount_popup_copy: "Copy Code", discount_popup_copied: "Copied!", discount_popup_terms: "1 code / table / day • Valid today only",
                 order_line: "LINE @lhaolhao1980", order_grab: "Order via GrabFood", order_facebook: "Facebook", order_lineman: "Order via LINE MAN", order_robinhood: "Order via Robinhood", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "Order Food", dropdown_contact: "Contact",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Traditional Thai, Chinese & Seafood — A local favorite in Ari, serving generations since 1980.",
@@ -80,6 +82,7 @@ const translations = {
             ZH: {
                 nav_home: "首页", nav_menu: "菜谱", nav_about: "关于我们", nav_contact: "评价",
                 btn_booking: "订位", btn_order: "点餐",
+                discount_popup_title: "🎉 今日享5%折扣！", discount_popup_desc: "优惠码仅限堂食使用", discount_popup_copy: "复制优惠码", discount_popup_copied: "已复制！", discount_popup_terms: "每桌每日限用1次 • 仅限今日有效",
                 order_line: "LINE @lhaolhao1980", order_grab: "通过GrabFood订餐", order_facebook: "Facebook", order_lineman: "LINE MAN外卖", order_robinhood: "通过Robinhood订餐", order_xhs: "小红书", order_wechat: "微信", dropdown_order: "点餐", dropdown_contact: "联系",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "曼谷阿里区传奇泰中海鲜餐厅，40年老字号，家的味道。",
@@ -119,6 +122,7 @@ const translations = {
             DE: {
                 nav_home: "Start", nav_menu: "Menü", nav_about: "Über uns", nav_contact: "Bewertungen",
                 btn_booking: "Tisch reservieren", btn_order: "Bestellen",
+                discount_popup_title: "🎉 Heute 5% Rabatt!", discount_popup_desc: "Rabattcode nur zum Essen vor Ort", discount_popup_copy: "Code kopieren", discount_popup_copied: "Kopiert!", discount_popup_terms: "1 Code / Tisch / Tag • Nur heute gültig",
                 order_line: "LINE @lhaolhao1980", order_grab: "Über GrabFood bestellen", order_facebook: "Facebook", order_lineman: "LINE MAN Lieferung", order_robinhood: "Über Robinhood bestellen", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "Bestellen", dropdown_contact: "Kontakt",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Authentische thailändisch-chinesische Meeresfrüchte-Küche auf höchstem Niveau.",
@@ -158,6 +162,7 @@ const translations = {
             RU: {
                 nav_home: "Главная", nav_menu: "Меню", nav_about: "О нас", nav_contact: "Отзывы",
                 btn_booking: "Забронировать столик", btn_order: "Заказать",
+                discount_popup_title: "🎉 Скидка 5% сегодня!", discount_popup_desc: "Код скидки только для гостей в ресторане", discount_popup_copy: "Скопировать код", discount_popup_copied: "Скопировано!", discount_popup_terms: "1 код / столик / день • Действует только сегодня",
                 order_line: "LINE @lhaolhao1980", order_grab: "Заказать через GrabFood", order_facebook: "Facebook", order_lineman: "LINE MAN доставка", order_robinhood: "Заказать через Robinhood", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "Заказать", dropdown_contact: "Контакт",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Премиальные морепродукты по традиционным тайско-китайским рецептам.",
@@ -197,6 +202,7 @@ const translations = {
             FR: {
                 nav_home: "Accueil", nav_menu: "Menu", nav_about: "Histoire", nav_contact: "Reviews",
                 btn_booking: "Réserver une table", btn_order: "Commander",
+                discount_popup_title: "🎉 5% de réduction aujourd'hui !", discount_popup_desc: "Code valable uniquement sur place", discount_popup_copy: "Copier le code", discount_popup_copied: "Copié !", discount_popup_terms: "1 code / table / jour • Valable aujourd'hui uniquement",
                 order_line: "LINE @lhaolhao1980", order_grab: "Commander via GrabFood", order_facebook: "Facebook", order_lineman: "Commander via LINE MAN", order_robinhood: "Commander via Robinhood", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "Commander", dropdown_contact: "Contact",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Cuisine de fruits de mer thaï-chinoise d'exception.",
@@ -236,6 +242,7 @@ const translations = {
             JP: {
                 nav_home: "ホーム", nav_menu: "メニュー", nav_about: "私たちの物語", nav_contact: "レビュー",
                 btn_booking: "予約する", btn_order: "注文する",
+                discount_popup_title: "🎉 本日5%オフ！", discount_popup_desc: "店内飲食限定のクーポンコード", discount_popup_copy: "コードをコピー", discount_popup_copied: "コピーしました！", discount_popup_terms: "1コード/テーブル/日 • 本日限り有効",
                 order_line: "LINE @lhaolhao1980", order_grab: "GrabFoodで注文", order_facebook: "Facebook", order_lineman: "LINE MAN デリバリー", order_robinhood: "Robinhoodで注文", order_xhs: "小紅書", order_wechat: "WeChat", dropdown_order: "注文", dropdown_contact: "連絡",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "代々受け継がれる本格的なタイ・中華風プレミアムシーフード。",
@@ -275,6 +282,7 @@ const translations = {
             MM: {
                 nav_home: "ပင်မစာမျက်နှာ", nav_menu: "မီနူး", nav_about: "ကျွန်ုပ်တို့အကြောင်း", nav_contact: "သုံးသပ်ချက်",
                 btn_booking: "စားပွဲယူရန်", btn_order: "မှာယူရန်",
+                discount_popup_title: "🎉 ယနေ့ 5% လျှော့ဈေး!", discount_popup_desc: "ဆိုင်တွင် စားသုံးမှုအတွက်သာ", discount_popup_copy: "ကုဒ်ကူးယူရန်", discount_popup_copied: "ကူးယူပြီးပါပြီ!", discount_popup_terms: "1 ကုဒ် / 1 စားပွဲ / 1 ရက် • ယနေ့တစ်ရက်သာ အသုံးပြုနိုင်သည်",
                 order_line: "LINE @lhaolhao1980", order_grab: "GrabFood မှ မှာယူပါ", order_facebook: "Facebook", order_lineman: "LINE MAN မှ မှာယူပါ", order_robinhood: "Robinhood မှ မှာယူပါ", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "မှာယူပါ", dropdown_contact: "ဆက်သွယ်ရန်",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "မျိုးဆက်များစွာ လက်ဆင့်ကမ်းလာသည့် ထိုင်း-တရုတ် ပရီမီယံ ပင်လယ်စာများ။",
@@ -314,6 +322,7 @@ const translations = {
             KH: {
                 nav_home: "ទំព័រដើម", nav_menu: "បញ្ជីម្ហូប", nav_about: "ប្រវត្តិហាង", nav_contact: "ការវាយតម្លៃ",
                 btn_booking: "កក់តុ", btn_order: "កម្មង់អាហារ",
+                discount_popup_title: "🎉 បញ្ចុះតម្លៃ 5% ថ្ងៃនេះ!", discount_popup_desc: "កូដសម្រាប់ញ៉ាំនៅហាងប៉ុណ្ណោះ", discount_popup_copy: "ចម្លងកូដ", discount_popup_copied: "ចម្លងរួចរាល់!", discount_popup_terms: "1 កូដ / តុ / ថ្ងៃ • ប្រើបានតែថ្ងៃនេះប៉ុណ្ណោះ",
                 order_line: "LINE @lhaolhao1980", order_grab: "កម្មង់តាម GrabFood", order_facebook: "Facebook", order_lineman: "កម្មង់តាម LINE MAN", order_robinhood: "កម្មង់តាម Robinhood", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "កម្មង់", dropdown_contact: "ទំនាក់ទំនង",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "ម្ហូបសមុទ្រកម្រិតខ្ពស់បែបថៃ-ចិន ដែលមានរសជាតិដើមតាំងពីយូរលង់មកហើយ។",
@@ -353,6 +362,7 @@ const translations = {
             VN: {
                 nav_home: "Trang chủ", nav_menu: "Thực đơn", nav_about: "Về chúng tôi", nav_contact: "Đánh giá",
                 btn_booking: "Đặt bàn", btn_order: "Đặt món",
+                discount_popup_title: "🎉 Giảm 5% hôm nay!", discount_popup_desc: "Mã giảm giá chỉ áp dụng khi ăn tại nhà hàng", discount_popup_copy: "Sao chép mã", discount_popup_copied: "Đã sao chép!", discount_popup_terms: "1 mã / bàn / ngày • Chỉ có hiệu lực hôm nay",
                 order_line: "LINE @lhaolhao1980", order_grab: "Đặt qua GrabFood", order_facebook: "Facebook", order_lineman: "Đặt qua LINE MAN", order_robinhood: "Đặt qua Robinhood", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "Đặt món", dropdown_contact: "Liên hệ",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Hải sản cao cấp phong cách Thái-Hoa, truyền thống và tươi ngon.",
@@ -392,6 +402,7 @@ const translations = {
             MS: {
                 nav_home: "Utama", nav_menu: "Menu", nav_about: "Sejarah", nav_contact: "Ulasan",
                 btn_booking: "Tempah Meja", btn_order: "Pesan Makanan",
+                discount_popup_title: "🎉 Diskaun 5% Hari Ini!", discount_popup_desc: "Kod diskaun untuk makan di restoran sahaja", discount_popup_copy: "Salin Kod", discount_popup_copied: "Disalin!", discount_popup_terms: "1 kod / meja / hari • Sah untuk hari ini sahaja",
                 order_line: "LINE @lhaolhao1980", order_grab: "Pesan melalui GrabFood", order_facebook: "Facebook", order_lineman: "Pesan melalui LINE MAN", order_robinhood: "Pesan melalui Robinhood", order_xhs: "Xiaohongshu", order_wechat: "WeChat", dropdown_order: "Pesan", dropdown_contact: "Hubungi",
                 hero_title_part1: "Lhao Lhao", hero_title_part2: "Restaurant",
                 hero_desc: "Makanan laut premium Thai-Cina yang asli dan segar.",
