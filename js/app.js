@@ -114,6 +114,68 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
         let discountExpandScrollY = 0;
         let redrawDiscountCoating = null;
 
+        const DISCOUNT_FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSd7q3CzeHg22x9y3cp6mEGZv7fiax9bQGZtYy6tib0r9ig5Bg/formResponse';
+        const DISCOUNT_FORM_ENTRIES = {
+            nickname: 'entry.877086558',
+            gender: 'entry.1498135098',
+            age: 'entry.1424661284',
+            favorite: 'entry.2606285'
+        };
+
+        function handleDiscountMiniClick() {
+            if (localStorage.getItem('discountFormDate') === getTodayKey()) {
+                expandDiscountPopup();
+            } else {
+                openDiscountForm();
+            }
+        }
+
+        function openDiscountForm() {
+            const overlay = document.getElementById('discount-form-overlay');
+            const mini = document.getElementById('discount-mini');
+            if (!overlay) return;
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
+            if (mini) mini.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDiscountForm() {
+            const overlay = document.getElementById('discount-form-overlay');
+            const mini = document.getElementById('discount-mini');
+            if (!overlay) return;
+            overlay.classList.add('hidden');
+            overlay.classList.remove('flex');
+            if (mini) mini.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        function submitDiscountForm(event) {
+            event.preventDefault();
+            const values = {
+                nickname: document.getElementById('df-nickname').value.trim(),
+                gender: document.getElementById('df-gender').value,
+                age: document.getElementById('df-age').value,
+                favorite: document.getElementById('df-favorite').value.trim()
+            };
+
+            const params = new URLSearchParams();
+            Object.keys(DISCOUNT_FORM_ENTRIES).forEach(key => {
+                params.append(DISCOUNT_FORM_ENTRIES[key], values[key]);
+            });
+            fetch(DISCOUNT_FORM_ACTION_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params.toString()
+            }).catch(() => {});
+
+            localStorage.setItem('discountFormDate', getTodayKey());
+            document.getElementById('discount-info-form').reset();
+            closeDiscountForm();
+            expandDiscountPopup();
+        }
+
         function expandDiscountPopup() {
             const popup = document.getElementById('discount-popup');
             const mini = document.getElementById('discount-mini');
@@ -195,7 +257,7 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
         function initDiscountPopup() {
             setupDiscountScratchCard();
             if (localStorage.getItem('discountPopupShown') !== getTodayKey()) {
-                setTimeout(expandDiscountPopup, 4000);
+                setTimeout(handleDiscountMiniClick, 4000);
             }
             window.addEventListener('scroll', () => {
                 const popup = document.getElementById('discount-popup');

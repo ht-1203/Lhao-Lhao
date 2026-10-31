@@ -485,9 +485,48 @@
     </div>
 
     <!-- Discount mini button -->
-    <button id="discount-mini" onclick="expandDiscountPopup()" class="fixed bottom-4 right-4 z-40 w-14 h-14 rounded-full bg-[#C41E3A] hover:bg-[#a8182f] text-white font-bold shadow-2xl flex items-center justify-center transition-all duration-300 ease-out" aria-label="Discount">
+    <button id="discount-mini" onclick="handleDiscountMiniClick()" class="fixed bottom-4 right-4 z-40 w-14 h-14 rounded-full bg-[#C41E3A] hover:bg-[#a8182f] text-white font-bold shadow-2xl flex items-center justify-center transition-all duration-300 ease-out" aria-label="Discount">
         5%
     </button>
+
+    <!-- Discount Info Form -->
+    <div id="discount-form-overlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div class="bg-white dark:bg-[#1a1a1a] w-full max-w-md max-h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-[#e8e4de] dark:border-[#333333] shrink-0">
+                <h3 class="font-bold text-lg dark:text-white" data-i18n="discount_form_title">กรอกข้อมูลก่อนรับส่วนลด</h3>
+                <button onclick="closeDiscountForm()" class="p-1.5 rounded-full hover:bg-[#ede9e3] dark:hover:bg-[#2e2e2e] text-[#9e9890] transition shrink-0" aria-label="Close">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto px-6 py-5">
+                <p class="text-sm text-[#7a7268] dark:text-[#9e9890] mb-5" data-i18n="discount_form_desc">ขอข้อมูลสั้นๆ ก่อนรับโค้ดส่วนลด 5% วันนี้</p>
+                <form id="discount-info-form" class="space-y-4" onsubmit="submitDiscountForm(event)">
+                    <div>
+                        <label class="block text-sm font-medium mb-1 dark:text-white" data-i18n="discount_form_nickname">ชื่อเล่น</label>
+                        <input type="text" id="df-nickname" required class="w-full px-3 py-2.5 rounded-lg border border-[#e8e4de] dark:border-[#333333] bg-[#faf9f7] dark:bg-[#242424] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#C41E3A]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 dark:text-white" data-i18n="discount_form_gender">เพศ</label>
+                        <select id="df-gender" required class="w-full px-3 py-2.5 rounded-lg border border-[#e8e4de] dark:border-[#333333] bg-[#faf9f7] dark:bg-[#242424] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#C41E3A]">
+                            <option value="" disabled selected data-i18n="discount_form_select">เลือก</option>
+                            <option value="ชาย" data-i18n="discount_form_male">ชาย</option>
+                            <option value="หญิง" data-i18n="discount_form_female">หญิง</option>
+                            <option value="ไม่ระบุ" data-i18n="discount_form_unspecified">ไม่ระบุ</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 dark:text-white" data-i18n="discount_form_age">อายุ</label>
+                        <input type="number" id="df-age" min="1" max="120" required class="w-full px-3 py-2.5 rounded-lg border border-[#e8e4de] dark:border-[#333333] bg-[#faf9f7] dark:bg-[#242424] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#C41E3A]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 dark:text-white" data-i18n="discount_form_favorite">เมนูที่ชอบที่สุดในร้าน</label>
+                        <input type="text" id="df-favorite" required class="w-full px-3 py-2.5 rounded-lg border border-[#e8e4de] dark:border-[#333333] bg-[#faf9f7] dark:bg-[#242424] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#C41E3A]">
+                    </div>
+                    <button type="submit" class="w-full bg-[#C41E3A] hover:bg-[#a8182f] text-white font-semibold py-3 rounded-lg transition" data-i18n="discount_form_submit">ยืนยันและรับส่วนลด</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Discount Popup -->
     <div id="discount-popup" class="fixed bottom-4 right-4 z-40 w-[280px] max-w-[calc(100%-2rem)] bg-white dark:bg-[#242424] border border-[#e8e4de] dark:border-[#333333] rounded-2xl shadow-2xl p-5 origin-bottom-right transition-all duration-300 ease-out scale-0 opacity-0 pointer-events-none">
