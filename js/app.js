@@ -171,9 +171,28 @@ const GOOGLE_SVG = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"><path
             }).catch(() => {});
 
             localStorage.setItem('discountFormDate', getTodayKey());
-            document.getElementById('discount-info-form').reset();
-            closeDiscountForm();
-            expandDiscountPopup();
+            showDiscountFormSuccess();
+        }
+
+        function showDiscountFormSuccess() {
+            const fields = document.getElementById('discount-form-fields');
+            const success = document.getElementById('discount-form-success');
+            if (!fields || !success) return;
+            fields.classList.add('hidden');
+            success.classList.remove('hidden');
+            success.classList.add('flex');
+            requestAnimationFrame(() => {
+                success.classList.remove('scale-90', 'opacity-0');
+            });
+            setTimeout(() => {
+                closeDiscountForm();
+                expandDiscountPopup();
+                document.getElementById('discount-info-form').reset();
+                success.classList.add('scale-90', 'opacity-0');
+                success.classList.remove('flex');
+                success.classList.add('hidden');
+                fields.classList.remove('hidden');
+            }, 1400);
         }
 
         function expandDiscountPopup() {
